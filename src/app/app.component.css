@@ -1,0 +1,9 @@
+.box {
+  width: 380px;
+  height: 300px;
+
+  overflow: auto;
+
+  background-color: #dddddd;
+  border: solid 1px #00aaaa;
+}

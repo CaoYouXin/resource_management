@@ -1,0 +1,25 @@
+.outer {
+  background-color: #dddddd;
+
+  cursor: default;
+
+  overflow: hidden;
+}
+
+.outer:first-child {
+  border-top: solid 1px #333333;
+}
+
+.outer > .line {
+  height: 20px;
+  line-height: 20px;
+  font-family: Monaco, monospace;
+}
+
+.outer > .line:hover {
+  background-color: white;
+}
+
+.inner {
+  margin-left: 20px;
+}

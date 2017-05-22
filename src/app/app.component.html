@@ -1,3 +1,7 @@
 <h1>
   {{title}}
 </h1>
+
+<div class="box">
+  <resource-file *ngFor="let resource of resources" [data]="resource" [inputOuterWidth]="0"></resource-file>
+</div>

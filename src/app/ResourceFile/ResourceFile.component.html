@@ -1,0 +1,12 @@
+<div class="outer" [style.width]="outerWidthed"
+     [style.height]="simplify ? '20px' : 'auto'">
+  <div #line class="line" (click)="toggleHeight()">
+    <span [style.fontSize]="fontSized()">{{data.name}}</span>
+  </div>
+
+  <div class="inner">
+    <resource-file *ngFor="let resource of data.contents"
+                   [data]="resource" [inputOuterWidth]="innerWidthed"
+                   (widthEvent)="widthResize($event)"></resource-file>
+  </div>
+</div>
