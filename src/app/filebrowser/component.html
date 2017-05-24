@@ -1,0 +1,19 @@
+<div class="outer" [style.width]="outerWidth"
+     [style.height]="simplify ? '20px' : 'auto'"
+     [style.backgroundColor]="outerBgColor">
+  <div #line class="line" [class.selected]="selected" (click)="callMenu($event)">
+    <span>{{data.name}}</span>
+  </div>
+
+  <div class="inner">
+    <file-browser *ngFor="let content of data.contents"
+                  [data]="content" [outerWidth]="innerWidth"
+                  [outerBgColor]="innerBgColor" [editable]="editable"
+                  (reloadEvent)="reload($event)" [rootEvent]="rootEvent"
+                  (unselectEvent)="unselect($event)" [selected]="innerSelected"
+                  (widthEvent)="widthResize($event)"></file-browser>
+  </div>
+</div>
+
+<file-browser-menu [show]="showMenu | async" (msg)="handleMenuMsg($event)"
+                   [left]="menuLeft" [top]="menuTop" [menuItems]="menuItems"></file-browser-menu>

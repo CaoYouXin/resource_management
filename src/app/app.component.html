@@ -1,7 +1,26 @@
-<h1>
-  {{title}}
+<h1 class="title">
+  <i></i>{{title}}
 </h1>
 
-<div class="box">
-  <resource-file *ngFor="let resource of resources" [data]="resource" [inputOuterWidth]="0"></resource-file>
+<hr>
+
+<div class="v-mid-box">
+  <div class="box">
+    <file-browser *ngIf="sources !== null" [data]="sources" [editable]="false"></file-browser>
+  </div>
+
+  <div class="btn" (click)="addToResource()">添加</div>
+
+  <div class="box">
+    <file-browser *ngIf="resources !== null" [data]="resources" [editable]="true" (reloadEvent)="reload($event)"
+                  [rootEvent]="rootEventMsg" (unselectEvent)="unselect()"></file-browser>
+  </div>
 </div>
+
+<hr>
+
+<smart-table [template]="resourceLevelTemplate"></smart-table>
+
+<hr>
+
+<smart-table [template]="resourceLevelMapTemplate"></smart-table>

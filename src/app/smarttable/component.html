@@ -1,0 +1,44 @@
+<div class="tools v-mid-box">
+  <div class="btn" (click)="add($event)">添加</div>
+  <div class="btn" (click)="modify($event)">修改</div>
+  <div class="btn" (click)="deleteA($event)">删除</div>
+</div>
+
+<table>
+  <thead>
+  <tr>
+    <th><input type="checkbox" [(ngModel)]="selectAll" (change)="dataCheckChange($event)"></th>
+    <th *ngFor="let col of template.cols">{{col.text}}</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let row of data;let index = index;">
+    <td><input type="checkbox" [(ngModel)]="dataCheck[index]" (change)="dataCheckInRowChange($event)"></td>
+    <td *ngFor="let col of template.cols">{{row[col.name]}}</td>
+  </tr>
+  </tbody>
+</table>
+
+<div class="editor-mask" *ngIf="editing"></div>
+
+<div class="editor" *ngIf="editing"
+     [style.top]="editorTop" [style.left]="editorLeft">
+  <table>
+    <tbody>
+      <tr *ngFor="let col of template.cols;let index = index;">
+        <td>{{col.text}}</td>
+        <td><input [id]="col.name" [(ngModel)]="editor[index]" (focus)="editorFocus(col, $event)" [disabled]="col.disabled" [type]="col.type"></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="v-mid-box">
+    <div class="btn" (click)="submit($event)">确定</div>
+    <div class="btn" (click)="cancel($event)">取消</div>
+  </div>
+</div>
+
+<div class="combo-mask" *ngIf="comboing"></div>
+
+<ul class="combo" *ngIf="comboing">
+  <li *ngFor="let combo of combos" (click)="comboClick(combo)">{{combo[comboValue]}}</li>
+</ul>

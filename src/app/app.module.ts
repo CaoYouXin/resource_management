@@ -4,12 +4,16 @@ import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 
 import {AppComponent} from "./app.component";
-import {ResourceFileComponent} from "./ResourceFile/ResourceFile.component";
+import {FileBrowserComponent} from "./filebrowser/component";
+import {FileBrowserMenuComponent} from "./filebrowser/menu/component";
+import {SmartTableComponent} from "./smarttable/component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    ResourceFileComponent
+    FileBrowserComponent,
+    FileBrowserMenuComponent,
+    SmartTableComponent,
   ],
   imports: [
     BrowserModule,

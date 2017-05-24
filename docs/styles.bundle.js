@@ -1,15 +1,15 @@
 webpackJsonp([2,4],{
 
-/***/ 345:
+/***/ 351:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(605);
+var content = __webpack_require__(611);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(622)(content, {});
+var update = __webpack_require__(633)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -27,22 +27,22 @@ if(false) {
 
 /***/ }),
 
-/***/ 605:
+/***/ 611:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(606)();
+exports = module.exports = __webpack_require__(612)();
 // imports
 
 
 // module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\n*, *:before, *:after {\n  box-sizing: border-box;\n  padding: 0;\n  margin: 0;\n  border: none;\n}\n", ""]);
+exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\n*, *:before, *:after {\n  box-sizing: border-box;\n  padding: 0;\n  margin: 0;\n  border: none;\n}\n\n.v-mid-box {\n  text-align: center;\n}\n\n.v-mid-box > *, .v-mid-box:after {\n  display: inline-block;\n  vertical-align: middle;\n}\n\n.v-mid-box:after {\n  content: '';\n  width: 0;\n  height: 100%;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ 606:
+/***/ 612:
 /***/ (function(module, exports) {
 
 /*
@@ -99,7 +99,7 @@ module.exports = function() {
 
 /***/ }),
 
-/***/ 622:
+/***/ 633:
 /***/ (function(module, exports) {
 
 /*
@@ -352,13 +352,13 @@ function updateLink(linkElement, obj) {
 
 /***/ }),
 
-/***/ 626:
+/***/ 637:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(345);
+module.exports = __webpack_require__(351);
 
 
 /***/ })
 
-},[626]);
+},[637]);
 //# sourceMappingURL=styles.bundle.map

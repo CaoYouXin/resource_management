@@ -1,0 +1,29 @@
+ul.wrapper {
+  list-style: none;
+  position: fixed;
+  z-index: 5001;
+}
+
+ul.wrapper > li {
+  height: 30px;
+  line-height: 30px;
+  font-size: 9px;
+  color: white;
+  background-color: #333333;
+  cursor: default;
+  padding: 0 1em;
+}
+
+ul.wrapper > li:hover {
+  background-color: #111111;
+}
+
+.blur {
+  position: fixed;
+  z-index: 5000;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: transparent;
+}

@@ -1,0 +1,5 @@
+<ul class="wrapper" *ngIf="show" [style.top]="top" [style.left]="left">
+  <li (click)="msg.emit(item.key)" *ngFor="let item of menuItems">{{item.name}}</li>
+</ul>
+
+<div class="blur" *ngIf="show" (click)="show = false"></div>
