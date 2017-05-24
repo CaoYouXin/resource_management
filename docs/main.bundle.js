@@ -102,6 +102,18 @@ var API = (function () {
         "DeleteResourceLevel": {
             "prod": "/resources/level/delete",
             "dev": "http://localhost:8080/resources/level/delete"
+        },
+        "GetLeveledResource": {
+            "prod": "/resources/leveled/resource/list",
+            "dev": "http://localhost:8080/resources/leveled/resource/list"
+        },
+        "SaveLeveledResource": {
+            "prod": "/resources/leveled/resource/save",
+            "dev": "http://localhost:8080/resources/leveled/resource/save"
+        },
+        "DeleteLeveledResource": {
+            "prod": "/resources/leveled/resource/delete",
+            "dev": "http://localhost:8080/resources/leveled/resource/delete"
         }
     };
     return API;
@@ -301,10 +313,23 @@ var AppComponent = (function () {
             saveUrl: __WEBPACK_IMPORTED_MODULE_2__api_api_const__["a" /* API */].getAPI("SaveResourceLevel"),
             deleteUrl: __WEBPACK_IMPORTED_MODULE_2__api_api_const__["a" /* API */].getAPI("DeleteResourceLevel"),
             cols: [
-                { name: 'id', text: 'ID', type: 'number' },
+                { name: 'id', text: 'ID', type: 'number', disabled: true },
                 { name: 'name', text: '级别名称', type: 'text' },
                 { name: 'msg', text: '级别说明', type: 'text' },
-            ]
+            ],
+            key: 'id'
+        };
+        this.resourceLevelMapTemplate = {
+            fetchUrl: __WEBPACK_IMPORTED_MODULE_2__api_api_const__["a" /* API */].getAPI("GetLeveledResource"),
+            saveUrl: __WEBPACK_IMPORTED_MODULE_2__api_api_const__["a" /* API */].getAPI("SaveLeveledResource"),
+            deleteUrl: __WEBPACK_IMPORTED_MODULE_2__api_api_const__["a" /* API */].getAPI("DeleteLeveledResource"),
+            cols: [
+                { name: 'id', text: 'ID', type: 'number', disabled: true },
+                { name: 'name', text: '资源目录', type: 'text' },
+                { name: 'levelId', text: '对应级别ID', type: 'number', disabled: true },
+                { name: 'levelName', text: '对应级别名称', type: 'text', combo: 'levelId', key: 'id', value: 'name', url: __WEBPACK_IMPORTED_MODULE_2__api_api_const__["a" /* API */].getAPI("GetResourceLevel") },
+            ],
+            key: 'id'
         };
     }
     AppComponent.prototype.ngOnInit = function () {
@@ -315,7 +340,6 @@ var AppComponent = (function () {
         this.data.getResource(__WEBPACK_IMPORTED_MODULE_2__api_api_const__["a" /* API */].getAPI("resource")).subscribe(function (ret) {
             _this.resources = ret;
         });
-        console.log(this.resourceLevelTemplate);
     };
     AppComponent.prototype.reload = function (resources) {
         this.resources = null;
@@ -326,9 +350,7 @@ var AppComponent = (function () {
     AppComponent.prototype.unselect = function () {
         this.rootEventMsg = Math.random() + '';
     };
-    AppComponent.prototype.status = function () {
-        console.log(__WEBPACK_IMPORTED_MODULE_1__DataService_data_service__["a" /* DataService */].getSelectedSourcePaths());
-        console.log(__WEBPACK_IMPORTED_MODULE_1__DataService_data_service__["a" /* DataService */].getSelectedTargetPath());
+    AppComponent.prototype.addToResource = function () {
         if (__WEBPACK_IMPORTED_MODULE_1__DataService_data_service__["a" /* DataService */].getSelectedSourcePaths().length === 0) {
             alert("请选择要添加的文件");
             return;
@@ -701,6 +723,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var SmartTableComponent = (function () {
     function SmartTableComponent(dao) {
         this.dao = dao;
+        this.dataCheck = [];
+        this.editor = [];
+        this.editing = false;
+        this.comboing = false;
     }
     SmartTableComponent.prototype.ngOnInit = function () {
         var self = this;
@@ -713,6 +739,119 @@ var SmartTableComponent = (function () {
             }
             self.data = ret.body;
         });
+    };
+    SmartTableComponent.prototype.callEditor = function (e) {
+        // this.editorLeft = e.pageX + 'px';
+        // this.editorTop = e.pageY + 'px';
+        this.editing = true;
+    };
+    SmartTableComponent.prototype.add = function (e) {
+        this.editor = [];
+        this.callEditor(e);
+    };
+    SmartTableComponent.prototype.modify = function (e) {
+        var _this = this;
+        var rowId = this.dataCheck.reduce(function (p, v, i) {
+            if (p < 0 && v) {
+                return i;
+            }
+            return p;
+        }, -1);
+        if (rowId < 0) {
+            return;
+        }
+        this.template.cols.forEach(function (col, index) {
+            _this.editor[index] = _this.data[rowId][col.name];
+        });
+        this.callEditor(e);
+    };
+    SmartTableComponent.prototype.deleteA = function () {
+        var _this = this;
+        var deleteIds = [];
+        this.dataCheck.forEach(function (check, index) {
+            if (check) {
+                deleteIds.push(_this.data[index][_this.template.key]);
+            }
+        });
+        var self = this;
+        this.dao.post(this.template.deleteUrl, {
+            ids: deleteIds
+        }).map(function (res) { return res.json(); })
+            .subscribe(function (ret) {
+            if (ret.code !== 20000) {
+                alert(ret.body);
+                return;
+            }
+            self.data = ret.body;
+        });
+    };
+    SmartTableComponent.prototype.submit = function () {
+        var _this = this;
+        var self = this;
+        var postData = {};
+        this.template.cols.forEach(function (col, index) {
+            if (!!col.combo) {
+                return;
+            }
+            postData[col.name] = _this.editor[index] === undefined ? null : _this.editor[index];
+        });
+        self.dao.post(self.template.saveUrl, postData)
+            .map(function (res) { return res.json(); })
+            .subscribe(function (ret) {
+            if (ret.code !== 20000) {
+                alert(ret.body);
+                self.editing = false;
+                return;
+            }
+            self.data = ret.body;
+            self.editing = false;
+        });
+    };
+    SmartTableComponent.prototype.cancel = function () {
+        this.editing = false;
+    };
+    SmartTableComponent.prototype.dataCheckChange = function (e) {
+        for (var i = 0; i < this.data.length; i++) {
+            this.dataCheck[i] = e.target.checked;
+        }
+    };
+    SmartTableComponent.prototype.dataCheckInRowChange = function (e) {
+        if (!e.target.checked) {
+            this.selectAll = false;
+        }
+    };
+    SmartTableComponent.prototype.editorFocus = function (col) {
+        if (!col.combo) {
+            return;
+        }
+        this.comboKey = col.key;
+        this.comboValue = col.value;
+        this.comboTarget = col.combo;
+        this.comboCol = col.name;
+        var self = this;
+        this.dao.get(col.url)
+            .map(function (res) { return res.json(); })
+            .subscribe(function (ret) {
+            if (ret.code !== 20000) {
+                alert(ret.body);
+                return;
+            }
+            self.combos = ret.body;
+            self.comboing = true;
+        });
+    };
+    SmartTableComponent.prototype.comboClick = function (combo) {
+        var _this = this;
+        var self = this;
+        this.template.cols.forEach(function (col, index) {
+            if (col.name === self.comboTarget) {
+                _this.editor[index] = combo[self.comboKey];
+            }
+            if (col.name === self.comboCol) {
+                _this.editor[index] = combo[self.comboValue];
+            }
+        });
+        this.comboing = false;
     };
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* Input */])(), 
@@ -757,14 +896,14 @@ module.exports = "ul.wrapper {\n  list-style: none;\n  position: fixed;\n  z-ind
 /***/ 617:
 /***/ (function(module, exports) {
 
-module.exports = ".tools {\n  height: 30px;\n  text-align: left;\n  border-top: solid 1px #111111;\n}\n\n.tools > .btn {\n  height: 20px;\n  line-height: 20px;\n  font-size: 12px;\n  padding: 0 1em;\n  border-radius: 10px;\n  border: solid 1px #dddddd;\n  margin-left: 1em;\n  cursor: default;\n}\n\n.tools > .btn:hover {\n  color: #1d1d1b;\n  text-shadow: 1px 1px 2px red;\n  background-image: linear-gradient(90deg, wheat, #999999 50%, wheat);\n}\n\ntable {\n  width: 100%;\n  margin: 0 auto;\n  border-collapse: collapse;\n}\n\ntable, th, td {\n  border: 1px solid rgba(0, 0, 0, 0.1);\n}\n\nth, td {\n  line-height: 2em;\n  text-align: center;\n}\n\nth {\n  font-size: 1.3em;\n  font-weight: 900;\n  background-color: #cac5ff;\n}\n\ntd {\n  font-size: 1em;\n}\n\ntr:nth-child(odd) > td {\n  background-color: #cdffd2;\n}\n\ntr:nth-child(even) > td {\n  background-color: #edffd5;\n}\n"
+module.exports = ".tools {\n  height: 30px;\n  text-align: left;\n  border-top: solid 1px #111111;\n}\n\n.btn {\n  height: 20px;\n  line-height: 20px;\n  font-size: 12px;\n  padding: 0 1em;\n  border-radius: 10px;\n  border: solid 1px #dddddd;\n  margin-left: 1em;\n  cursor: default;\n}\n\n.btn:hover {\n  color: #1d1d1b;\n  text-shadow: 1px 1px 2px red;\n  background-image: linear-gradient(90deg, wheat, #999999 50%, wheat);\n}\n\ntable {\n  width: 100%;\n  margin: 0 auto;\n  border-collapse: collapse;\n}\n\ntable, th, td {\n  border: 1px solid rgba(0, 0, 0, 0.1);\n}\n\nth, td {\n  line-height: 2em;\n  text-align: center;\n}\n\nth {\n  font-size: 1.3em;\n  font-weight: 900;\n  background-color: #cac5ff;\n}\n\ntd {\n  font-size: 1em;\n}\n\ntr:nth-child(odd) > td {\n  background-color: #cdffd2;\n}\n\ntr:nth-child(even) > td {\n  background-color: #edffd5;\n}\n\n.editor-mask {\n  position: fixed;\n  z-index: 5000;\n\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n\n  background-color: rgba(0, 0, 0, 0.5);\n}\n\n.editor {\n  position: fixed;\n  z-index: 5001;\n\n  min-width: 200px;\n\n  top: 50%;\n  left: calc(50% - 100px);\n\n  padding: 10px;\n  border-radius: 10px;\n  border: solid 1px #111111;\n  box-shadow: 0 0 5px #010101;\n  background-color: whitesmoke;\n}\n\n.editor input {\n  outline: none;\n  line-height: 16px;\n}\n\n.editor input:focus {\n  box-shadow: 0 0 5px black;\n}\n\n.combo-mask {\n  position: fixed;\n  z-index: 6000;\n\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n\n  background-color: rgba(0, 0, 0, 0.5);\n}\n\nul.combo {\n  list-style: none;\n\n  position: fixed;\n  z-index: 6001;\n\n  top: 50%;\n  left: calc(50% - 100px);\n\n  padding: 10px;\n  border-radius: 10px;\n  border: solid 1px #111111;\n  box-shadow: 0 0 5px #010101;\n  background-color: whitesmoke;\n}\n\nul.combo > li {\n  width: 200px;\n\n  cursor: default;\n}\n\nul.combo > li:hover {\n  background-color: #dddddd;\n}\n"
 
 /***/ }),
 
 /***/ 618:
 /***/ (function(module, exports) {
 
-module.exports = "<h1 class=\"title\">\n  <i></i>{{title}}\n</h1>\n\n<hr>\n\n<div class=\"v-mid-box\">\n  <div class=\"box\">\n    <file-browser *ngIf=\"sources !== null\" [data]=\"sources\" [editable]=\"false\"></file-browser>\n  </div>\n\n  <div class=\"btn\" (click)=\"status()\">添加</div>\n\n  <div class=\"box\">\n    <file-browser *ngIf=\"resources !== null\" [data]=\"resources\" [editable]=\"true\" (reloadEvent)=\"reload($event)\"\n                  [rootEvent]=\"rootEventMsg\" (unselectEvent)=\"unselect()\"></file-browser>\n  </div>\n</div>\n\n<hr>\n\n<smart-table [template]=\"resourceLevelTemplate\"></smart-table>\n"
+module.exports = "<h1 class=\"title\">\n  <i></i>{{title}}\n</h1>\n\n<hr>\n\n<div class=\"v-mid-box\">\n  <div class=\"box\">\n    <file-browser *ngIf=\"sources !== null\" [data]=\"sources\" [editable]=\"false\"></file-browser>\n  </div>\n\n  <div class=\"btn\" (click)=\"addToResource()\">添加</div>\n\n  <div class=\"box\">\n    <file-browser *ngIf=\"resources !== null\" [data]=\"resources\" [editable]=\"true\" (reloadEvent)=\"reload($event)\"\n                  [rootEvent]=\"rootEventMsg\" (unselectEvent)=\"unselect()\"></file-browser>\n  </div>\n</div>\n\n<hr>\n\n<smart-table [template]=\"resourceLevelTemplate\"></smart-table>\n\n<hr>\n\n<smart-table [template]=\"resourceLevelMapTemplate\"></smart-table>\n"
 
 /***/ }),
 
@@ -785,7 +924,7 @@ module.exports = "<ul class=\"wrapper\" *ngIf=\"show\" [style.top]=\"top\" [styl
 /***/ 621:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"tools v-mid-box\">\n  <div class=\"btn\">添加</div>\n  <div class=\"btn\">修改</div>\n  <div class=\"btn\">删除</div>\n</div>\n\n<table>\n  <thead>\n    <tr>\n      <th><input type=\"checkbox\"></th>\n      <th *ngFor=\"let col of template.cols\">{{col.text}}</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"let row of data\">\n      <td><input type=\"checkbox\"></td>\n      <td *ngFor=\"let col of template.cols\">{{row[col.name]}}</td>\n    </tr>\n  </tbody>\n</table>\n"
+module.exports = "<div class=\"tools v-mid-box\">\n  <div class=\"btn\" (click)=\"add($event)\">添加</div>\n  <div class=\"btn\" (click)=\"modify($event)\">修改</div>\n  <div class=\"btn\" (click)=\"deleteA($event)\">删除</div>\n</div>\n\n<table>\n  <thead>\n  <tr>\n    <th><input type=\"checkbox\" [(ngModel)]=\"selectAll\" (change)=\"dataCheckChange($event)\"></th>\n    <th *ngFor=\"let col of template.cols\">{{col.text}}</th>\n  </tr>\n  </thead>\n  <tbody>\n  <tr *ngFor=\"let row of data;let index = index;\">\n    <td><input type=\"checkbox\" [(ngModel)]=\"dataCheck[index]\" (change)=\"dataCheckInRowChange($event)\"></td>\n    <td *ngFor=\"let col of template.cols\">{{row[col.name]}}</td>\n  </tr>\n  </tbody>\n</table>\n\n<div class=\"editor-mask\" *ngIf=\"editing\"></div>\n\n<div class=\"editor\" *ngIf=\"editing\"\n     [style.top]=\"editorTop\" [style.left]=\"editorLeft\">\n  <table>\n    <tbody>\n      <tr *ngFor=\"let col of template.cols;let index = index;\">\n        <td>{{col.text}}</td>\n        <td><input [id]=\"col.name\" [(ngModel)]=\"editor[index]\" (focus)=\"editorFocus(col, $event)\" [disabled]=\"col.disabled\" [type]=\"col.type\"></td>\n      </tr>\n    </tbody>\n  </table>\n  <div class=\"v-mid-box\">\n    <div class=\"btn\" (click)=\"submit($event)\">确定</div>\n    <div class=\"btn\" (click)=\"cancel($event)\">取消</div>\n  </div>\n</div>\n\n<div class=\"combo-mask\" *ngIf=\"comboing\"></div>\n\n<ul class=\"combo\" *ngIf=\"comboing\">\n  <li *ngFor=\"let combo of combos\" (click)=\"comboClick(combo)\">{{combo[comboValue]}}</li>\n</ul>\n"
 
 /***/ }),
 

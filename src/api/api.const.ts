@@ -45,15 +45,15 @@ export class API {
       "dev": "http://localhost:8080/resources/level/delete"
     },
     "GetLeveledResource": {
-      "prod": "/resources/level/list",
+      "prod": "/resources/leveled/resource/list",
       "dev": "http://localhost:8080/resources/leveled/resource/list"
     },
     "SaveLeveledResource": {
-      "prod": "/resources/level/save",
+      "prod": "/resources/leveled/resource/save",
       "dev": "http://localhost:8080/resources/leveled/resource/save"
     },
     "DeleteLeveledResource": {
-      "prod": "/resources/level/delete",
+      "prod": "/resources/leveled/resource/delete",
       "dev": "http://localhost:8080/resources/leveled/resource/delete"
     }
   };
