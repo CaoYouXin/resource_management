@@ -18,7 +18,7 @@ import {SmartTableComponent} from "./smarttable/component";
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

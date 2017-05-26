@@ -1,4 +1,5 @@
 <ul class="wrapper" *ngIf="show" [style.top]="top" [style.left]="left">
+  <li #clip class="clip">复制路径</li>
   <li (click)="msg.emit(item.key)" *ngFor="let item of menuItems">{{item.name}}</li>
 </ul>
 

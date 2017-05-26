@@ -428,7 +428,7 @@ var AppModule = (function () {
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormsModule */],
-                __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* HttpModule */]
+                __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* HttpModule */],
             ],
             providers: [],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */]]
@@ -588,6 +588,9 @@ var FileBrowserComponent = (function () {
                     self.showMenu = new Promise(function (res) { return res(false); });
                 });
                 break;
+            case 'exit':
+                self.showMenu = new Promise(function (res) { return res(false); });
+                break;
             default:
                 console.log('unknown msg ' + msg);
                 break;
@@ -668,7 +671,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var FileBrowserMenuComponent = (function () {
     function FileBrowserMenuComponent() {
         this.msg = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["G" /* EventEmitter */]();
+        this.clipboardObj = null;
     }
+    FileBrowserMenuComponent.prototype.ngOnChanges = function (cr) {
+        if (cr.show && cr.show.currentValue && null === this.clipboardObj) {
+            setTimeout(function (self) {
+                self.clipElem.nativeElement.setAttribute('data-clipboard-text', self.clipboard);
+                self.clipboardObj = new window['Clipboard']('.clip');
+                self.clipboardObj.on('success', function (e) {
+                    e.clearSelection();
+                    self.msg.emit('exit');
+                });
+            }, 1, this);
+        }
+    };
+    FileBrowserMenuComponent.prototype.ngOnDestroy = function () {
+        this.clipboardObj.destroy();
+    };
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* Input */])(), 
         __metadata('design:type', Object)
@@ -686,9 +705,17 @@ var FileBrowserMenuComponent = (function () {
         __metadata('design:type', String)
     ], FileBrowserMenuComponent.prototype, "left", void 0);
     __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* Input */])(), 
+        __metadata('design:type', String)
+    ], FileBrowserMenuComponent.prototype, "clipboard", void 0);
+    __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["T" /* Output */])(), 
         __metadata('design:type', Object)
     ], FileBrowserMenuComponent.prototype, "msg", void 0);
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["V" /* ViewChild */])('clip'), 
+        __metadata('design:type', (typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* ElementRef */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* ElementRef */]) === 'function' && _a) || Object)
+    ], FileBrowserMenuComponent.prototype, "clipElem", void 0);
     FileBrowserMenuComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["U" /* Component */])({
             selector: 'file-browser-menu',
@@ -698,6 +725,7 @@ var FileBrowserMenuComponent = (function () {
         __metadata('design:paramtypes', [])
     ], FileBrowserMenuComponent);
     return FileBrowserMenuComponent;
+    var _a;
 }());
 //# sourceMappingURL=/Users/cls/Dev/Git/personal/infinitely/html/resource_management/src/component.js.map
 
@@ -932,14 +960,14 @@ module.exports = "<h1 class=\"title\">\n  <i></i>{{title}}\n</h1>\n\n<hr>\n\n<di
 /***/ 619:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"outer\" [style.width]=\"outerWidth\"\n     [style.height]=\"simplify ? '20px' : 'auto'\"\n     [style.backgroundColor]=\"outerBgColor\">\n  <div #line class=\"line\" [class.selected]=\"selected\" (click)=\"callMenu($event)\">\n    <span>{{data.name}}</span>\n  </div>\n\n  <div class=\"inner\">\n    <file-browser *ngFor=\"let content of data.contents\"\n                  [data]=\"content\" [outerWidth]=\"innerWidth\"\n                  [outerBgColor]=\"innerBgColor\" [editable]=\"editable\"\n                  (reloadEvent)=\"reload($event)\" [rootEvent]=\"rootEvent\"\n                  (unselectEvent)=\"unselect($event)\" [selected]=\"innerSelected\"\n                  (widthEvent)=\"widthResize($event)\"></file-browser>\n  </div>\n</div>\n\n<file-browser-menu [show]=\"showMenu | async\" (msg)=\"handleMenuMsg($event)\"\n                   [left]=\"menuLeft\" [top]=\"menuTop\" [menuItems]=\"menuItems\"></file-browser-menu>\n"
+module.exports = "<div class=\"outer\" [style.width]=\"outerWidth\"\n     [style.height]=\"simplify ? '20px' : 'auto'\"\n     [style.backgroundColor]=\"outerBgColor\">\n  <div #line class=\"line\" [class.selected]=\"selected\" (click)=\"callMenu($event)\">\n    <span>{{data.name}}</span>\n  </div>\n\n  <div class=\"inner\">\n    <file-browser *ngFor=\"let content of data.contents\"\n                  [data]=\"content\" [outerWidth]=\"innerWidth\"\n                  [outerBgColor]=\"innerBgColor\" [editable]=\"editable\"\n                  (reloadEvent)=\"reload($event)\" [rootEvent]=\"rootEvent\"\n                  (unselectEvent)=\"unselect($event)\" [selected]=\"innerSelected\"\n                  (widthEvent)=\"widthResize($event)\"></file-browser>\n  </div>\n</div>\n\n<file-browser-menu [show]=\"showMenu | async\" (msg)=\"handleMenuMsg($event)\" [clipboard]=\"data.path\"\n                   [left]=\"menuLeft\" [top]=\"menuTop\" [menuItems]=\"menuItems\"></file-browser-menu>\n"
 
 /***/ }),
 
 /***/ 620:
 /***/ (function(module, exports) {
 
-module.exports = "<ul class=\"wrapper\" *ngIf=\"show\" [style.top]=\"top\" [style.left]=\"left\">\n  <li (click)=\"msg.emit(item.key)\" *ngFor=\"let item of menuItems\">{{item.name}}</li>\n</ul>\n\n<div class=\"blur\" *ngIf=\"show\" (click)=\"show = false\"></div>\n"
+module.exports = "<ul class=\"wrapper\" *ngIf=\"show\" [style.top]=\"top\" [style.left]=\"left\">\n  <li #clip class=\"clip\">复制路径</li>\n  <li (click)=\"msg.emit(item.key)\" *ngFor=\"let item of menuItems\">{{item.name}}</li>\n</ul>\n\n<div class=\"blur\" *ngIf=\"show\" (click)=\"show = false\"></div>\n"
 
 /***/ }),
 

@@ -186,6 +186,9 @@ export class FileBrowserComponent implements OnInit, OnChanges {
             self.showMenu = new Promise(res => res(false));
           });
         break;
+      case 'exit':
+        self.showMenu = new Promise(res => res(false));
+        break;
       default:
         console.log('unknown msg ' + msg);
         break;

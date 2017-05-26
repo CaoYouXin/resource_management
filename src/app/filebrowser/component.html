@@ -15,5 +15,5 @@
   </div>
 </div>
 
-<file-browser-menu [show]="showMenu | async" (msg)="handleMenuMsg($event)"
+<file-browser-menu [show]="showMenu | async" (msg)="handleMenuMsg($event)" [clipboard]="data.path"
                    [left]="menuLeft" [top]="menuTop" [menuItems]="menuItems"></file-browser-menu>
