@@ -21,7 +21,8 @@
 
 <div class="editor-mask" *ngIf="editing"></div>
 
-<div class="editor" *ngIf="editing"
+<div [id]="editorId" class="editor" *ngIf="editing"
+     [style.visibility]="editorVisibility"
      [style.top]="editorTop" [style.left]="editorLeft">
   <table>
     <tbody>
@@ -39,6 +40,8 @@
 
 <div class="combo-mask" *ngIf="comboing"></div>
 
-<ul class="combo" *ngIf="comboing">
+<ul [id]="comboId"  class="combo" *ngIf="comboing"
+    [style.visibility]="comboVisibility"
+    [style.top]="comboTop" [style.left]="comboLeft">
   <li *ngFor="let combo of combos" (click)="comboClick(combo)">{{combo[comboValue]}}</li>
 </ul>

@@ -1,21 +1,32 @@
-import {Component, Input, OnInit} from "@angular/core";
+import {Component, ElementRef, Input, OnInit, ViewChild} from "@angular/core";
 import {DaoUtil} from "../../dao/dao.util";
 import "rxjs/add/operator/map";
 
 @Component({
   selector: 'smart-table',
   templateUrl: './component.html',
-  styleUrls: ['./component.css']
+  styleUrls: ['./component.css'],
+  providers: [DaoUtil]
 })
 export class SmartTableComponent implements OnInit {
 
   @Input()
   template: any;
 
+  editorId: string;
+  comboId: string;
+
   data: Array<any>;
   combos: Array<any>;
+
+  editorVisibility: string;
   editorTop: string;
   editorLeft: string;
+
+  comboVisibility: string;
+  comboTop: string;
+  comboLeft: string;
+
   selectAll: boolean;
   comboKey: string;
   comboValue: string;
@@ -31,6 +42,9 @@ export class SmartTableComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.editorId = this.template.editorId;
+    this.comboId  = this.template.comboId;
+
     const self = this;
     this.dao.get(this.template.fetchUrl)
       .map(res => res.json())
@@ -44,15 +58,31 @@ export class SmartTableComponent implements OnInit {
       });
   }
 
-  callEditor(e) {
-    // this.editorLeft = e.pageX + 'px';
-    // this.editorTop = e.pageY + 'px';
+  callEditor() {
+    this.editorVisibility = 'hidden';
     this.editing = true;
+    setTimeout(function (self) {
+      let elementById = document.getElementById(self.editorId);
+      self.editorLeft = 'calc(50% - ' + (elementById.offsetWidth / 2) +  'px)';
+      self.editorTop = 'calc(50% - ' + (elementById.offsetHeight / 2) +  'px)';
+      self.editorVisibility = 'visible';
+    }, 200, this);
+  }
+
+  callCombo() {
+    this.comboVisibility = 'hidden';
+    this.comboing = true;
+    setTimeout(function (self) {
+      let elementById = document.getElementById(self.comboId);
+      self.comboLeft = 'calc(50% - ' + (elementById.offsetWidth / 2) +  'px)';
+      self.comboTop = 'calc(50% - ' + (elementById.offsetHeight / 2) +  'px)';
+      self.comboVisibility = 'visible';
+    }, 200, this);
   }
 
   add(e) {
     this.editor = [];
-    this.callEditor(e);
+    this.callEditor();
   }
 
   modify(e) {
@@ -71,7 +101,7 @@ export class SmartTableComponent implements OnInit {
       this.editor[index] = this.data[rowId][col.name];
     });
 
-    this.callEditor(e);
+    this.callEditor();
   }
 
   deleteA() {
@@ -156,7 +186,7 @@ export class SmartTableComponent implements OnInit {
         }
 
         self.combos = ret.body;
-        self.comboing = true;
+        self.callCombo();
       });
   }
 

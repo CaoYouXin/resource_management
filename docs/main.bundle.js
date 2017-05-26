@@ -317,7 +317,9 @@ var AppComponent = (function () {
                 { name: 'name', text: '级别名称', type: 'text' },
                 { name: 'msg', text: '级别说明', type: 'text' },
             ],
-            key: 'id'
+            key: 'id',
+            editorId: 'ResourceLevelEditor',
+            comboId: 'ResourceLevelCombo'
         };
         this.resourceLevelMapTemplate = {
             fetchUrl: __WEBPACK_IMPORTED_MODULE_2__api_api_const__["a" /* API */].getAPI("GetLeveledResource"),
@@ -329,7 +331,9 @@ var AppComponent = (function () {
                 { name: 'levelId', text: '对应级别ID', type: 'number', disabled: true },
                 { name: 'levelName', text: '对应级别名称', type: 'text', combo: 'levelId', key: 'id', value: 'name', url: __WEBPACK_IMPORTED_MODULE_2__api_api_const__["a" /* API */].getAPI("GetResourceLevel") },
             ],
-            key: 'id'
+            key: 'id',
+            editorId: 'ResourceLevelMapEditor',
+            comboId: 'ResourceLevelMapCombo'
         };
     }
     AppComponent.prototype.ngOnInit = function () {
@@ -729,6 +733,8 @@ var SmartTableComponent = (function () {
         this.comboing = false;
     }
     SmartTableComponent.prototype.ngOnInit = function () {
+        this.editorId = this.template.editorId;
+        this.comboId = this.template.comboId;
         var self = this;
         this.dao.get(this.template.fetchUrl)
             .map(function (res) { return res.json(); })
@@ -740,14 +746,29 @@ var SmartTableComponent = (function () {
             self.data = ret.body;
         });
     };
-    SmartTableComponent.prototype.callEditor = function (e) {
-        // this.editorLeft = e.pageX + 'px';
-        // this.editorTop = e.pageY + 'px';
+    SmartTableComponent.prototype.callEditor = function () {
+        this.editorVisibility = 'hidden';
         this.editing = true;
+        setTimeout(function (self) {
+            var elementById = document.getElementById(self.editorId);
+            self.editorLeft = 'calc(50% - ' + (elementById.offsetWidth / 2) + 'px)';
+            self.editorTop = 'calc(50% - ' + (elementById.offsetHeight / 2) + 'px)';
+            self.editorVisibility = 'visible';
+        }, 200, this);
+    };
+    SmartTableComponent.prototype.callCombo = function () {
+        this.comboVisibility = 'hidden';
+        this.comboing = true;
+        setTimeout(function (self) {
+            var elementById = document.getElementById(self.comboId);
+            self.comboLeft = 'calc(50% - ' + (elementById.offsetWidth / 2) + 'px)';
+            self.comboTop = 'calc(50% - ' + (elementById.offsetHeight / 2) + 'px)';
+            self.comboVisibility = 'visible';
+        }, 200, this);
     };
     SmartTableComponent.prototype.add = function (e) {
         this.editor = [];
-        this.callEditor(e);
+        this.callEditor();
     };
     SmartTableComponent.prototype.modify = function (e) {
         var _this = this;
@@ -763,7 +784,7 @@ var SmartTableComponent = (function () {
         this.template.cols.forEach(function (col, index) {
             _this.editor[index] = _this.data[rowId][col.name];
         });
-        this.callEditor(e);
+        this.callEditor();
     };
     SmartTableComponent.prototype.deleteA = function () {
         var _this = this;
@@ -837,7 +858,7 @@ var SmartTableComponent = (function () {
                 return;
             }
             self.combos = ret.body;
-            self.comboing = true;
+            self.callCombo();
         });
     };
     SmartTableComponent.prototype.comboClick = function (combo) {
@@ -861,7 +882,8 @@ var SmartTableComponent = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["U" /* Component */])({
             selector: 'smart-table',
             template: __webpack_require__(621),
-            styles: [__webpack_require__(617)]
+            styles: [__webpack_require__(617)],
+            providers: [__WEBPACK_IMPORTED_MODULE_1__dao_dao_util__["a" /* DaoUtil */]]
         }), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__dao_dao_util__["a" /* DaoUtil */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__dao_dao_util__["a" /* DaoUtil */]) === 'function' && _a) || Object])
     ], SmartTableComponent);
@@ -924,7 +946,7 @@ module.exports = "<ul class=\"wrapper\" *ngIf=\"show\" [style.top]=\"top\" [styl
 /***/ 621:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"tools v-mid-box\">\n  <div class=\"btn\" (click)=\"add($event)\">添加</div>\n  <div class=\"btn\" (click)=\"modify($event)\">修改</div>\n  <div class=\"btn\" (click)=\"deleteA($event)\">删除</div>\n</div>\n\n<table>\n  <thead>\n  <tr>\n    <th><input type=\"checkbox\" [(ngModel)]=\"selectAll\" (change)=\"dataCheckChange($event)\"></th>\n    <th *ngFor=\"let col of template.cols\">{{col.text}}</th>\n  </tr>\n  </thead>\n  <tbody>\n  <tr *ngFor=\"let row of data;let index = index;\">\n    <td><input type=\"checkbox\" [(ngModel)]=\"dataCheck[index]\" (change)=\"dataCheckInRowChange($event)\"></td>\n    <td *ngFor=\"let col of template.cols\">{{row[col.name]}}</td>\n  </tr>\n  </tbody>\n</table>\n\n<div class=\"editor-mask\" *ngIf=\"editing\"></div>\n\n<div class=\"editor\" *ngIf=\"editing\"\n     [style.top]=\"editorTop\" [style.left]=\"editorLeft\">\n  <table>\n    <tbody>\n      <tr *ngFor=\"let col of template.cols;let index = index;\">\n        <td>{{col.text}}</td>\n        <td><input [id]=\"col.name\" [(ngModel)]=\"editor[index]\" (focus)=\"editorFocus(col, $event)\" [disabled]=\"col.disabled\" [type]=\"col.type\"></td>\n      </tr>\n    </tbody>\n  </table>\n  <div class=\"v-mid-box\">\n    <div class=\"btn\" (click)=\"submit($event)\">确定</div>\n    <div class=\"btn\" (click)=\"cancel($event)\">取消</div>\n  </div>\n</div>\n\n<div class=\"combo-mask\" *ngIf=\"comboing\"></div>\n\n<ul class=\"combo\" *ngIf=\"comboing\">\n  <li *ngFor=\"let combo of combos\" (click)=\"comboClick(combo)\">{{combo[comboValue]}}</li>\n</ul>\n"
+module.exports = "<div class=\"tools v-mid-box\">\n  <div class=\"btn\" (click)=\"add($event)\">添加</div>\n  <div class=\"btn\" (click)=\"modify($event)\">修改</div>\n  <div class=\"btn\" (click)=\"deleteA($event)\">删除</div>\n</div>\n\n<table>\n  <thead>\n  <tr>\n    <th><input type=\"checkbox\" [(ngModel)]=\"selectAll\" (change)=\"dataCheckChange($event)\"></th>\n    <th *ngFor=\"let col of template.cols\">{{col.text}}</th>\n  </tr>\n  </thead>\n  <tbody>\n  <tr *ngFor=\"let row of data;let index = index;\">\n    <td><input type=\"checkbox\" [(ngModel)]=\"dataCheck[index]\" (change)=\"dataCheckInRowChange($event)\"></td>\n    <td *ngFor=\"let col of template.cols\">{{row[col.name]}}</td>\n  </tr>\n  </tbody>\n</table>\n\n<div class=\"editor-mask\" *ngIf=\"editing\"></div>\n\n<div [id]=\"editorId\" class=\"editor\" *ngIf=\"editing\"\n     [style.visibility]=\"editorVisibility\"\n     [style.top]=\"editorTop\" [style.left]=\"editorLeft\">\n  <table>\n    <tbody>\n      <tr *ngFor=\"let col of template.cols;let index = index;\">\n        <td>{{col.text}}</td>\n        <td><input [id]=\"col.name\" [(ngModel)]=\"editor[index]\" (focus)=\"editorFocus(col, $event)\" [disabled]=\"col.disabled\" [type]=\"col.type\"></td>\n      </tr>\n    </tbody>\n  </table>\n  <div class=\"v-mid-box\">\n    <div class=\"btn\" (click)=\"submit($event)\">确定</div>\n    <div class=\"btn\" (click)=\"cancel($event)\">取消</div>\n  </div>\n</div>\n\n<div class=\"combo-mask\" *ngIf=\"comboing\"></div>\n\n<ul [id]=\"comboId\"  class=\"combo\" *ngIf=\"comboing\"\n    [style.visibility]=\"comboVisibility\"\n    [style.top]=\"comboTop\" [style.left]=\"comboLeft\">\n  <li *ngFor=\"let combo of combos\" (click)=\"comboClick(combo)\">{{combo[comboValue]}}</li>\n</ul>\n"
 
 /***/ }),
 

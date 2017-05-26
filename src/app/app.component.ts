@@ -24,7 +24,9 @@ export class AppComponent implements OnInit {
       {name: 'name', text: '级别名称', type: 'text'},
       {name: 'msg', text: '级别说明', type: 'text'},
     ],
-    key: 'id'
+    key: 'id',
+    editorId: 'ResourceLevelEditor',
+    comboId: 'ResourceLevelCombo'
   };
 
   resourceLevelMapTemplate = {
@@ -37,7 +39,9 @@ export class AppComponent implements OnInit {
       {name: 'levelId', text: '对应级别ID', type: 'number', disabled: true},
       {name: 'levelName', text: '对应级别名称', type: 'text', combo: 'levelId', key: 'id', value: 'name', url: API.getAPI("GetResourceLevel")},
     ],
-    key: 'id'
+    key: 'id',
+    editorId: 'ResourceLevelMapEditor',
+    comboId: 'ResourceLevelMapCombo'
   };
 
   constructor(private data: DataService) {
