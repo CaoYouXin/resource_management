@@ -686,7 +686,9 @@ var FileBrowserMenuComponent = (function () {
         }
     };
     FileBrowserMenuComponent.prototype.ngOnDestroy = function () {
-        this.clipboardObj.destroy();
+        if (null != this.clipboardObj) {
+            this.clipboardObj.destroy();
+        }
     };
     __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* Input */])(), 

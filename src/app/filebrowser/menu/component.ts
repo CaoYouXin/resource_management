@@ -48,7 +48,9 @@ export class FileBrowserMenuComponent implements OnChanges, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.clipboardObj.destroy();
+    if (null != this.clipboardObj) {
+      this.clipboardObj.destroy();
+    }
   }
 
 }
