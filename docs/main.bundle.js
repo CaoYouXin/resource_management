@@ -316,6 +316,7 @@ var AppComponent = (function () {
                 { name: 'id', text: 'ID', type: 'number', disabled: true },
                 { name: 'name', text: '级别名称', type: 'text' },
                 { name: 'msg', text: '级别说明', type: 'text' },
+                { name: 'default', text: '是否默认', type: 'checkbox' },
             ],
             key: 'id',
             editorId: 'ResourceLevelEditor',
@@ -871,6 +872,10 @@ var SmartTableComponent = (function () {
             this.selectAll = false;
         }
     };
+    SmartTableComponent.prototype.editorChange = function (i, e) {
+        this.editor[i] = e.target.checked;
+        console.log(this.editor);
+    };
     SmartTableComponent.prototype.editorFocus = function (col) {
         if (!col.combo) {
             return;
@@ -976,7 +981,7 @@ module.exports = "<ul class=\"wrapper\" *ngIf=\"show\" [style.top]=\"top\" [styl
 /***/ 621:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"tools v-mid-box\">\n  <div class=\"btn\" (click)=\"add($event)\">添加</div>\n  <div class=\"btn\" (click)=\"modify($event)\">修改</div>\n  <div class=\"btn\" (click)=\"deleteA($event)\">删除</div>\n</div>\n\n<table>\n  <thead>\n  <tr>\n    <th><input type=\"checkbox\" [(ngModel)]=\"selectAll\" (change)=\"dataCheckChange($event)\"></th>\n    <th *ngFor=\"let col of template.cols\">{{col.text}}</th>\n  </tr>\n  </thead>\n  <tbody>\n  <tr *ngFor=\"let row of data;let index = index;\">\n    <td><input type=\"checkbox\" [(ngModel)]=\"dataCheck[index]\" (change)=\"dataCheckInRowChange($event)\"></td>\n    <td *ngFor=\"let col of template.cols\">{{row[col.name]}}</td>\n  </tr>\n  </tbody>\n</table>\n\n<div class=\"editor-mask\" *ngIf=\"editing\"></div>\n\n<div [id]=\"editorId\" class=\"editor\" *ngIf=\"editing\"\n     [style.visibility]=\"editorVisibility\"\n     [style.top]=\"editorTop\" [style.left]=\"editorLeft\">\n  <table>\n    <tbody>\n      <tr *ngFor=\"let col of template.cols;let index = index;\">\n        <td>{{col.text}}</td>\n        <td><input [id]=\"col.name\" [(ngModel)]=\"editor[index]\" (focus)=\"editorFocus(col, $event)\" [disabled]=\"col.disabled\" [type]=\"col.type\"></td>\n      </tr>\n    </tbody>\n  </table>\n  <div class=\"v-mid-box\">\n    <div class=\"btn\" (click)=\"submit($event)\">确定</div>\n    <div class=\"btn\" (click)=\"cancel($event)\">取消</div>\n  </div>\n</div>\n\n<div class=\"combo-mask\" *ngIf=\"comboing\"></div>\n\n<ul [id]=\"comboId\"  class=\"combo\" *ngIf=\"comboing\"\n    [style.visibility]=\"comboVisibility\"\n    [style.top]=\"comboTop\" [style.left]=\"comboLeft\">\n  <li *ngFor=\"let combo of combos\" (click)=\"comboClick(combo)\">{{combo[comboValue]}}</li>\n</ul>\n"
+module.exports = "<div class=\"tools v-mid-box\">\n  <div class=\"btn\" (click)=\"add($event)\">添加</div>\n  <div class=\"btn\" (click)=\"modify($event)\">修改</div>\n  <div class=\"btn\" (click)=\"deleteA($event)\">删除</div>\n</div>\n\n<table>\n  <thead>\n  <tr>\n    <th><input type=\"checkbox\" [(ngModel)]=\"selectAll\" (change)=\"dataCheckChange($event)\"></th>\n    <th *ngFor=\"let col of template.cols\">{{col.text}}</th>\n  </tr>\n  </thead>\n  <tbody>\n  <tr *ngFor=\"let row of data;let index = index;\">\n    <td><input type=\"checkbox\" [(ngModel)]=\"dataCheck[index]\" (change)=\"dataCheckInRowChange($event)\"></td>\n    <td *ngFor=\"let col of template.cols\">{{row[col.name]}}</td>\n  </tr>\n  </tbody>\n</table>\n\n<div class=\"editor-mask\" *ngIf=\"editing\"></div>\n\n<div [id]=\"editorId\" class=\"editor\" *ngIf=\"editing\"\n     [style.visibility]=\"editorVisibility\"\n     [style.top]=\"editorTop\" [style.left]=\"editorLeft\">\n  <table>\n    <tbody>\n      <tr *ngFor=\"let col of template.cols;let index = index;\">\n        <td>{{col.text}}</td>\n        <td><input [id]=\"col.name\" [(ngModel)]=\"editor[index]\" (focus)=\"editorFocus(col, $event)\" (change)=\"editorChange(index, $event)\" [disabled]=\"col.disabled\" [type]=\"col.type\"></td>\n      </tr>\n    </tbody>\n  </table>\n  <div class=\"v-mid-box\">\n    <div class=\"btn\" (click)=\"submit($event)\">确定</div>\n    <div class=\"btn\" (click)=\"cancel($event)\">取消</div>\n  </div>\n</div>\n\n<div class=\"combo-mask\" *ngIf=\"comboing\"></div>\n\n<ul [id]=\"comboId\"  class=\"combo\" *ngIf=\"comboing\"\n    [style.visibility]=\"comboVisibility\"\n    [style.top]=\"comboTop\" [style.left]=\"comboLeft\">\n  <li *ngFor=\"let combo of combos\" (click)=\"comboClick(combo)\">{{combo[comboValue]}}</li>\n</ul>\n"
 
 /***/ }),
 

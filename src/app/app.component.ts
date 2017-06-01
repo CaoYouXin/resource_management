@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
       {name: 'id', text: 'ID', type: 'number', disabled: true},
       {name: 'name', text: '级别名称', type: 'text'},
       {name: 'msg', text: '级别说明', type: 'text'},
+      {name: 'default', text: '是否默认', type: 'checkbox'},
     ],
     key: 'id',
     editorId: 'ResourceLevelEditor',

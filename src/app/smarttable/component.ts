@@ -166,6 +166,11 @@ export class SmartTableComponent implements OnInit {
     }
   }
 
+  editorChange(i, e) {
+    this.editor[i] = e.target.checked;
+    console.log(this.editor);
+  }
+
   editorFocus(col) {
     if (!col.combo) {
       return;
