@@ -1,10 +1,10 @@
-webpackJsonp([1,4],{
+webpackJsonp([1,5],{
 
-/***/ 137:
+/***/ 200:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_http__ = __webpack_require__(285);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_http__ = __webpack_require__(188);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DaoUtil; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -29,7 +29,7 @@ var DaoUtil = (function () {
         return this.http.post(url, data, { headers: DaoUtil.getHeaders() });
     };
     DaoUtil.getHeaders = function () {
-        var headers = new __WEBPACK_IMPORTED_MODULE_0__angular_http__["b" /* Headers */]();
+        var headers = new __WEBPACK_IMPORTED_MODULE_0__angular_http__["Headers"]();
         // headers.append('Access-Control-Allow-Origin', 'http://localhost:8080');
         headers.append('Accept', 'application/json');
         return headers;
@@ -38,8 +38,8 @@ var DaoUtil = (function () {
         console.log('sth wrong when fetching data. ' + err);
     };
     DaoUtil = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["d" /* Injectable */])(), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_http__["c" /* Http */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_http__["c" /* Http */]) === 'function' && _a) || Object])
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(), 
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_http__["Http"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_http__["Http"]) === 'function' && _a) || Object])
     ], DaoUtil);
     return DaoUtil;
     var _a;
@@ -127,7 +127,7 @@ var API = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dao_dao_util__ = __webpack_require__(137);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dao_dao_util__ = __webpack_require__(200);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_api_const__ = __webpack_require__(303);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(344);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
@@ -222,7 +222,7 @@ var DataService = (function () {
     DataService.selectedSourcePaths = [];
     DataService.target = null;
     DataService = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Injectable */])(), 
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__dao_dao_util__["a" /* DaoUtil */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__dao_dao_util__["a" /* DaoUtil */]) === 'function' && _a) || Object])
     ], DataService);
     return DataService;
@@ -263,30 +263,30 @@ webpackEmptyContext.id = 348;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(436);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(437);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__(305);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_app_module__ = __webpack_require__(457);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_app_module__ = __webpack_require__(458);
 
 
 
 
 if (__WEBPACK_IMPORTED_MODULE_2__environments_environment__["a" /* environment */].production) {
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["a" /* enableProdMode */])();
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["enableProdMode"])();
 }
 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_3__app_app_module__["a" /* AppModule */]);
 //# sourceMappingURL=/Users/cls/Dev/Git/personal/infinitely/html/resource_management/src/main.js.map
 
 /***/ }),
 
-/***/ 456:
+/***/ 457:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DataService_data_service__ = __webpack_require__(304);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_api_const__ = __webpack_require__(303);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dao_dao_util__ = __webpack_require__(137);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dao_dao_util__ = __webpack_require__(200);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -370,7 +370,7 @@ var AppComponent = (function () {
         });
     };
     AppComponent = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["U" /* Component */])({
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-root',
             template: __webpack_require__(618),
             styles: [__webpack_require__(614)],
@@ -385,18 +385,19 @@ var AppComponent = (function () {
 
 /***/ }),
 
-/***/ 457:
+/***/ 458:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(192);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(427);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(285);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(456);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__filebrowser_component__ = __webpack_require__(458);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__filebrowser_menu_component__ = __webpack_require__(459);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__smarttable_component__ = __webpack_require__(460);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(428);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(188);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(457);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__filebrowser_component__ = __webpack_require__(459);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__filebrowser_menu_component__ = __webpack_require__(460);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_caols_common_modules__ = __webpack_require__(634);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_caols_common_modules___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_caols_common_modules__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -419,17 +420,17 @@ var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["b" /* NgModule */])({
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"])({
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */],
                 __WEBPACK_IMPORTED_MODULE_5__filebrowser_component__["a" /* FileBrowserComponent */],
                 __WEBPACK_IMPORTED_MODULE_6__filebrowser_menu_component__["a" /* FileBrowserMenuComponent */],
-                __WEBPACK_IMPORTED_MODULE_7__smarttable_component__["a" /* SmartTableComponent */],
+                __WEBPACK_IMPORTED_MODULE_7_caols_common_modules__["SmartTableComponent"],
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormsModule */],
-                __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* HttpModule */],
+                __WEBPACK_IMPORTED_MODULE_3__angular_http__["HttpModule"],
             ],
             providers: [],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */]]
@@ -442,13 +443,13 @@ var AppModule = (function () {
 
 /***/ }),
 
-/***/ 458:
+/***/ 459:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DataService_data_service__ = __webpack_require__(304);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dao_dao_util__ = __webpack_require__(137);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dao_dao_util__ = __webpack_require__(200);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FileBrowserComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -466,9 +467,9 @@ var FileBrowserComponent = (function () {
     // ************
     function FileBrowserComponent(dataService) {
         this.dataService = dataService;
-        this.reloadEvent = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["G" /* EventEmitter */]();
-        this.unselectEvent = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["G" /* EventEmitter */]();
-        this.widthEvent = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["G" /* EventEmitter */]();
+        this.reloadEvent = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        this.unselectEvent = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        this.widthEvent = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         this.innerSelected = false;
         this.simplify = false;
         this.maxInnerWidth = 0;
@@ -598,47 +599,47 @@ var FileBrowserComponent = (function () {
         }
     };
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* Input */])(), 
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
         __metadata('design:type', Object)
     ], FileBrowserComponent.prototype, "data", void 0);
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* Input */])(), 
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
         __metadata('design:type', String)
     ], FileBrowserComponent.prototype, "outerWidth", void 0);
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* Input */])(), 
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
         __metadata('design:type', String)
     ], FileBrowserComponent.prototype, "outerBgColor", void 0);
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* Input */])(), 
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
         __metadata('design:type', Boolean)
     ], FileBrowserComponent.prototype, "editable", void 0);
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* Input */])(), 
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
         __metadata('design:type', Boolean)
     ], FileBrowserComponent.prototype, "selected", void 0);
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* Input */])(), 
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
         __metadata('design:type', String)
     ], FileBrowserComponent.prototype, "rootEvent", void 0);
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["T" /* Output */])(), 
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(), 
         __metadata('design:type', Object)
     ], FileBrowserComponent.prototype, "reloadEvent", void 0);
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["T" /* Output */])(), 
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(), 
         __metadata('design:type', Object)
     ], FileBrowserComponent.prototype, "unselectEvent", void 0);
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["T" /* Output */])(), 
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(), 
         __metadata('design:type', Object)
     ], FileBrowserComponent.prototype, "widthEvent", void 0);
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["V" /* ViewChild */])("line"), 
-        __metadata('design:type', (typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* ElementRef */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* ElementRef */]) === 'function' && _a) || Object)
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])("line"), 
+        __metadata('design:type', (typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"]) === 'function' && _a) || Object)
     ], FileBrowserComponent.prototype, "line", void 0);
     FileBrowserComponent = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["U" /* Component */])({
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'file-browser',
             template: __webpack_require__(619),
             styles: [__webpack_require__(615)],
@@ -653,7 +654,7 @@ var FileBrowserComponent = (function () {
 
 /***/ }),
 
-/***/ 459:
+/***/ 460:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -671,7 +672,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var FileBrowserMenuComponent = (function () {
     function FileBrowserMenuComponent() {
-        this.msg = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["G" /* EventEmitter */]();
+        this.msg = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         this.clipboardObj = null;
     }
     FileBrowserMenuComponent.prototype.ngOnChanges = function (cr) {
@@ -692,35 +693,35 @@ var FileBrowserMenuComponent = (function () {
         }
     };
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* Input */])(), 
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
         __metadata('design:type', Object)
     ], FileBrowserMenuComponent.prototype, "menuItems", void 0);
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* Input */])(), 
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
         __metadata('design:type', Boolean)
     ], FileBrowserMenuComponent.prototype, "show", void 0);
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* Input */])(), 
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
         __metadata('design:type', String)
     ], FileBrowserMenuComponent.prototype, "top", void 0);
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* Input */])(), 
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
         __metadata('design:type', String)
     ], FileBrowserMenuComponent.prototype, "left", void 0);
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* Input */])(), 
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
         __metadata('design:type', String)
     ], FileBrowserMenuComponent.prototype, "clipboard", void 0);
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["T" /* Output */])(), 
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(), 
         __metadata('design:type', Object)
     ], FileBrowserMenuComponent.prototype, "msg", void 0);
     __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["V" /* ViewChild */])('clip'), 
-        __metadata('design:type', (typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* ElementRef */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* ElementRef */]) === 'function' && _a) || Object)
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])('clip'), 
+        __metadata('design:type', (typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"]) === 'function' && _a) || Object)
     ], FileBrowserMenuComponent.prototype, "clipElem", void 0);
     FileBrowserMenuComponent = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["U" /* Component */])({
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'file-browser-menu',
             template: __webpack_require__(620),
             styles: [__webpack_require__(616)]
@@ -734,15 +735,53 @@ var FileBrowserMenuComponent = (function () {
 
 /***/ }),
 
-/***/ 460:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ 614:
+/***/ (function(module, exports) {
+
+module.exports = "h1.title {\n  text-shadow: 1px 1px 2px black, 0 0 1em #00ff00, 0 0 0.5em #0000ff, 0 0 0.2em #fff000;\n  color: white;\n  margin: .5em 0 0 .5em;\n}\n\nh1.title i {\n  display: inline-block;\n  width: 50px;\n  height: 50px;\n  background: url(\"assets/logo.png\") no-repeat center;\n  background-size: contain;\n  margin-right: .3em;\n}\n\nhr {\n  display: block;\n  width: 100%;\n  height: 3px;\n  background: #000;\n  box-shadow: 0 3px 3px #0000ff;\n  margin: 1em 0;\n}\n\n.box {\n  width: 380px;\n  height: 300px;\n\n  overflow: auto;\n\n  background-color: #efefef;\n  border: solid 1px #00aaaa;\n}\n\n.btn {\n  padding: 0 1em;\n  border: solid 1px #dddddd;\n  border-radius: 0 1em 1em 0;\n  line-height: 2em;\n  cursor: default;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n\n.btn:hover {\n  background-color: #dddddd;\n}\n"
+
+/***/ }),
+
+/***/ 615:
+/***/ (function(module, exports) {
+
+module.exports = ".outer {\n  background-color: #dddddd;\n\n  cursor: default;\n\n  text-align: left;\n\n  overflow: hidden;\n}\n\n.outer:first-child {\n  border-top: solid 1px rgb(128, 128, 128);\n}\n\n.outer > .line {\n  height: 20px;\n  font-family: Monaco, monospace;\n  font-size: 10px;\n}\n\n.outer > .line.selected {\n  background-color: #233d4d;\n  color: #ffee00;\n}\n\n.outer > .line > span {\n  line-height: 20px;\n}\n\n.outer > .line:hover {\n  background-color: white;\n}\n\n.inner {\n  margin-left: 20px;\n}\n"
+
+/***/ }),
+
+/***/ 616:
+/***/ (function(module, exports) {
+
+module.exports = "ul.wrapper {\n  list-style: none;\n  position: fixed;\n  z-index: 5001;\n}\n\nul.wrapper > li {\n  height: 30px;\n  line-height: 30px;\n  font-size: 9px;\n  color: white;\n  background-color: #333333;\n  cursor: default;\n  padding: 0 1em;\n}\n\nul.wrapper > li:hover {\n  background-color: #111111;\n}\n\n.blur {\n  position: fixed;\n  z-index: 5000;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  right: 0;\n  background-color: transparent;\n}\n"
+
+/***/ }),
+
+/***/ 618:
+/***/ (function(module, exports) {
+
+module.exports = "<h1 class=\"title\">\n  <i></i>{{title}}\n</h1>\n\n<hr>\n\n<div class=\"v-mid-box\">\n  <div class=\"box\">\n    <file-browser *ngIf=\"sources !== null\" [data]=\"sources\" [editable]=\"false\"></file-browser>\n  </div>\n\n  <div class=\"btn\" (click)=\"addToResource()\">添加</div>\n\n  <div class=\"box\">\n    <file-browser *ngIf=\"resources !== null\" [data]=\"resources\" [editable]=\"true\" (reloadEvent)=\"reload($event)\"\n                  [rootEvent]=\"rootEventMsg\" (unselectEvent)=\"unselect()\"></file-browser>\n  </div>\n</div>\n\n<hr>\n\n<smart-table [template]=\"resourceLevelTemplate\"></smart-table>\n\n<hr>\n\n<smart-table [template]=\"resourceLevelMapTemplate\"></smart-table>\n"
+
+/***/ }),
+
+/***/ 619:
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"outer\" [style.width]=\"outerWidth\"\n     [style.height]=\"simplify ? '20px' : 'auto'\"\n     [style.backgroundColor]=\"outerBgColor\">\n  <div #line class=\"line\" [class.selected]=\"selected\" (click)=\"callMenu($event)\">\n    <span>{{data.name}}</span>\n  </div>\n\n  <div class=\"inner\">\n    <file-browser *ngFor=\"let content of data.contents\"\n                  [data]=\"content\" [outerWidth]=\"innerWidth\"\n                  [outerBgColor]=\"innerBgColor\" [editable]=\"editable\"\n                  (reloadEvent)=\"reload($event)\" [rootEvent]=\"rootEvent\"\n                  (unselectEvent)=\"unselect($event)\" [selected]=\"innerSelected\"\n                  (widthEvent)=\"widthResize($event)\"></file-browser>\n  </div>\n</div>\n\n<file-browser-menu [show]=\"showMenu | async\" (msg)=\"handleMenuMsg($event)\" [clipboard]=\"data.path\"\n                   [left]=\"menuLeft\" [top]=\"menuTop\" [menuItems]=\"menuItems\"></file-browser-menu>\n"
+
+/***/ }),
+
+/***/ 620:
+/***/ (function(module, exports) {
+
+module.exports = "<ul class=\"wrapper\" *ngIf=\"show\" [style.top]=\"top\" [style.left]=\"left\">\n  <li #clip class=\"clip\">复制路径</li>\n  <li (click)=\"msg.emit(item.key)\" *ngFor=\"let item of menuItems\">{{item.name}}</li>\n</ul>\n\n<div class=\"blur\" *ngIf=\"show\" (click)=\"show = false\"></div>\n"
+
+/***/ }),
+
+/***/ 633:
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dao_dao_util__ = __webpack_require__(137);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(344);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SmartTableComponent; });
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -752,9 +791,70 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
+var http_1 = __webpack_require__(188);
+var core_1 = __webpack_require__(0);
+var DaoUtil = DaoUtil_1 = (function () {
+    function DaoUtil(http) {
+        this.http = http;
+    }
+    DaoUtil.prototype.get = function (url) {
+        return this.http.get(url, { headers: DaoUtil_1.getHeaders() });
+    };
+    DaoUtil.prototype.post = function (url, data) {
+        return this.http.post(url, data, { headers: DaoUtil_1.getHeaders() });
+    };
+    DaoUtil.getHeaders = function () {
+        var headers = new http_1.Headers();
+        // headers.append('Access-Control-Allow-Origin', 'http://localhost:8080');
+        headers.append('Accept', 'application/json');
+        return headers;
+    };
+    DaoUtil.logError = function (err) {
+        console.log('sth wrong when fetching data. ' + err);
+    };
+    return DaoUtil;
+}());
+DaoUtil = DaoUtil_1 = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], DaoUtil);
+exports.DaoUtil = DaoUtil;
+var DaoUtil_1;
 
 
+/***/ }),
 
+/***/ 634:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var component_1 = __webpack_require__(635);
+exports.SmartTableComponent = component_1.SmartTableComponent;
+
+
+/***/ }),
+
+/***/ 635:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(0);
+var dao_util_1 = __webpack_require__(633);
+__webpack_require__(344);
 var SmartTableComponent = (function () {
     function SmartTableComponent(dao) {
         this.dao = dao;
@@ -845,7 +945,11 @@ var SmartTableComponent = (function () {
             if (!!col.combo) {
                 return;
             }
-            postData[col.name] = _this.editor[index] === undefined ? null : _this.editor[index];
+            var value = _this.editor[index] === undefined ? null : _this.editor[index];
+            if (col.prefix) {
+                value = col.prefix + value;
+            }
+            postData[col.name] = value;
         });
         self.dao.post(self.template.saveUrl, postData)
             .map(function (res) { return res.json(); })
@@ -872,14 +976,7 @@ var SmartTableComponent = (function () {
             this.selectAll = false;
         }
     };
-    SmartTableComponent.prototype.editorChange = function (i, e) {
-        this.editor[i] = e.target.checked;
-        console.log(this.editor);
-    };
-    SmartTableComponent.prototype.editorFocus = function (col) {
-        if (!col.combo) {
-            return;
-        }
+    SmartTableComponent.prototype.combo = function (col) {
         this.comboKey = col.key;
         this.comboValue = col.value;
         this.comboTarget = col.combo;
@@ -896,6 +993,22 @@ var SmartTableComponent = (function () {
             self.callCombo();
         });
     };
+    SmartTableComponent.prototype.inplaceCombo = function (col) {
+        this.comboKey = null;
+        this.comboValue = col.inplaceCombo;
+        this.comboTarget = null;
+        this.comboCol = col.name;
+        this.combos = col.data;
+        this.callCombo();
+    };
+    SmartTableComponent.prototype.editorFocus = function (col) {
+        if (col.combo) {
+            this.combo(col);
+        }
+        if (col.inplaceCombo) {
+            this.inplaceCombo(col);
+        }
+    };
     SmartTableComponent.prototype.comboClick = function (combo) {
         var _this = this;
         var self = this;
@@ -909,83 +1022,27 @@ var SmartTableComponent = (function () {
         });
         this.comboing = false;
     };
-    __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* Input */])(), 
-        __metadata('design:type', Object)
-    ], SmartTableComponent.prototype, "template", void 0);
-    SmartTableComponent = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["U" /* Component */])({
-            selector: 'smart-table',
-            template: __webpack_require__(621),
-            styles: [__webpack_require__(617)],
-            providers: [__WEBPACK_IMPORTED_MODULE_1__dao_dao_util__["a" /* DaoUtil */]]
-        }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__dao_dao_util__["a" /* DaoUtil */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__dao_dao_util__["a" /* DaoUtil */]) === 'function' && _a) || Object])
-    ], SmartTableComponent);
     return SmartTableComponent;
-    var _a;
 }());
-//# sourceMappingURL=/Users/cls/Dev/Git/personal/infinitely/html/resource_management/src/component.js.map
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], SmartTableComponent.prototype, "template", void 0);
+SmartTableComponent = __decorate([
+    core_1.Component({
+        selector: 'smart-table',
+        template: "\n        <div class=\"tools v-mid-box\">\n            <div class=\"btn\" (click)=\"add($event)\">\u6DFB\u52A0</div>\n            <div class=\"btn\" (click)=\"modify($event)\">\u4FEE\u6539</div>\n            <div class=\"btn\" (click)=\"deleteA($event)\">\u5220\u9664</div>\n        </div>\n\n        <table>\n            <thead>\n            <tr>\n                <th><input type=\"checkbox\" [(ngModel)]=\"selectAll\" (change)=\"dataCheckChange($event)\"></th>\n                <th *ngFor=\"let col of template.cols\" [style.maxWidth]=\"col.width || 'auto'\">{{col.text}}</th>\n            </tr>\n            </thead>\n            <tbody>\n            <tr *ngFor=\"let row of data;let index = index;\">\n                <td><input type=\"checkbox\" [(ngModel)]=\"dataCheck[index]\" (change)=\"dataCheckInRowChange($event)\"></td>\n                <td *ngFor=\"let col of template.cols\" [style.maxWidth]=\"col.width || 'auto'\">{{row[col.name]}}</td>\n            </tr>\n            </tbody>\n        </table>\n\n        <div class=\"editor-mask\" *ngIf=\"editing\"></div>\n\n        <div [id]=\"editorId\" class=\"editor\" *ngIf=\"editing\"\n             [style.visibility]=\"editorVisibility\"\n             [style.top]=\"editorTop\" [style.left]=\"editorLeft\">\n            <table>\n                <tbody>\n                <tr *ngFor=\"let col of template.cols;let index = index;\">\n                    <td>{{col.text}}</td>\n                    <td><input [id]=\"col.name\" [(ngModel)]=\"editor[index]\" (focus)=\"editorFocus(col, $event)\"\n                               [disabled]=\"col.disabled\" [type]=\"col.type\"></td>\n                </tr>\n                </tbody>\n            </table>\n            <div class=\"v-mid-box\">\n                <div class=\"btn\" (click)=\"submit($event)\">\u786E\u5B9A</div>\n                <div class=\"btn\" (click)=\"cancel($event)\">\u53D6\u6D88</div>\n            </div>\n        </div>\n\n        <div class=\"combo-mask\" *ngIf=\"comboing\"></div>\n\n        <ul [id]=\"comboId\" class=\"combo\" *ngIf=\"comboing\"\n            [style.visibility]=\"comboVisibility\"\n            [style.top]=\"comboTop\" [style.left]=\"comboLeft\">\n            <li *ngFor=\"let combo of combos\" (click)=\"comboClick(combo)\">{{combo[comboValue]}}</li>\n        </ul>\n    ",
+        styles: ["\n        .tools {\n            height: 30px;\n            text-align: left;\n            border-top: solid 1px #111111;\n        }\n\n        .btn {\n            height: 20px;\n            line-height: 20px;\n            font-size: 12px;\n            padding: 0 1em;\n            border-radius: 10px;\n            border: solid 1px #dddddd;\n            margin-left: 1em;\n            cursor: default;\n        }\n\n        .btn:hover {\n            color: #1d1d1b;\n            text-shadow: 1px 1px 2px red;\n            background-image: linear-gradient(90deg, wheat, #999999 50%, wheat);\n        }\n\n        table {\n            width: 100%;\n            margin: 0 auto;\n            border-collapse: collapse;\n        }\n\n        table, th, td {\n            border: 1px solid rgba(0, 0, 0, 0.1);\n        }\n\n        th, td {\n            line-height: 2em;\n            text-align: center;\n\n            text-overflow: ellipsis;\n            white-space: nowrap;\n            overflow: hidden;\n        }\n\n        th {\n            font-size: 1.3em;\n            font-weight: 900;\n            background-color: #cac5ff;\n        }\n\n        td {\n            font-size: 1em;\n        }\n\n        tr:nth-child(odd) > td {\n            background-color: #cdffd2;\n        }\n\n        tr:nth-child(even) > td {\n            background-color: #edffd5;\n        }\n\n        .editor-mask {\n            position: fixed;\n            z-index: 5000;\n\n            top: 0;\n            right: 0;\n            bottom: 0;\n            left: 0;\n\n            background-color: rgba(0, 0, 0, 0.5);\n        }\n\n        .editor {\n            position: fixed;\n            z-index: 5001;\n\n            min-width: 200px;\n\n            top: 50%;\n            left: calc(50% - 100px);\n\n            padding: 10px;\n            border-radius: 10px;\n            border: solid 1px #111111;\n            box-shadow: 0 0 5px #010101;\n            background-color: whitesmoke;\n        }\n\n        .editor input {\n            outline: none;\n            line-height: 16px;\n        }\n\n        .editor input:focus {\n            box-shadow: 0 0 5px black;\n        }\n\n        .combo-mask {\n            position: fixed;\n            z-index: 6000;\n\n            top: 0;\n            right: 0;\n            bottom: 0;\n            left: 0;\n\n            background-color: rgba(0, 0, 0, 0.5);\n        }\n\n        ul.combo {\n            list-style: none;\n\n            position: fixed;\n            z-index: 6001;\n\n            top: 50%;\n            left: calc(50% - 100px);\n\n            padding: 10px;\n            border-radius: 10px;\n            border: solid 1px #111111;\n            box-shadow: 0 0 5px #010101;\n            background-color: whitesmoke;\n        }\n\n        ul.combo > li {\n            width: 200px;\n\n            cursor: default;\n        }\n\n        ul.combo > li:hover {\n            background-color: #dddddd;\n        }\n    "],
+        providers: [dao_util_1.DaoUtil]
+    }),
+    __metadata("design:paramtypes", [dao_util_1.DaoUtil])
+], SmartTableComponent);
+exports.SmartTableComponent = SmartTableComponent;
+
 
 /***/ }),
 
-/***/ 614:
-/***/ (function(module, exports) {
-
-module.exports = "h1.title {\n  text-shadow: 1px 1px 2px black, 0 0 1em #00ff00, 0 0 0.5em #0000ff, 0 0 0.2em #fff000;\n  color: white;\n  margin: .5em 0 0 .5em;\n}\n\nh1.title i {\n  display: inline-block;\n  width: 50px;\n  height: 50px;\n  background: url(\"assets/logo.png\") no-repeat center;\n  background-size: contain;\n  margin-right: .3em;\n}\n\nhr {\n  display: block;\n  width: 100%;\n  height: 3px;\n  background: #000;\n  box-shadow: 0 3px 3px #0000ff;\n  margin: 1em 0;\n}\n\n.box {\n  width: 380px;\n  height: 300px;\n\n  overflow: auto;\n\n  background-color: #efefef;\n  border: solid 1px #00aaaa;\n}\n\n.btn {\n  padding: 0 1em;\n  border: solid 1px #dddddd;\n  border-radius: 0 1em 1em 0;\n  line-height: 2em;\n  cursor: default;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n\n.btn:hover {\n  background-color: #dddddd;\n}\n"
-
-/***/ }),
-
-/***/ 615:
-/***/ (function(module, exports) {
-
-module.exports = ".outer {\n  background-color: #dddddd;\n\n  cursor: default;\n\n  text-align: left;\n\n  overflow: hidden;\n}\n\n.outer:first-child {\n  border-top: solid 1px rgb(128, 128, 128);\n}\n\n.outer > .line {\n  height: 20px;\n  font-family: Monaco, monospace;\n  font-size: 10px;\n}\n\n.outer > .line.selected {\n  background-color: #233d4d;\n  color: #ffee00;\n}\n\n.outer > .line > span {\n  line-height: 20px;\n}\n\n.outer > .line:hover {\n  background-color: white;\n}\n\n.inner {\n  margin-left: 20px;\n}\n"
-
-/***/ }),
-
-/***/ 616:
-/***/ (function(module, exports) {
-
-module.exports = "ul.wrapper {\n  list-style: none;\n  position: fixed;\n  z-index: 5001;\n}\n\nul.wrapper > li {\n  height: 30px;\n  line-height: 30px;\n  font-size: 9px;\n  color: white;\n  background-color: #333333;\n  cursor: default;\n  padding: 0 1em;\n}\n\nul.wrapper > li:hover {\n  background-color: #111111;\n}\n\n.blur {\n  position: fixed;\n  z-index: 5000;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  right: 0;\n  background-color: transparent;\n}\n"
-
-/***/ }),
-
-/***/ 617:
-/***/ (function(module, exports) {
-
-module.exports = ".tools {\n  height: 30px;\n  text-align: left;\n  border-top: solid 1px #111111;\n}\n\n.btn {\n  height: 20px;\n  line-height: 20px;\n  font-size: 12px;\n  padding: 0 1em;\n  border-radius: 10px;\n  border: solid 1px #dddddd;\n  margin-left: 1em;\n  cursor: default;\n}\n\n.btn:hover {\n  color: #1d1d1b;\n  text-shadow: 1px 1px 2px red;\n  background-image: linear-gradient(90deg, wheat, #999999 50%, wheat);\n}\n\ntable {\n  width: 100%;\n  margin: 0 auto;\n  border-collapse: collapse;\n}\n\ntable, th, td {\n  border: 1px solid rgba(0, 0, 0, 0.1);\n}\n\nth, td {\n  line-height: 2em;\n  text-align: center;\n}\n\nth {\n  font-size: 1.3em;\n  font-weight: 900;\n  background-color: #cac5ff;\n}\n\ntd {\n  font-size: 1em;\n}\n\ntr:nth-child(odd) > td {\n  background-color: #cdffd2;\n}\n\ntr:nth-child(even) > td {\n  background-color: #edffd5;\n}\n\n.editor-mask {\n  position: fixed;\n  z-index: 5000;\n\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n\n  background-color: rgba(0, 0, 0, 0.5);\n}\n\n.editor {\n  position: fixed;\n  z-index: 5001;\n\n  min-width: 200px;\n\n  top: 50%;\n  left: calc(50% - 100px);\n\n  padding: 10px;\n  border-radius: 10px;\n  border: solid 1px #111111;\n  box-shadow: 0 0 5px #010101;\n  background-color: whitesmoke;\n}\n\n.editor input {\n  outline: none;\n  line-height: 16px;\n}\n\n.editor input:focus {\n  box-shadow: 0 0 5px black;\n}\n\n.combo-mask {\n  position: fixed;\n  z-index: 6000;\n\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n\n  background-color: rgba(0, 0, 0, 0.5);\n}\n\nul.combo {\n  list-style: none;\n\n  position: fixed;\n  z-index: 6001;\n\n  top: 50%;\n  left: calc(50% - 100px);\n\n  padding: 10px;\n  border-radius: 10px;\n  border: solid 1px #111111;\n  box-shadow: 0 0 5px #010101;\n  background-color: whitesmoke;\n}\n\nul.combo > li {\n  width: 200px;\n\n  cursor: default;\n}\n\nul.combo > li:hover {\n  background-color: #dddddd;\n}\n"
-
-/***/ }),
-
-/***/ 618:
-/***/ (function(module, exports) {
-
-module.exports = "<h1 class=\"title\">\n  <i></i>{{title}}\n</h1>\n\n<hr>\n\n<div class=\"v-mid-box\">\n  <div class=\"box\">\n    <file-browser *ngIf=\"sources !== null\" [data]=\"sources\" [editable]=\"false\"></file-browser>\n  </div>\n\n  <div class=\"btn\" (click)=\"addToResource()\">添加</div>\n\n  <div class=\"box\">\n    <file-browser *ngIf=\"resources !== null\" [data]=\"resources\" [editable]=\"true\" (reloadEvent)=\"reload($event)\"\n                  [rootEvent]=\"rootEventMsg\" (unselectEvent)=\"unselect()\"></file-browser>\n  </div>\n</div>\n\n<hr>\n\n<smart-table [template]=\"resourceLevelTemplate\"></smart-table>\n\n<hr>\n\n<smart-table [template]=\"resourceLevelMapTemplate\"></smart-table>\n"
-
-/***/ }),
-
-/***/ 619:
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"outer\" [style.width]=\"outerWidth\"\n     [style.height]=\"simplify ? '20px' : 'auto'\"\n     [style.backgroundColor]=\"outerBgColor\">\n  <div #line class=\"line\" [class.selected]=\"selected\" (click)=\"callMenu($event)\">\n    <span>{{data.name}}</span>\n  </div>\n\n  <div class=\"inner\">\n    <file-browser *ngFor=\"let content of data.contents\"\n                  [data]=\"content\" [outerWidth]=\"innerWidth\"\n                  [outerBgColor]=\"innerBgColor\" [editable]=\"editable\"\n                  (reloadEvent)=\"reload($event)\" [rootEvent]=\"rootEvent\"\n                  (unselectEvent)=\"unselect($event)\" [selected]=\"innerSelected\"\n                  (widthEvent)=\"widthResize($event)\"></file-browser>\n  </div>\n</div>\n\n<file-browser-menu [show]=\"showMenu | async\" (msg)=\"handleMenuMsg($event)\" [clipboard]=\"data.path\"\n                   [left]=\"menuLeft\" [top]=\"menuTop\" [menuItems]=\"menuItems\"></file-browser-menu>\n"
-
-/***/ }),
-
-/***/ 620:
-/***/ (function(module, exports) {
-
-module.exports = "<ul class=\"wrapper\" *ngIf=\"show\" [style.top]=\"top\" [style.left]=\"left\">\n  <li #clip class=\"clip\">复制路径</li>\n  <li (click)=\"msg.emit(item.key)\" *ngFor=\"let item of menuItems\">{{item.name}}</li>\n</ul>\n\n<div class=\"blur\" *ngIf=\"show\" (click)=\"show = false\"></div>\n"
-
-/***/ }),
-
-/***/ 621:
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"tools v-mid-box\">\n  <div class=\"btn\" (click)=\"add($event)\">添加</div>\n  <div class=\"btn\" (click)=\"modify($event)\">修改</div>\n  <div class=\"btn\" (click)=\"deleteA($event)\">删除</div>\n</div>\n\n<table>\n  <thead>\n  <tr>\n    <th><input type=\"checkbox\" [(ngModel)]=\"selectAll\" (change)=\"dataCheckChange($event)\"></th>\n    <th *ngFor=\"let col of template.cols\">{{col.text}}</th>\n  </tr>\n  </thead>\n  <tbody>\n  <tr *ngFor=\"let row of data;let index = index;\">\n    <td><input type=\"checkbox\" [(ngModel)]=\"dataCheck[index]\" (change)=\"dataCheckInRowChange($event)\"></td>\n    <td *ngFor=\"let col of template.cols\">{{row[col.name]}}</td>\n  </tr>\n  </tbody>\n</table>\n\n<div class=\"editor-mask\" *ngIf=\"editing\"></div>\n\n<div [id]=\"editorId\" class=\"editor\" *ngIf=\"editing\"\n     [style.visibility]=\"editorVisibility\"\n     [style.top]=\"editorTop\" [style.left]=\"editorLeft\">\n  <table>\n    <tbody>\n      <tr *ngFor=\"let col of template.cols;let index = index;\">\n        <td>{{col.text}}</td>\n        <td><input [id]=\"col.name\" [(ngModel)]=\"editor[index]\" (focus)=\"editorFocus(col, $event)\" (change)=\"editorChange(index, $event)\" [disabled]=\"col.disabled\" [type]=\"col.type\"></td>\n      </tr>\n    </tbody>\n  </table>\n  <div class=\"v-mid-box\">\n    <div class=\"btn\" (click)=\"submit($event)\">确定</div>\n    <div class=\"btn\" (click)=\"cancel($event)\">取消</div>\n  </div>\n</div>\n\n<div class=\"combo-mask\" *ngIf=\"comboing\"></div>\n\n<ul [id]=\"comboId\"  class=\"combo\" *ngIf=\"comboing\"\n    [style.visibility]=\"comboVisibility\"\n    [style.top]=\"comboTop\" [style.left]=\"comboLeft\">\n  <li *ngFor=\"let combo of combos\" (click)=\"comboClick(combo)\">{{combo[comboValue]}}</li>\n</ul>\n"
-
-/***/ }),
-
-/***/ 635:
+/***/ 638:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(349);
@@ -993,5 +1050,5 @@ module.exports = __webpack_require__(349);
 
 /***/ })
 
-},[635]);
+},[638]);
 //# sourceMappingURL=main.bundle.map

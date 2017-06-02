@@ -6,7 +6,7 @@ import {HttpModule} from "@angular/http";
 import {AppComponent} from "./app.component";
 import {FileBrowserComponent} from "./filebrowser/component";
 import {FileBrowserMenuComponent} from "./filebrowser/menu/component";
-import {SmartTableComponent} from "./smarttable/component";
+import {SmartTableComponent} from "caols-common-modules";
 
 @NgModule({
   declarations: [
