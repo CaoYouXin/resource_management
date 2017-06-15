@@ -5,56 +5,56 @@ export class API {
   static mode = environment.production ? 'prod' : 'dev';
   static api = {
     "source": {
-      "prod": "/resources/list/source",
-      "dev": "http://localhost:8080/resources/list/source"
+      "prod": "/list/source",
+      "dev": "http://localhost:8082/list/source"
     },
     "resource": {
-      "prod": "/resources/list/resource",
-      "dev": "http://localhost:8080/resources/list/resource"
+      "prod": "/list/resource",
+      "dev": "http://localhost:8082/list/resource"
     },
     "mkdir": {
       "prod": function (path) {
-        return `/resources/file/mkdir?path=${path}`;
+        return `/file/mkdir?path=${path}`;
       },
       "dev": function (path) {
-        return `http://localhost:8080/resources/file/mkdir?path=${path}`;
+        return `http://localhost:8082/file/mkdir?path=${path}`;
       }
     },
     "delete": {
       "prod": function (path) {
-        return `/resources/file/delete?path=${path}`;
+        return `/file/delete?path=${path}`;
       },
       "dev": function (path) {
-        return `http://localhost:8080/resources/file/delete?path=${path}`;
+        return `http://localhost:8082/file/delete?path=${path}`;
       }
     },
     "copy": {
-      "prod": "/resources/file/copy",
-      "dev": "http://localhost:8080/resources/file/copy"
+      "prod": "/file/copy",
+      "dev": "http://localhost:8082/file/copy"
     },
     "GetResourceLevel": {
-      "prod": "/resources/level/list",
-      "dev": "http://localhost:8080/resources/level/list"
+      "prod": "/level/list",
+      "dev": "http://localhost:8082/level/list"
     },
     "SaveResourceLevel": {
-      "prod": "/resources/level/save",
-      "dev": "http://localhost:8080/resources/level/save"
+      "prod": "/level/save",
+      "dev": "http://localhost:8082/level/save"
     },
     "DeleteResourceLevel": {
-      "prod": "/resources/level/delete",
-      "dev": "http://localhost:8080/resources/level/delete"
+      "prod": "/level/delete",
+      "dev": "http://localhost:8082/level/delete"
     },
     "GetLeveledResource": {
-      "prod": "/resources/leveled/resource/list",
-      "dev": "http://localhost:8080/resources/leveled/resource/list"
+      "prod": "/leveled/resource/list",
+      "dev": "http://localhost:8082/leveled/resource/list"
     },
     "SaveLeveledResource": {
-      "prod": "/resources/leveled/resource/save",
-      "dev": "http://localhost:8080/resources/leveled/resource/save"
+      "prod": "/leveled/resource/save",
+      "dev": "http://localhost:8082/leveled/resource/save"
     },
     "DeleteLeveledResource": {
-      "prod": "/resources/leveled/resource/delete",
-      "dev": "http://localhost:8080/resources/leveled/resource/delete"
+      "prod": "/leveled/resource/delete",
+      "dev": "http://localhost:8082/leveled/resource/delete"
     }
   };
 
