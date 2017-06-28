@@ -64,16 +64,16 @@ var API = (function () {
     API.mode = __WEBPACK_IMPORTED_MODULE_0__environments_environment__["a" /* environment */].production ? 'prod' : 'dev';
     API.api = {
         "source": {
-            "prod": "/list/source",
+            "prod": "http://server.caols.tech:9002/list/source",
             "dev": "http://localhost:8082/list/source"
         },
         "resource": {
-            "prod": "/list/resource",
+            "prod": "http://server.caols.tech:9002/list/resource",
             "dev": "http://localhost:8082/list/resource"
         },
         "mkdir": {
             "prod": function (path) {
-                return "/file/mkdir?path=" + path;
+                return "http://server.caols.tech:9002/file/mkdir?path=" + path;
             },
             "dev": function (path) {
                 return "http://localhost:8082/file/mkdir?path=" + path;
@@ -81,38 +81,38 @@ var API = (function () {
         },
         "delete": {
             "prod": function (path) {
-                return "/file/delete?path=" + path;
+                return "http://server.caols.tech:9002/file/delete?path=" + path;
             },
             "dev": function (path) {
                 return "http://localhost:8082/file/delete?path=" + path;
             }
         },
         "copy": {
-            "prod": "/file/copy",
+            "prod": "http://server.caols.tech:9002/file/copy",
             "dev": "http://localhost:8082/file/copy"
         },
         "GetResourceLevel": {
-            "prod": "/level/list",
+            "prod": "http://server.caols.tech:9002/level/list",
             "dev": "http://localhost:8082/level/list"
         },
         "SaveResourceLevel": {
-            "prod": "/level/save",
+            "prod": "http://server.caols.tech:9002/level/save",
             "dev": "http://localhost:8082/level/save"
         },
         "DeleteResourceLevel": {
-            "prod": "/level/delete",
+            "prod": "http://server.caols.tech:9002/level/delete",
             "dev": "http://localhost:8082/level/delete"
         },
         "GetLeveledResource": {
-            "prod": "/leveled/resource/list",
+            "prod": "http://server.caols.tech:9002/leveled/resource/list",
             "dev": "http://localhost:8082/leveled/resource/list"
         },
         "SaveLeveledResource": {
-            "prod": "/leveled/resource/save",
+            "prod": "http://server.caols.tech:9002/leveled/resource/save",
             "dev": "http://localhost:8082/leveled/resource/save"
         },
         "DeleteLeveledResource": {
-            "prod": "/leveled/resource/delete",
+            "prod": "http://server.caols.tech:9002/leveled/resource/delete",
             "dev": "http://localhost:8082/leveled/resource/delete"
         }
     };
@@ -1056,7 +1056,7 @@ __decorate([
 SmartTableComponent = __decorate([
     core_1.Component({
         selector: 'smart-table',
-        template: "\n        <div class=\"tools v-mid-box\">\n            <div class=\"btn\" [class.disabled]=\"template.saveUrl===null\" (click)=\"add($event)\">\u6DFB\u52A0</div>\n            <div class=\"btn\" [class.disabled]=\"template.saveUrl===null\" (click)=\"modify($event)\">\u4FEE\u6539</div>\n            <div class=\"btn\" [class.disabled]=\"template.deleteUrl===null\" (click)=\"deleteA($event)\">\u5220\u9664</div>\n        </div>\n\n        <table>\n            <thead>\n            <tr>\n                <th><input type=\"checkbox\" [(ngModel)]=\"selectAll\" (change)=\"dataCheckChange($event)\"></th>\n                <th *ngFor=\"let col of template.cols\" [style.maxWidth]=\"col.width || 'auto'\">{{col.text}}</th>\n            </tr>\n            </thead>\n            <tbody>\n            <tr *ngFor=\"let row of data;let index = index;\">\n                <td><input type=\"checkbox\" [(ngModel)]=\"dataCheck[index]\" (change)=\"dataCheckInRowChange($event)\"></td>\n                <td *ngFor=\"let col of template.cols\" [style.maxWidth]=\"col.width || 'auto'\">{{process(row[col.name], col)}}</td>\n            </tr>\n            </tbody>\n        </table>\n\n        <div class=\"editor-mask\" *ngIf=\"editing\"></div>\n\n        <div [id]=\"editorId\" class=\"editor\" *ngIf=\"editing\"\n             [style.visibility]=\"editorVisibility\"\n             [style.top]=\"editorTop\" [style.left]=\"editorLeft\">\n            <table>\n                <tbody>\n                <tr *ngFor=\"let col of template.cols;let index = index;\">\n                    <td>{{col.text}}</td>\n                    <td><input [id]=\"col.name\" [(ngModel)]=\"editor[index]\" (focus)=\"editorFocus(col, $event)\"\n                               (change)=\"editorChange(index, col, $event)\" [disabled]=\"col.disabled\" [type]=\"col.type\"></td>\n                </tr>\n                </tbody>\n            </table>\n            <div class=\"v-mid-box\">\n                <div class=\"btn\" (click)=\"submit($event)\">\u786E\u5B9A</div>\n                <div class=\"btn\" (click)=\"cancel($event)\">\u53D6\u6D88</div>\n            </div>\n        </div>\n\n        <div class=\"combo-mask\" *ngIf=\"comboing\"></div>\n\n        <ul [id]=\"comboId\" class=\"combo\" *ngIf=\"comboing\"\n            [style.visibility]=\"comboVisibility\"\n            [style.top]=\"comboTop\" [style.left]=\"comboLeft\">\n            <li *ngFor=\"let combo of combos\" (click)=\"comboClick(combo)\">{{combo[comboValue]}}</li>\n        </ul>\n    ",
+        template: "\n        <div class=\"tools v-mid-box\">\n            <div class=\"btn\" [class.disabled]=\"template.saveUrl===null\" (click)=\"add($event)\">\u6DFB\u52A0</div>\n            <div class=\"btn\" [class.disabled]=\"template.saveUrl===null\" (click)=\"modify($event)\">\u4FEE\u6539</div>\n            <div class=\"btn\" [class.disabled]=\"template.deleteUrl===null\" (click)=\"deleteA($event)\">\u5220\u9664</div>\n        </div>\n\n        <table>\n            <thead>\n            <tr>\n                <th><input type=\"checkbox\" [(ngModel)]=\"selectAll\" (change)=\"dataCheckChange($event)\"></th>\n                <th *ngFor=\"let col of template.cols\" [style.maxWidth]=\"col.width || 'auto'\">{{col.text}}</th>\n            </tr>\n            </thead>\n            <tbody>\n            <tr *ngFor=\"let row of data;let index = index;\">\n                <td><input type=\"checkbox\" [(ngModel)]=\"dataCheck[index]\" (change)=\"dataCheckInRowChange($event)\"></td>\n                <td *ngFor=\"let col of template.cols\" [style.maxWidth]=\"col.width || 'auto'\">\n                    <div [title]=\"process(row[col.name], col)\">{{process(row[col.name], col)}}</div>\n                </td>\n            </tr>\n            </tbody>\n        </table>\n\n        <div class=\"editor-mask\" *ngIf=\"editing\"></div>\n\n        <div [id]=\"editorId\" class=\"editor\" *ngIf=\"editing\"\n             [style.visibility]=\"editorVisibility\"\n             [style.top]=\"editorTop\" [style.left]=\"editorLeft\">\n            <table>\n                <tbody>\n                <tr *ngFor=\"let col of template.cols;let index = index;\">\n                    <td>{{col.text}}</td>\n                    <td><input [id]=\"col.name\" [(ngModel)]=\"editor[index]\" (focus)=\"editorFocus(col, $event)\"\n                               (change)=\"editorChange(index, col, $event)\" [disabled]=\"col.disabled\" [type]=\"col.type\"></td>\n                </tr>\n                </tbody>\n            </table>\n            <div class=\"v-mid-box\">\n                <div class=\"btn\" (click)=\"submit($event)\">\u786E\u5B9A</div>\n                <div class=\"btn\" (click)=\"cancel($event)\">\u53D6\u6D88</div>\n            </div>\n        </div>\n\n        <div class=\"combo-mask\" *ngIf=\"comboing\"></div>\n\n        <ul [id]=\"comboId\" class=\"combo\" *ngIf=\"comboing\"\n            [style.visibility]=\"comboVisibility\"\n            [style.top]=\"comboTop\" [style.left]=\"comboLeft\">\n            <li *ngFor=\"let combo of combos\" (click)=\"comboClick(combo)\">{{combo[comboValue]}}</li>\n        </ul>\n    ",
         styles: ["\n        .tools {\n            height: 30px;\n            text-align: left;\n            border-top: solid 1px #111111;\n        }\n\n        .btn {\n            height: 20px;\n            line-height: 20px;\n            font-size: 12px;\n            padding: 0 1em;\n            border-radius: 10px;\n            border: solid 1px #dddddd;\n            margin-left: 1em;\n            cursor: default;\n        }\n        \n        .btn.disabled {\n            color: #999999;\n        }\n\n        .btn.disabled:hover {\n            color: #999999;\n            text-shadow: none;\n            background-image: none;\n        }\n\n        .btn:hover {\n            color: #1d1d1b;\n            text-shadow: 1px 1px 2px red;\n            background-image: linear-gradient(90deg, wheat, #999999 50%, wheat);\n        }\n\n        table {\n            width: 100%;\n            margin: 0 auto;\n            border-collapse: collapse;\n        }\n\n        table, th, td {\n            border: 1px solid rgba(0, 0, 0, 0.1);\n        }\n\n        th, td {\n            line-height: 2em;\n            text-align: center;\n\n            text-overflow: ellipsis;\n            white-space: nowrap;\n            overflow: hidden;\n        }\n\n        th {\n            font-size: 1.3em;\n            font-weight: 900;\n            background-color: #cac5ff;\n        }\n\n        td {\n            font-size: 1em;\n        }\n\n        tr:nth-child(odd) > td {\n            background-color: #cdffd2;\n        }\n\n        tr:nth-child(even) > td {\n            background-color: #edffd5;\n        }\n\n        .editor-mask {\n            position: fixed;\n            z-index: 5000;\n\n            top: 0;\n            right: 0;\n            bottom: 0;\n            left: 0;\n\n            background-color: rgba(0, 0, 0, 0.5);\n        }\n\n        .editor {\n            position: fixed;\n            z-index: 5001;\n\n            min-width: 200px;\n\n            top: 50%;\n            left: calc(50% - 100px);\n\n            padding: 10px;\n            border-radius: 10px;\n            border: solid 1px #111111;\n            box-shadow: 0 0 5px #010101;\n            background-color: whitesmoke;\n        }\n\n        .editor input {\n            outline: none;\n            line-height: 16px;\n        }\n\n        .editor input:focus {\n            box-shadow: 0 0 5px black;\n        }\n\n        .combo-mask {\n            position: fixed;\n            z-index: 6000;\n\n            top: 0;\n            right: 0;\n            bottom: 0;\n            left: 0;\n\n            background-color: rgba(0, 0, 0, 0.5);\n        }\n\n        ul.combo {\n            list-style: none;\n\n            position: fixed;\n            z-index: 6001;\n\n            top: 50%;\n            left: calc(50% - 100px);\n\n            padding: 10px;\n            border-radius: 10px;\n            border: solid 1px #111111;\n            box-shadow: 0 0 5px #010101;\n            background-color: whitesmoke;\n        }\n\n        ul.combo > li {\n            width: 200px;\n\n            cursor: default;\n        }\n\n        ul.combo > li:hover {\n            background-color: #dddddd;\n        }\n    "],
         providers: [dao_util_1.DaoUtil]
     }),
