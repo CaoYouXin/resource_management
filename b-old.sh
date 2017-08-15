@@ -14,10 +14,12 @@ version=$(expr ${version} + 1)
 
 comment="resource manager v1.1.$version"
 
-ng build --env=prod \
+cd old-src \
+    && ng build --env=prod \
+    && cd .. \
     && rm -rf ./docs/ \
     && git checkout -- docs/CNAME \
-    && cp -r ./dist/ ./docs/ \
+    && cp -r ./old-src/dist/ ./docs/ \
     && git add --all \
     && git commit -m "$comment" \
     && git push origin master
