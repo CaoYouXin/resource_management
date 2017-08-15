@@ -57,7 +57,7 @@
 
     fetchMd('{{md-path}}').then((text) => {
       render(text);
-      sendMessage();
+      setInterval(sendMessage, 3000);
     });
   </script>
 </body>
