@@ -20,8 +20,8 @@
   <script>
     function sendMessage() {
       if (window.top !== window) {
-        let path = location.href.toString();
-        let data = JSON.stringify({
+        var path = location.href.toString();
+        var data = JSON.stringify({
           path: path.substr(path.indexOf('serve/') + 'serve'.length),
           height: document.body.scrollHeight
         });
@@ -31,14 +31,15 @@
     }
 
     function render(text) {
-      let converter = new showdown.Converter({ tables: true }),
+      var converter = new showdown.Converter({ tables: true }),
         html = converter.makeHtml(text);
       document.getElementById('markdown').innerHTML = html.replace(/<pre>(\s*)<code>/g, '<pre class="code">$1<code>');
       document.getElementById('markdown').style.padding = '1em';
 
-      document.querySelectorAll('pre code').forEach(function (block) {
-        hljs.highlightBlock(block);
-      });
+      var preCodeElems = document.querySelectorAll('pre code');
+      for (var i = 0; i < preCodeElems.length; i++) {
+        hljs.highlightBlock(preCodeElems[i]);
+      }
     }
 
     function fetchMd(url) {
@@ -55,7 +56,7 @@
       });
     }
 
-    fetchMd('{{md-path}}').then((text) => {
+    fetchMd('{{md-path}}').then(function (text) {
       render(text);
       setInterval(sendMessage, 3000);
     });
