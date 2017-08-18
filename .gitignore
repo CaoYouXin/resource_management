@@ -38,4 +38,4 @@ testem.log
 #System Files
 .DS_Store
 Thumbs.db
-old-src/node_modules
+**/node_modules

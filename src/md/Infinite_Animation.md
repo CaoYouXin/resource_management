@@ -35,7 +35,7 @@ animation属性是缩写，全部属性如下：
 而风扇狂转的问题就来自 `animation-iteration-count` 属性。
 
 ```
-animation-iteration-count: infinite
+animation-iteration-count: infinite;
 ```
 
 这个问题并不能彻底解决，只能优化一些些性能。即向3D加速方向考虑。
