@@ -40,6 +40,10 @@ for file in ./html/*
 do
   filename=$(basename ${file})
   
+  if [ -d ./html/${filename}/dist ]; then
+    continue
+  fi
+
   cd ./html/${filename}
   cnpm run build
   cd ../..
