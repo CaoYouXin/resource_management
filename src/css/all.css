@@ -18,3 +18,23 @@ html {
     /*font-size: 10px;*/
     /*font-weight: normal;*/
 }
+
+/* 居中 */
+.v-mid-box {
+  text-align: center;
+}
+
+.v-mid-box > *, .v-mid-box:after {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.v-mid-box:after {
+  content: '';
+  width: 0;
+  height: 100%;
+}
+
+.mid {
+  margin: 0 auto;
+}

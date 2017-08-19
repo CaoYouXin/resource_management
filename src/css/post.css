@@ -2,7 +2,6 @@
 .post-p {
     font-size: 1rem;
     text-indent: 2em;
-    margin: 1em 0;
 }
 
 .post-p a {
@@ -46,7 +45,7 @@ p.q {
     background: linear-gradient(90deg, #eeebbc 0, #eeddee 5%, #eeebec 100%);
 }
 
-p.a {
+p.a, ul, ol, p.post-p {
   margin: 1em 1.2em;
 }
 
