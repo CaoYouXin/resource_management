@@ -495,8 +495,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../html/h5_screen_adaption/node_modules/.0.28.5@css-loader/index.js!./default.css", function() {
-			var newContent = require("!!../../html/h5_screen_adaption/node_modules/.0.28.5@css-loader/index.js!./default.css");
+		module.hot.accept("!!../../html/java_object_values/node_modules/.0.28.5@css-loader/index.js!./default.css", function() {
+			var newContent = require("!!../../html/java_object_values/node_modules/.0.28.5@css-loader/index.js!./default.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -635,8 +635,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../html/h5_screen_adaption/node_modules/.0.28.5@css-loader/index.js!./all.css", function() {
-			var newContent = require("!!../html/h5_screen_adaption/node_modules/.0.28.5@css-loader/index.js!./all.css");
+		module.hot.accept("!!../html/java_object_values/node_modules/.0.28.5@css-loader/index.js!./all.css", function() {
+			var newContent = require("!!../html/java_object_values/node_modules/.0.28.5@css-loader/index.js!./all.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -654,7 +654,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "/* 盒模型，字体，尺寸基准 */\n*, *:before, *:after {\n    border: none;\n    padding: 0;\n    margin: 0;\n\n    box-sizing: border-box;\n}\n\n/* 字体 */\ncode {\n    font-family: Monaco, monospace;\n}\n\n/* 字号, 不能指定，会破坏Angular版博客壳的字号设定 */\nhtml {\n    font-family: 'Hiragino Sans GB', 'Comic San MS', '\\5FAE\\8F6F\\96C5\\9ED1', 'Microsoft Yahei', \"WenQuanYi Micro Hei\", sans-serif;\n    /*font-size: 10px;*/\n    /*font-weight: normal;*/\n}\n", ""]);
+exports.push([module.i, "/* 盒模型，字体，尺寸基准 */\n*, *:before, *:after {\n    border: none;\n    padding: 0;\n    margin: 0;\n\n    box-sizing: border-box;\n}\n\n/* 字体 */\ncode {\n    font-family: Monaco, monospace;\n}\n\n/* 字号, 不能指定，会破坏Angular版博客壳的字号设定 */\nhtml {\n    font-family: 'Hiragino Sans GB', 'Comic San MS', '\\5FAE\\8F6F\\96C5\\9ED1', 'Microsoft Yahei', \"WenQuanYi Micro Hei\", sans-serif;\n    /*font-size: 10px;*/\n    /*font-weight: normal;*/\n}\n\n/* 居中 */\n.v-mid-box {\n  text-align: center;\n}\n\n.v-mid-box > *, .v-mid-box:after {\n  display: inline-block;\n  vertical-align: middle;\n}\n\n.v-mid-box:after {\n  content: '';\n  width: 0;\n  height: 100%;\n}\n\n.mid {\n  margin: 0 auto;\n}", ""]);
 
 // exports
 
@@ -680,8 +680,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../html/h5_screen_adaption/node_modules/.0.28.5@css-loader/index.js!./post.css", function() {
-			var newContent = require("!!../html/h5_screen_adaption/node_modules/.0.28.5@css-loader/index.js!./post.css");
+		module.hot.accept("!!../html/java_object_values/node_modules/.0.28.5@css-loader/index.js!./post.css", function() {
+			var newContent = require("!!../html/java_object_values/node_modules/.0.28.5@css-loader/index.js!./post.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -743,8 +743,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../html/h5_screen_adaption/node_modules/.0.28.5@css-loader/index.js!./post-code.css", function() {
-			var newContent = require("!!../html/h5_screen_adaption/node_modules/.0.28.5@css-loader/index.js!./post-code.css");
+		module.hot.accept("!!../html/java_object_values/node_modules/.0.28.5@css-loader/index.js!./post-code.css", function() {
+			var newContent = require("!!../html/java_object_values/node_modules/.0.28.5@css-loader/index.js!./post-code.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -771,7 +771,7 @@ exports.push([module.i, "/* 代码框 */\n.code-border {\n    display: block;\n\
 /* 15 */
 /***/ (function(module, exports) {
 
-module.exports = "<p class=\"post-p titled-post-p\" data-title=\"项目背景: \">适应各种手机屏幕尺寸的H5页面.</p>\n<p class=\"post-p\">1. 解析&lt;meta name=\"viewport\" content=\"width=750, user-scalable=no\"&gt;</p>\n<p class=\"post-p\">2. 针对不同平台做不同的处理</p>\n<pre class=\"code-border\"><code class=\"javascript\">\nif (isAndroid) {\n  var medium_dpi = data.width / win.screen.availWidth * window.devicePixelRatio * 160;\n\n  medium_dpi = medium_dpi.toFixed(2);\n\n  data['target-densitydpi'] = medium_dpi;\n} else {\n  var scale = win.screen.availWidth / data.width;\n\n  scale = scale.toFixed(2);\n\n  data['initial-scale'] = data['maximum-scale'] = data['minimum-scale'] = scale;\n}\n</code></pre>\n<p class=\"post-p\">3. PageSlide中的问题, iframe设置方式采用body上加zoom属性</p>\n<pre class=\"code-border\"><code class=\"javascript\">\nif (data.width !== pData.width) {\n  document.body.style.zoom = pData.width / data.width;\n}\n</code></pre>";
+module.exports = "<p class=\"post-p titled-post-p\" data-title=\"项目背景：\">\n  录接口数据。当时的原材料是Java源代码，产出是RAP文档。在可预见的未来，Controller代码中接收一个VO，返回一个VO。OK，就是这两个对象，我先把它们序列化成JSON，然后在RAP中导入。\n</p>\n<p class=\"post-p\">\n  过程中发现需要填各种数据类型的默认值。我们都知道，任何复杂的对象都是由基本数据类型构成的。所以，这个程序理想状态比较简单，只需要将VO的所有域中是基本数据类型的直接填值，其它类型递归处理。\n</p>\n<p class=\"post-p\">\n  但是，问题来了。数据集合类型中的域不是那么简单，size不能随意填，另外范性也需要特殊关照。所以，数据集合类型也扩充进来。\n</p>\n<p class=\"post-p\">\n  接着，问题又来了。我的小伙伴写的个别VO没那么单纯。所以也成了我的特殊关照类型。我当时的内心是这样的：\n</p>\n<pre class=\"code-border\"><code class=\"javascript\">console.log(&#39;照这样下去，不会马上就……&#39;);</code></pre>\n<p class=\"post-p\">\n  于是，我想到了开闭原则：只要对扩展是开放的就好了。\n</p>\n<p class=\"post-p\">\n  <a target=\"_blank\" href=\"http://git.oschina.net/caoyouxin/myjava/tree/master/yactools7/src/com/toonly/defaultvalues?dir=1&filepath=yactools7%2Fsrc%2Fcom%2Ftoonly%2Fdefaultvalues&oid=ac60d17cf1ff59dc36535550544800005f8f6e58&sha=af823c076bbed682cf2ca35747017f07d92a5680\"\n    rel=\"nofollow\">源代码地址</a>\n</p>\n<pre class=\"code-border\"><code class=\"java\">\nprivate List integerList;\n\npublic static void main(String[] args) throws NoSuchFieldException {\n  IntDefaultValueGenerator intDefaultValueGenerator = new IntDefaultValueGenerator();\n\n  ListDefaultValueGenerator listDefaultValueGenerator = new ListDefaultValueGenerator();\n  listDefaultValueGenerator.add(intDefaultValueGenerator);\n\n  ChainedDefaultValueGenerator4Context root = new ChainedDefaultValueGenerator4Context();\n  root.add(listDefaultValueGenerator);\n\n  Field integerList = Main.class.getDeclaredField(\"integerList\");\n  root.set(new Context(integerList.getType(), integerList.getGenericType()));\n\n  System.out.println(root.generate());\n}\n</code></pre>\n<p class=\"post-p titled-post-p\" data-title=\"简单的描述这份代码：\">\n  <span style=\"color: #ffffff; background-color: blue;opacity: 0.68;\">&nbsp;intDefaultValueGenerator&nbsp;</span>是一个基本处理单元，\n  <span style=\"color: white; opacity: 0.68; background: -moz-linear-gradient(left top, blue, red);    background: -webkit-linear-gradient(left top, blue, red);    background: -o-linear-gradient(left top, blue, red);\">&nbsp;listDefaultValueGenerator&nbsp;</span>有着双重身份，对于\n  <span style=\"color: #ffffff; opacity: 0.68; background-color: blue;\">&nbsp;intDefaultValueGenerator&nbsp;</span>来说它是一个容器，对于\n  <span style=\"color: #ffffff; opacity: 0.68; background-color: red;\">&nbsp;root&nbsp;</span>来说它也是一个基本处理单元。那么程序的输出是这样的。\n</p>\n<pre class=\"code-border\"><code class=\"bash\">\nGeneratedValue{suc=true, value=[1]}\n\nProcess finished with exit code 0\n</code></pre>";
 
 /***/ }),
 /* 16 */

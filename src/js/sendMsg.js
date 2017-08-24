@@ -9,3 +9,14 @@ export function sendMessage() {
     window.top.postMessage(data, '*');
   }
 }
+
+export function sendOpenMsg(url, target) {
+  if (window.top !== window) {
+    var data = JSON.stringify({
+      url,
+      target
+    });
+
+    window.top.postMessage(data, '*');
+  }
+}

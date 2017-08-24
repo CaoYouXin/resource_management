@@ -445,34 +445,89 @@ function updateLink (link, options, obj) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__asset_highlight_default_css__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__asset_highlight_default_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__asset_highlight_default_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_all_css__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_all_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__css_all_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__css_post_css__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__css_post_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__css_post_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__css_post_code_css__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__css_post_code_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__css_post_code_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__data_html__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__data_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__data_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__js_sendMsg_js__ = __webpack_require__(16);
-
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__css_all_css__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__css_all_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__css_all_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_game_list_css__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_game_list_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__css_game_list_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__data_html__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__data_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__data_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__js_sendMsg_js__ = __webpack_require__(9);
 
 
 
 
 
 var divElem = document.createElement('div');
-divElem.innerHTML = __WEBPACK_IMPORTED_MODULE_4__data_html___default.a;
+divElem.innerHTML = __WEBPACK_IMPORTED_MODULE_2__data_html___default.a;
 document.body.appendChild(divElem);
 
-var preCodeElems = document.querySelectorAll('pre code');
-for (var i = 0; i < preCodeElems.length; i++) {
-  hljs.highlightBlock(preCodeElems[i]);
+var games = document.getElementById('games');
+var gallery = document.querySelector('ul.gallery');
+var w = gallery.offsetWidth;
+var it = gallery.firstElementChild;
+var count = gallery.childElementCount;
+var index = -1;
+var bar = document.createElement('ul');
+bar.classList.add('bar');
+games.appendChild(bar);
+var liW = w / count;
+
+while (it) {
+  var number = ~~(Math.random() * (1 << 24));
+  var s = number.toString(16);
+  var randomBgColor = '#' + '000000'.substring(s.length) + s;
+
+  var li = document.createElement('li');
+  li.style.width = liW + 'px';
+  li.style.backgroundColor = randomBgColor;
+  bar.appendChild(li);
+
+  it.style.width = w + 'px';
+  it.style.backgroundImage = 'url(' + it.getAttribute('data-url') + ')';
+  it.style.backgroundSize = 'contain';
+  var innerIt = it.firstElementChild;
+  while (innerIt) {
+    if (innerIt.classList.contains('content')) {
+      innerIt.style.backgroundColor = randomBgColor;
+    }
+    innerIt = innerIt.nextElementSibling;
+  }
+  it = it.nextElementSibling;
+}
+gallery.style.width = (w * count) + 'px';
+
+function set(i) {
+  index = i %= count;
+
+  gallery.style.transform = 'translateX(-' + (i / count * 100) + '%)';
+
+  for (var j = 0, it = bar.firstElementChild; !!it; j++ , it = it.nextElementSibling) {
+    if (i === j && !it.classList.contains('blur')) {
+      it.classList.add('blur');
+    } else {
+      it.classList.remove('blur');
+    }
+  }
 }
 
-setInterval(__WEBPACK_IMPORTED_MODULE_5__js_sendMsg_js__["a" /* sendMessage */], 3000);
+function loop() {
+  set(++index);
+  clearTimeout(timeout);
+  timeout = setTimeout(loop, 5000);
+}
+var timeout = setTimeout(loop, 5000);
+
+bar.addEventListener('click', function (e) {
+  for (var i = 0; i < bar.childElementCount; i++) {
+    if (bar.children[i] === e.target) {
+      set(i);
+      clearTimeout(timeout);
+      timeout = setTimeout(loop, 5000);
+    }
+  }
+});
+
+setInterval(__WEBPACK_IMPORTED_MODULE_3__js_sendMsg_js__["a" /* sendMessage */], 3000);
 
 /***/ }),
 /* 3 */
@@ -495,8 +550,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../html/design_pattern/node_modules/.0.28.5@css-loader/index.js!./default.css", function() {
-			var newContent = require("!!../../html/design_pattern/node_modules/.0.28.5@css-loader/index.js!./default.css");
+		module.hot.accept("!!../html/games/node_modules/.0.28.5@css-loader/index.js!./all.css", function() {
+			var newContent = require("!!../html/games/node_modules/.0.28.5@css-loader/index.js!./all.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -514,7 +569,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, ".hljs{display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0}.hljs,.hljs-subst{color:#444}.hljs-comment{color:#888888}.hljs-keyword,.hljs-attribute,.hljs-selector-tag,.hljs-meta-keyword,.hljs-doctag,.hljs-name{font-weight:bold}.hljs-type,.hljs-string,.hljs-number,.hljs-selector-id,.hljs-selector-class,.hljs-quote,.hljs-template-tag,.hljs-deletion{color:#880000}.hljs-title,.hljs-section{color:#880000;font-weight:bold}.hljs-regexp,.hljs-symbol,.hljs-variable,.hljs-template-variable,.hljs-link,.hljs-selector-attr,.hljs-selector-pseudo{color:#BC6060}.hljs-literal{color:#78A960}.hljs-built_in,.hljs-bullet,.hljs-code,.hljs-addition{color:#397300}.hljs-meta{color:#1f7199}.hljs-meta-string{color:#4d99bf}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:bold}", ""]);
+exports.push([module.i, "/* 盒模型，字体，尺寸基准 */\n*, *:before, *:after {\n    border: none;\n    padding: 0;\n    margin: 0;\n\n    box-sizing: border-box;\n}\n\n/* 字体 */\ncode {\n    font-family: Monaco, monospace;\n}\n\n/* 字号, 不能指定，会破坏Angular版博客壳的字号设定 */\nhtml {\n    font-family: 'Hiragino Sans GB', 'Comic San MS', '\\5FAE\\8F6F\\96C5\\9ED1', 'Microsoft Yahei', \"WenQuanYi Micro Hei\", sans-serif;\n    /*font-size: 10px;*/\n    /*font-weight: normal;*/\n}\n\n/* 居中 */\n.v-mid-box {\n  text-align: center;\n}\n\n.v-mid-box > *, .v-mid-box:after {\n  display: inline-block;\n  vertical-align: middle;\n}\n\n.v-mid-box:after {\n  content: '';\n  width: 0;\n  height: 100%;\n}\n\n.mid {\n  margin: 0 auto;\n}", ""]);
 
 // exports
 
@@ -635,8 +690,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../html/design_pattern/node_modules/.0.28.5@css-loader/index.js!./all.css", function() {
-			var newContent = require("!!../html/design_pattern/node_modules/.0.28.5@css-loader/index.js!./all.css");
+		module.hot.accept("!!../html/games/node_modules/.0.28.5@css-loader/index.js!./game-list.css", function() {
+			var newContent = require("!!../html/games/node_modules/.0.28.5@css-loader/index.js!./game-list.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -654,127 +709,19 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "/* 盒模型，字体，尺寸基准 */\n*, *:before, *:after {\n    border: none;\n    padding: 0;\n    margin: 0;\n\n    box-sizing: border-box;\n}\n\n/* 字体 */\ncode {\n    font-family: Monaco, monospace;\n}\n\n/* 字号, 不能指定，会破坏Angular版博客壳的字号设定 */\nhtml {\n    font-family: 'Hiragino Sans GB', 'Comic San MS', '\\5FAE\\8F6F\\96C5\\9ED1', 'Microsoft Yahei', \"WenQuanYi Micro Hei\", sans-serif;\n    /*font-size: 10px;*/\n    /*font-weight: normal;*/\n}\n", ""]);
+exports.push([module.i, ".bfc {\n    width: 100%;\n    height: auto;\n\n    overflow: hidden;\n}\n\nul.gallery {\n    width: 100%;\n    height: 500px;\n\n    overflow: hidden;\n\n    font-size: 0;\n\n    transition: transform 1s;\n}\n\nul.gallery > li {\n    display: inline-block;\n\n    width: 0;\n    height: 500px;\n\n    overflow: hidden;\n}\n\n.card {\n    background-size: contain;\n    background: #00b200 no-repeat center;\n}\n\n.card > .content {\n    width: 100%;\n    height: 128px;\n\n    position: relative;\n    top: 372px;\n\n    color: #efe;\n    opacity: 0.7;\n\n    text-align: right;\n    line-height: 128px;\n\n    font-size: 7rem;\n}\n\nul.bar {\n    width: 100%;\n    height: 30px;\n\n    font-size: 0;\n    overflow: hidden;\n}\n\nul.bar > li {\n    width: 0;\n    height: 100%;\n\n    opacity: 0.7;\n\n    display: inline-block;\n}\n\nul.bar > li.blur {\n    box-shadow: inset 0 0 3px 3px rgba(255, 255, 255, 0.6);\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
 /* 8 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(9);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(1)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../html/design_pattern/node_modules/.0.28.5@css-loader/index.js!./post.css", function() {
-			var newContent = require("!!../html/design_pattern/node_modules/.0.28.5@css-loader/index.js!./post.css");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
+module.exports = "<div id=\"games\" class=\"bfc\">\n  <ul class=\"gallery\">\n    <li class=\"card\" data-url=\"http://y3.ifengimg.com/dee5ac7c19652025/2015/0513/rdn_5552c9f156deb.jpg\">\n      <div class=\"content\">巫师3</div>\n    </li>\n    <li class=\"card\" data-url=\"http://www.wallcoo.com/game/devil-may-cry-4/wallpapers/1280x1024/devil-may-cry-4-wallpaper-wp20080215_1.jpg\">\n      <div class=\"content\">鬼泣4</div>\n    </li>\n    <li class=\"card\" data-url=\"http://a1.att.hudong.com/60/99/20300001213040130348990431437.jpg\">\n      <div class=\"content\">暗黑血统</div>\n    </li>\n    <li class=\"card\" data-url=\"http://image2.sina.com.cn/gm/downgames/image/pcgames/2005-11-04/U1245P115T29D95019F569DT20051104092042.jpg\">\n      <div class=\"content\">波斯王子</div>\n    </li>\n    <li class=\"card\" data-url=\"http://img.golue.com/pic/1112/27024229966.jpg\">\n      <div class=\"content\">龙腾世纪</div>\n    </li>\n    <li class=\"card\" data-url=\"http://image.diva8.com/soft/gamepic/post-358353-1154694025.jpg\">\n      <div class=\"content\">地牢围攻</div>\n    </li>\n    <li class=\"card\" data-url=\"https://i.ytimg.com/vi/m8rwPoZiYgQ/maxresdefault.jpg\">\n      <div class=\"content\">Apache Helicopter</div>\n    </li>\n    <li class=\"card\" data-url=\"http://pic.fxxz.com/up/2011-5/20115984224219310.jpg\">\n      <div class=\"content\">极品飞车6</div>\n    </li>\n    <li class=\"card\" data-url=\"http://img3.gamersky.com/upload-news/200801/20080127164930315.jpg\">\n      <div class=\"content\">无双大蛇</div>\n    </li>\n    <li class=\"card\" data-url=\"https://i.ytimg.com/vi/k-SyklYr2V4/maxresdefault.jpg\">\n      <div class=\"content\">鬼武者3</div>\n    </li>\n  </ul>\n</div>";
 
 /***/ }),
 /* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "/* 段落 */\n.post-p {\n    font-size: 1rem;\n    text-indent: 2em;\n    margin: 1em 0;\n}\n\n.post-p a {\n    display: inline-block;\n    font-size: 0.8rem;\n    text-indent: 0;\n    text-decoration: none;\n    border-radius: 0.8em;\n    border: solid 1px #121;\n    padding: 0.3em 0.5em;\n    background-color: rgba(220, 220, 220, 0.5);\n}\n\n.post-p a:hover {\n    text-decoration: none;\n    background-color: rgba(220, 220, 220, 1);\n}\n\n/* 带标题段落 */\n.titled-post-p:before {\n    content: attr(data-title);\n\n    font-size: 1.8rem;\n}\n\n/* 带行标背景的段落 */\n.bg-post-p {\n    line-height: 1.5em;\n    background: url(" + __webpack_require__(10) + ") repeat;\n    background-size: 6px 1.5em;\n}\n\n/* 提问段落 */\np.q {\n    display: block;\n    width: 100%;\n    height: auto;\n    font-size: 1.3rem;\n    line-height: 2em;\n    padding-left: 1em;\n    background: linear-gradient(90deg, #eeebbc 0, #eeddee 5%, #eeebec 100%);\n}\n\np.a {\n  margin: 1em 1.2em;\n}\n\n/* 列表 */\nul, ol {\n    font-family: \"Source Code Pro\", monospace;\n}\n\nol.post-l {\n    list-style-type: decimal;\n}\n\nol.post-l, ul.post-l {\n    margin: 1em 0;\n}\n\nol.post-l > li, ul.post-l > li {\n    font-size: 0.9rem;\n    list-style-position: inside;\n}\n\nol.post-l p.post-p {\n    font-size: 0.9rem;\n    text-indent: 0;\n}\n\n/* 抽屉列表 */\nul.post-drawer-l > li {\n    cursor: pointer;\n}\n\nul.post-drawer-l > li:not(.active) {\n    list-style: square inside url(" + __webpack_require__(11) + ");\n}\n\nul.post-drawer-l > li.active {\n    list-style: square inside url(" + __webpack_require__(12) + ");\n}\n\nul.post-drawer-l > li > .hidden {\n    display: none;\n}\n\nul.post-drawer-l > li.active > .hidden {\n    display: block;\n}\n\n/* 图片 */\nimg {\n    max-width: 100%;\n}\n\n/* image gallery */\nul.gallery {\n    list-style: none;\n\n    display: flex;\n    flex-direction: row;\n    flex-wrap: nowrap;\n    overflow-x: auto;\n\n    height: 220px;\n}\n\nul.gallery > li {\n    width: 200px;\n    height: 200px;\n\n    flex-shrink: 0;\n    background: rgba(0, 0, 0, 0.3);\n}\n\nul.gallery > li > img {\n    width: 200px;\n    height: 200px;\n}\n\nul.gallery > li > img:hover {\n    transform: scale(1.1);\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "71ecb478e5b31f72d7570e734eb4f7fc.png";
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "746dc54d093986a56e5c8e1282a5289d.png";
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "6115e32fec7262ad8c9ede6c08e863bb.png";
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(14);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(1)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../html/design_pattern/node_modules/.0.28.5@css-loader/index.js!./post-code.css", function() {
-			var newContent = require("!!../html/design_pattern/node_modules/.0.28.5@css-loader/index.js!./post-code.css");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "/* 代码框 */\n.code-border {\n    display: block;\n\n    width: calc(100% - 2.4em);\n    max-height: 50em;\n\n    font-size: 12px;\n\n    margin: 10px 1.2em;\n    padding: 5px 10px;\n\n    border-radius: 5px;\n    border: solid 5px #000000;\n\n    box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.75);\n    background-image: radial-gradient(circle 500px at 30% 30%, #f0f0f0 0%, #ffffff 90%, #f9f9f9 100%);\n    \n    overflow: auto;\n}\n\n.code-border > code {\n    background-color: transparent;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports) {
-
-module.exports = "<p class=\"q\">singleton</p>\n<p class=\"a post-p\">实现单一实例的常用方法是创建全局唯一变量。为了保证唯一，常用命名空间区分。利用私有函数作为实例构造器，可以实现延迟加载。</p>\n<pre class=\"code-border\"><code class=\"javascript\">\nfunction singletonFactory() {\n  var obj = null;\n  return function() {\n    if (obj == null) {\n      obj = {}; // 创建实例\n    }\n    return obj;\n  };\n}\n</code></pre>\n<br>\n\n<p class=\"q\">chain</p>\n<p class=\"a post-p\">链式调用。对于本身没有返回值的返回this，对于有返回值的可以通过传入回调函数使用返回值。</p>\n<pre class=\"code-border\"><code class=\"javascript\">\nfunction setter(obj) {\n  return this.obj = obj, this;\n}\n</code></pre>\n<br>\n\n<p class=\"q\">factory</p>\n<p class=\"a post-p\">延迟加载的实现与单例延迟加载相同。工厂模式的作用是抽取公共代码，满足不同场景。</p>\n<p class=\"a post-p\">参考singletonFactory。</p>\n\n<p class=\"q\">bridge</p>\n<p class=\"a post-p\">此桥单向通行，不知桥的那头还有桥否。</p>\n<pre class=\"code-border\"><code class=\"javascript\">\nfunction bridge(params) {\n  callSth(params.a, params.b);\n}\n\nfunction bridge(a, b) {\n  callSth(add(a, b));\n}\n</code></pre>\n<br>\n\n<p class=\"q\">composite</p>\n<p class=\"a post-p\">树状结构型设计模式。不适用table。</p>\n<pre class=\"code-border\"><code class=\"javascript\">\nfunction entity(isLeaf) {\n  this.isLeaf = isLeaf;\n  this.entities = [];\n}\n\nentity.prototype.add = function(entity) {\n  this.entities.push(entity);\n}\n\nentity.prototype.do = function() {\n  if (this.isLeaf) {\n    // do sth;\n  } else {\n    for (var i = 0; i < this.entities.length; i++) {\n      this.entities[i].do();\n    }\n  }\n}\n</code></pre>\n<br>\n\n<p class=\"q\">facade</p>\n<p class=\"a post-p\">例如ES6中import,export。消除差异。</p>\n<p class=\"a post-p\">例如ES6中import,export。</p>\n\n<p class=\"q\">adapter</p>\n<p class=\"a post-p\">整合旧框架</p>\n<pre class=\"code-border\"><code class=\"javascript\">\nfunction fn1(params) {\n// use params;\n}\n\nfunction fn2(a, b) {\n// use a, b;\n}\n\nfunction fn1Adapter(a, b) {\n  fn1({a:a,b:b});\n}\n\nfn2 = fn1Adapter;\n</code></pre>\n<br>\n\n<p class=\"q\">decoration</p>\n<p class=\"a post-p\">比继承更优，自由组合。例如Java中最常见的输入输出模块。</p>\n<pre class=\"code-border\"><code class=\"javascript\">\nfunction shopDecorator(shop) {\n  this.shop = shop;\n}\n\nshopDecorator.prototype.open = function() {\n  this.shop.open();\n};\n\nshopDecorator.prototype.close = function() {\n  this.shop.close();\n};\n</code></pre>\n<br>\n\n<p class=\"q\">flyweight</p>\n<p class=\"a post-p\">创建型模式，节省内存。</p>\n<pre class=\"code-border\"><code class=\"javascript\">\nfunction flyweight() {\n  this.a = 'a';\n  this.b = 'b';\n}\n\nflyweight.prototype.setA = function(a) {\n  this.a = a;\n  return this;\n};\n\nflyweight.prototype.setB = function(b) {\n  this.b = b;\n  return this;\n};\n</code></pre>\n<br>\n\n<p class=\"q\">proxy</p>\n<p class=\"a post-p\">与装饰模式类似，实现相同的接口。但是，实际工作的代码是本体的代码。</p>\n<pre class=\"code-border\"><code class=\"javascript\">\nfunction proxy(remote) {\n  this.remote = remote;\n}\n\nproxy.prototype.remoteMethod = function(a) {\n  return this.remote.remoteMethod(a);\n};\n</code></pre>\n<br>\n\n<p class=\"q\">observer</p>\n<p class=\"a post-p\">用数组保存一列观察者，当相应事件发生的时候，一次性依次fire。</p>\n<pre class=\"code-border\"><code class=\"javascript\">\nfunction observer() {\n  this.handlers = [];\n}\n\nobserver.prototype.registerHandler = function(handler) {\n  this.handlers.push(handler);\n};\n\nobserver.prototype.fireEvent = function(event) {\n  for (var i = 0; i < this.handlers.length; i++) {\n    this.handlers[i](event);\n  }\n};\n</code></pre>\n<br>\n\n<p class=\"q\">command</p>\n<p class=\"a post-p\">封装一套指令，就像我一直以来觉得高大上的linux shell。</p>\n<pre class=\"code-border\"><code class=\"javascript\">\nfunction doOneThing() {\n  // one;\n}\n\nfunction doAnotherThing() {\n  // another;\n}\n\n// command\nfunction doThingsInOrder() {\n  doOneThing();\n  doAnotherThing();\n}\n</code></pre>\n<br>\n\n<p class=\"q\">chain-of-responsibility</p>\n<p class=\"a post-p\">连接一系列实现同一接口的类。可以通过AOP实现。</p>\n<pre class=\"code-border\"><code class=\"javascript\">\nfunction fn() {\n  // func;\n}\n\nFunction.prototype.before = function(beforeFn) {\n  var self = this;\n  return function() {\n    beforeFn.apply(self, arguments);\n    self.apply(self, arguments);\n  };\n};\n\nFunction.prototype.after = function(afterFn) {\n  var self = this;\n  return function() {\n    self.apply(self, arguments);\n    afterFn.apply(self, arguments);\n  };\n};\n</code></pre>";
-
-/***/ }),
-/* 16 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

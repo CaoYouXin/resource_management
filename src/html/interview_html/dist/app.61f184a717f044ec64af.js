@@ -127,7 +127,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(5);
+var	fixUrls = __webpack_require__(6);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -444,18 +444,50 @@ function updateLink (link, options, obj) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = sendMessage;
+/* harmony export (immutable) */ __webpack_exports__["b"] = sendOpenMsg;
+function sendMessage() {
+  if (window.top !== window) {
+    var path = location.href.toString();
+    var data = JSON.stringify({
+      path: path.substr(path.indexOf('serve/') + 'serve'.length),
+      height: document.body.scrollHeight
+    });
+
+    window.top.postMessage(data, '*');
+  }
+}
+
+function sendOpenMsg(url, target) {
+  if (window.top !== window) {
+    var data = JSON.stringify({
+      url,
+      target
+    });
+
+    window.top.postMessage(data, '*');
+  }
+}
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__asset_highlight_default_css__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__asset_highlight_default_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__asset_highlight_default_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_all_css__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__asset_highlight_styles_default_css__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__asset_highlight_styles_default_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__asset_highlight_styles_default_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_all_css__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_all_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__css_all_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__css_post_css__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__css_post_css__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__css_post_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__css_post_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__css_post_code_css__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__css_post_code_css__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__css_post_code_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__css_post_code_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__data_html__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__data_html__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__data_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__data_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__js_sendMsg_js__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__js_sendMsg_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__js_replace_a_js__ = __webpack_require__(17);
+
 
 
 
@@ -467,16 +499,23 @@ var divElem = document.createElement('div');
 divElem.innerHTML = __WEBPACK_IMPORTED_MODULE_4__data_html___default.a;
 document.body.appendChild(divElem);
 
+Object(__WEBPACK_IMPORTED_MODULE_6__js_replace_a_js__["a" /* default */])();
+
+var preCodeElems = document.querySelectorAll('pre code');
+for (var i = 0; i < preCodeElems.length; i++) {
+  hljs.highlightBlock(preCodeElems[i]);
+}
+
 setInterval(__WEBPACK_IMPORTED_MODULE_5__js_sendMsg_js__["a" /* sendMessage */], 3000);
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(4);
+var content = __webpack_require__(5);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -490,8 +529,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../html/interview_others/node_modules/.0.28.5@css-loader/index.js!./default.css", function() {
-			var newContent = require("!!../../html/interview_others/node_modules/.0.28.5@css-loader/index.js!./default.css");
+		module.hot.accept("!!../../../html/interview_html/node_modules/css-loader/index.js!./default.css", function() {
+			var newContent = require("!!../../../html/interview_html/node_modules/css-loader/index.js!./default.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -501,7 +540,7 @@ if(false) {
 }
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(undefined);
@@ -509,13 +548,13 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, ".hljs{display:block;overflow-x:auto;padding:0.5em;background:#F0F0F0}.hljs,.hljs-subst{color:#444}.hljs-comment{color:#888888}.hljs-keyword,.hljs-attribute,.hljs-selector-tag,.hljs-meta-keyword,.hljs-doctag,.hljs-name{font-weight:bold}.hljs-type,.hljs-string,.hljs-number,.hljs-selector-id,.hljs-selector-class,.hljs-quote,.hljs-template-tag,.hljs-deletion{color:#880000}.hljs-title,.hljs-section{color:#880000;font-weight:bold}.hljs-regexp,.hljs-symbol,.hljs-variable,.hljs-template-variable,.hljs-link,.hljs-selector-attr,.hljs-selector-pseudo{color:#BC6060}.hljs-literal{color:#78A960}.hljs-built_in,.hljs-bullet,.hljs-code,.hljs-addition{color:#397300}.hljs-meta{color:#1f7199}.hljs-meta-string{color:#4d99bf}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:bold}", ""]);
+exports.push([module.i, "/*\n\nOriginal highlight.js style (c) Ivan Sagalaev <maniac@softwaremaniacs.org>\n\n*/\n\n.hljs {\n  display: block;\n  overflow-x: auto;\n  padding: 0.5em;\n  background: #F0F0F0;\n}\n\n\n/* Base color: saturation 0; */\n\n.hljs,\n.hljs-subst {\n  color: #444;\n}\n\n.hljs-comment {\n  color: #888888;\n}\n\n.hljs-keyword,\n.hljs-attribute,\n.hljs-selector-tag,\n.hljs-meta-keyword,\n.hljs-doctag,\n.hljs-name {\n  font-weight: bold;\n}\n\n\n/* User color: hue: 0 */\n\n.hljs-type,\n.hljs-string,\n.hljs-number,\n.hljs-selector-id,\n.hljs-selector-class,\n.hljs-quote,\n.hljs-template-tag,\n.hljs-deletion {\n  color: #880000;\n}\n\n.hljs-title,\n.hljs-section {\n  color: #880000;\n  font-weight: bold;\n}\n\n.hljs-regexp,\n.hljs-symbol,\n.hljs-variable,\n.hljs-template-variable,\n.hljs-link,\n.hljs-selector-attr,\n.hljs-selector-pseudo {\n  color: #BC6060;\n}\n\n\n/* Language color: hue: 90; */\n\n.hljs-literal {\n  color: #78A960;\n}\n\n.hljs-built_in,\n.hljs-bullet,\n.hljs-code,\n.hljs-addition {\n  color: #397300;\n}\n\n\n/* Meta color: hue: 200 */\n\n.hljs-meta {\n  color: #1f7199;\n}\n\n.hljs-meta-string {\n  color: #4d99bf;\n}\n\n\n/* Misc effects */\n\n.hljs-emphasis {\n  font-style: italic;\n}\n\n.hljs-strong {\n  font-weight: bold;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports) {
 
 
@@ -610,13 +649,13 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(7);
+var content = __webpack_require__(8);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -630,8 +669,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../html/interview_others/node_modules/.0.28.5@css-loader/index.js!./all.css", function() {
-			var newContent = require("!!../html/interview_others/node_modules/.0.28.5@css-loader/index.js!./all.css");
+		module.hot.accept("!!../html/interview_html/node_modules/css-loader/index.js!./all.css", function() {
+			var newContent = require("!!../html/interview_html/node_modules/css-loader/index.js!./all.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -639,29 +678,29 @@ if(false) {
 	// When the module is disposed, remove the <style> tags
 	module.hot.dispose(function() { update(); });
 }
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "/* 盒模型，字体，尺寸基准 */\n*, *:before, *:after {\n    border: none;\n    padding: 0;\n    margin: 0;\n\n    box-sizing: border-box;\n}\n\n/* 字体 */\ncode {\n    font-family: Monaco, monospace;\n}\n\n/* 字号, 不能指定，会破坏Angular版博客壳的字号设定 */\nhtml {\n    font-family: 'Hiragino Sans GB', 'Comic San MS', '\\5FAE\\8F6F\\96C5\\9ED1', 'Microsoft Yahei', \"WenQuanYi Micro Hei\", sans-serif;\n    /*font-size: 10px;*/\n    /*font-weight: normal;*/\n}\n", ""]);
-
-// exports
-
 
 /***/ }),
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
+exports = module.exports = __webpack_require__(0)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "/* 盒模型，字体，尺寸基准 */\n*, *:before, *:after {\n    border: none;\n    padding: 0;\n    margin: 0;\n\n    box-sizing: border-box;\n}\n\n/* 字体 */\ncode {\n    font-family: Monaco, monospace;\n}\n\n/* 字号, 不能指定，会破坏Angular版博客壳的字号设定 */\nhtml {\n    font-family: 'Hiragino Sans GB', 'Comic San MS', '\\5FAE\\8F6F\\96C5\\9ED1', 'Microsoft Yahei', \"WenQuanYi Micro Hei\", sans-serif;\n    /*font-size: 10px;*/\n    /*font-weight: normal;*/\n}\n\n/* 居中 */\n.v-mid-box {\n  text-align: center;\n}\n\n.v-mid-box > *, .v-mid-box:after {\n  display: inline-block;\n  vertical-align: middle;\n}\n\n.v-mid-box:after {\n  content: '';\n  width: 0;\n  height: 100%;\n}\n\n.mid {\n  margin: 0 auto;\n}", ""]);
+
+// exports
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(9);
+var content = __webpack_require__(10);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -675,8 +714,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../html/interview_others/node_modules/.0.28.5@css-loader/index.js!./post.css", function() {
-			var newContent = require("!!../html/interview_others/node_modules/.0.28.5@css-loader/index.js!./post.css");
+		module.hot.accept("!!../html/interview_html/node_modules/css-loader/index.js!./post.css", function() {
+			var newContent = require("!!../html/interview_html/node_modules/css-loader/index.js!./post.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -686,7 +725,7 @@ if(false) {
 }
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(undefined);
@@ -694,37 +733,37 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "/* 段落 */\n.post-p {\n    font-size: 1rem;\n    text-indent: 2em;\n    margin: 1em 0;\n}\n\n.post-p a {\n    display: inline-block;\n    font-size: 0.8rem;\n    text-indent: 0;\n    text-decoration: none;\n    border-radius: 0.8em;\n    border: solid 1px #121;\n    padding: 0.3em 0.5em;\n    background-color: rgba(220, 220, 220, 0.5);\n}\n\n.post-p a:hover {\n    text-decoration: none;\n    background-color: rgba(220, 220, 220, 1);\n}\n\n/* 带标题段落 */\n.titled-post-p:before {\n    content: attr(data-title);\n\n    font-size: 1.8rem;\n}\n\n/* 带行标背景的段落 */\n.bg-post-p {\n    line-height: 1.5em;\n    background: url(" + __webpack_require__(10) + ") repeat;\n    background-size: 6px 1.5em;\n}\n\n/* 提问段落 */\np.q {\n    display: block;\n    width: 100%;\n    height: auto;\n    font-size: 1.3rem;\n    line-height: 2em;\n    padding-left: 1em;\n    background: linear-gradient(90deg, #eeebbc 0, #eeddee 5%, #eeebec 100%);\n}\n\np.a {\n  margin: 1em 1.2em;\n}\n\n/* 列表 */\nul, ol {\n    font-family: \"Source Code Pro\", monospace;\n}\n\nol.post-l {\n    list-style-type: decimal;\n}\n\nol.post-l, ul.post-l {\n    margin: 1em 0;\n}\n\nol.post-l > li, ul.post-l > li {\n    font-size: 0.9rem;\n    list-style-position: inside;\n}\n\nol.post-l p.post-p {\n    font-size: 0.9rem;\n    text-indent: 0;\n}\n\n/* 抽屉列表 */\nul.post-drawer-l > li {\n    cursor: pointer;\n}\n\nul.post-drawer-l > li:not(.active) {\n    list-style: square inside url(" + __webpack_require__(11) + ");\n}\n\nul.post-drawer-l > li.active {\n    list-style: square inside url(" + __webpack_require__(12) + ");\n}\n\nul.post-drawer-l > li > .hidden {\n    display: none;\n}\n\nul.post-drawer-l > li.active > .hidden {\n    display: block;\n}\n\n/* 图片 */\nimg {\n    max-width: 100%;\n}\n\n/* image gallery */\nul.gallery {\n    list-style: none;\n\n    display: flex;\n    flex-direction: row;\n    flex-wrap: nowrap;\n    overflow-x: auto;\n\n    height: 220px;\n}\n\nul.gallery > li {\n    width: 200px;\n    height: 200px;\n\n    flex-shrink: 0;\n    background: rgba(0, 0, 0, 0.3);\n}\n\nul.gallery > li > img {\n    width: 200px;\n    height: 200px;\n}\n\nul.gallery > li > img:hover {\n    transform: scale(1.1);\n}\n", ""]);
+exports.push([module.i, "/* 段落 */\n.post-p {\n    font-size: 1rem;\n    text-indent: 2em;\n}\n\n.post-p a {\n    display: inline-block;\n    font-size: 0.8rem;\n    text-indent: 0;\n    text-decoration: none;\n    border-radius: 0.8em;\n    border: solid 1px #121;\n    padding: 0.3em 0.5em;\n    background-color: rgba(220, 220, 220, 0.5);\n}\n\n.post-p a:hover {\n    text-decoration: none;\n    background-color: rgba(220, 220, 220, 1);\n}\n\n/* 带标题段落 */\n.titled-post-p:before {\n    content: attr(data-title);\n\n    font-size: 1.8rem;\n}\n\n/* 带行标背景的段落 */\n.bg-post-p {\n    line-height: 1.5em;\n    background: url(" + __webpack_require__(11) + ") repeat;\n    background-size: 6px 1.5em;\n}\n\n/* 提问段落 */\np.q {\n    display: block;\n    width: 100%;\n    height: auto;\n    font-size: 1.3rem;\n    line-height: 2em;\n    padding-left: 1em;\n    background: linear-gradient(90deg, #eeebbc 0, #eeddee 5%, #eeebec 100%);\n}\n\np.a, ul, ol, p.post-p {\n  margin: 1em 1.2em;\n}\n\n/* 列表 */\nul, ol {\n    font-family: \"Source Code Pro\", monospace;\n}\n\nol.post-l {\n    list-style-type: decimal;\n}\n\nol.post-l, ul.post-l {\n    margin: 1em 0;\n}\n\nol.post-l > li, ul.post-l > li {\n    font-size: 0.9rem;\n    list-style-position: inside;\n}\n\nol.post-l p.post-p {\n    font-size: 0.9rem;\n    text-indent: 0;\n}\n\n/* 抽屉列表 */\nul.post-drawer-l > li {\n    cursor: pointer;\n}\n\nul.post-drawer-l > li:not(.active) {\n    list-style: square inside url(" + __webpack_require__(12) + ");\n}\n\nul.post-drawer-l > li.active {\n    list-style: square inside url(" + __webpack_require__(13) + ");\n}\n\nul.post-drawer-l > li > .hidden {\n    display: none;\n}\n\nul.post-drawer-l > li.active > .hidden {\n    display: block;\n}\n\n/* 图片 */\nimg {\n    max-width: 100%;\n}\n\n/* image gallery */\nul.gallery {\n    list-style: none;\n\n    display: flex;\n    flex-direction: row;\n    flex-wrap: nowrap;\n    overflow-x: auto;\n\n    height: 220px;\n}\n\nul.gallery > li {\n    width: 200px;\n    height: 200px;\n\n    flex-shrink: 0;\n    background: rgba(0, 0, 0, 0.3);\n}\n\nul.gallery > li > img {\n    width: 200px;\n    height: 200px;\n}\n\nul.gallery > li > img:hover {\n    transform: scale(1.1);\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "71ecb478e5b31f72d7570e734eb4f7fc.png";
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "746dc54d093986a56e5c8e1282a5289d.png";
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "6115e32fec7262ad8c9ede6c08e863bb.png";
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(14);
+var content = __webpack_require__(15);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -738,8 +777,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../html/interview_others/node_modules/.0.28.5@css-loader/index.js!./post-code.css", function() {
-			var newContent = require("!!../html/interview_others/node_modules/.0.28.5@css-loader/index.js!./post-code.css");
+		module.hot.accept("!!../html/interview_html/node_modules/css-loader/index.js!./post-code.css", function() {
+			var newContent = require("!!../html/interview_html/node_modules/css-loader/index.js!./post-code.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -749,7 +788,7 @@ if(false) {
 }
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(undefined);
@@ -763,28 +802,64 @@ exports.push([module.i, "/* 代码框 */\n.code-border {\n    display: block;\n\
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports) {
 
-module.exports = "<p class=\"q\">原来公司工作流程是怎么样的，如何与其他人协作的？如何夸部门合作的？</p>\n<p class=\"a post-p\">QQ讨论组发送接口定义。Seafile共享美术资源。</p>\n\n<p class=\"q\">你遇到过比较难的技术问题是？你是如何解决的？</p>\n<p class=\"a post-p\">三天时间重构整个项目, 整天脑袋里都是对象模型, 模块化; 加载, 路由。</p>\n\n<p class=\"q\">设计模式 知道什么是singleton, factory, strategy, decrator么?</p>\n<p class=\"a post-p\">24个设计模式不算全熟悉, 但是这几个认识。</p>\n\n<p class=\"q\">常使用的库有哪些？常用的前端开发工具？开发过什么应用或组件？</p>\n<p class=\"a post-p\">jquery。webstorm。gulp自定义编译胶水代码文件的插件。</p>\n\n<p class=\"q\">页面重构怎么操作？</p>\n<p class=\"a post-p\">每次重构都有不同的目标, 只要目标明确, 代码如何重构都不成问题。</p>\n<p class=\"a post-p\">最近刚重构了一份THREE.js的代码, 用对象模型封装。</p>\n\n<p class=\"q\">列举IE与其他浏览器不一样的特性？</p>\n<p class=\"a post-p\">attachEvent VS. addEventListener</p>\n\n<p class=\"q\">什么叫优雅降级和渐进增强？</p>\n<p class=\"a post-p\">“优雅降级”观点认为应该针对那些最高级、最完善的浏览器来设计网站。而将那些被认为“过时”或有功能缺失的浏览器下的测试工作安排在开发周期的最后阶段，并把测试对象限定为主流浏览器（如 IE、Mozilla 等）的前一个版本。在这种设计范例下，旧版的浏览器被认为仅能提供“简陋却无妨\n  (poor, but passable)” 的浏览体验。你可以做一些小的调整来适应某个特定的浏览器。但由于它们并非我们所关注的焦点，因此除了修复较大的错误之外，其它的差异将被直接忽略。\n</p>\n<p class=\"a post-p\">\n  “渐进增强”观点则认为应关注于内容本身。内容是我们建立网站的诱因。有的网站展示它，有的则收集它，有的寻求，有的操作，还有的网站甚至会包含以上的种种，但相同点是它们全都涉及到内容。这使得“渐进增强”成为一种更为合理的设计范例。这也是它立即被 Yahoo!\n  所采纳并用以构建其“分级式浏览器支持 (Graded Browser Support)”策略的原因所在。</p>\n\n<p class=\"q\">是否了解公钥加密和私钥加密。</p>\n<p class=\"a post-p\">公钥可以在网络上传递。</p>\n<p class=\"a post-p\">公钥用于对数据进行加密，私钥用于对数据进行解密。</p>\n\n<p class=\"q\">WEB应用从服务器主动推送Data到客户端有那些方式？</p>\n<p class=\"a post-p\">WebSocket。Long Pulling。</p>\n\n<p class=\"q\">你有用过哪些前端性能优化的方法？</p>\n<p class=\"a post-p\">更科学的选择类库,甚至自己实现。</p>\n<p class=\"a post-p\">更科学的安排运行时的对象。</p>\n\n<p class=\"q\">http状态码有那些？分别代表是什么意思？</p>\n<p class=\"a post-p\">200正常;304无修改;400网关错误;404找不到;500服务器错误。</p>\n\n<p class=\"q\">一个页面从输入 URL 到页面加载显示完成，这个过程中都发生了什么？（流程说的越详细越好）</p>\n<p class=\"a post-p\">向DNS服务器请求解析域名。向服务器请求页面文件, 接着请求资源文件。渲染Dom树。</p>\n\n<p class=\"q\">部分地区用户反应网站很卡，请问有哪些可能性的原因，以及解决方法？</p>\n<p class=\"a post-p\">可能是该地区运营商DNS解析慢, 使用高速DNS服务器。</p>\n\n<p class=\"q\">从打开app到刷新出内容，整个过程中都发生了什么，如果感觉慢，怎么定位问题，怎么解决?</p>\n<p class=\"a post-p\">大致上有两个过程, 一个是从下载文件到页面渲染; 另一个是向后端请求数据。</p>\n\n<p class=\"q\">除了前端以外还了解什么其它技术么？你最最厉害的技能是什么？</p>\n<p class=\"a post-p\">还了解Java服务器编程, 有游戏服务器编程经验。到目前为止, 最崇尚的技术是代码重构技术, 即『好代码不是一次写出来的, 而是重构出来的』。</p>\n\n<p class=\"q\">你用的得心应手用的熟练地编辑器&开发环境是什么样子？</p>\n<p class=\"a post-p\">没什么特别的, 就是网上看的INTELLIJ IDEA的视频那样学习中。</p>\n\n<p class=\"q\">对前端界面工程师这个职位是怎么样理解的？它的前景会怎么样？</p>\n<p class=\"a post-p\">大致上分PC端和移动端。有布局和动画两个侧重。移动端的前景更明朗, 回向应用靠拢。</p>\n\n<p class=\"q\">你怎么看待Web App 、hybrid App、Native App？</p>\n<p class=\"a post-p\">个人觉得界面布局用H5解决比较方便, 适应随时变化。而接口数据请求用Native则比较好, 我想没有跨域的问题吧。</p>\n\n<p class=\"q\">你对加班的看法？</p>\n<p class=\"a post-p\">珍爱生命, 远离加班。</p>\n\n<p class=\"q\">平时如何管理你的项目？</p>\n<p class=\"a post-p\">分个人兴趣, 开源社区, 公司项目三类。</p>\n\n<p class=\"q\">说说最近最流行的一些东西吧？常去哪些网站？</p>\n<p class=\"a post-p\">说实话, 可能还是半年前的, gulp小插件, 当时看gulp的官网像是刚起步的东东。喜欢看些动画感十足的网站。个人在学习THREE.js。</p>\n\n<p class=\"q\">如何设计突发大规模并发架构？</p>\n<p class=\"a post-p\">没有经验, 不过应该是使用大量CDN, 接口数据也应该是集群的。</p>\n\n<p class=\"q\">是否了解开源的工具 bower、npm、yeoman、grunt、gulp，一个 npm 的包里的 package.json 具备的必要的字段都有哪些？（名称、版本号，依赖）</p>\n<p class=\"a post-p\">使用过npm, gulp, 百度fis。</p>\n\n<p class=\"q\">每个模块的代码结构都应该比较简单，且每个模块之间的关系也应该非常清晰，随着功能和迭代次数越来越多，你会如何去保持这个状态的？</p>\n<p class=\"a post-p\">核心思想是抽出公共代码, 放在基类或者工具类当中。需要时间去重构。</p>\n\n<p class=\"q\">Git知道branch, diff, merge么?</p>\n<p class=\"a post-p\">一般使用merge, 很少使用rebase。因为使用rebase时必须对两条分支上的节点充分的了解, 否则在重演的过程中很容易出错。</p>\n\n<p class=\"q\">当团队人手不足，把功能代码写完已经需要加班的情况下，你会做前端代码的测试吗？</p>\n<p class=\"a post-p\">代码功能测试虽然做不到测试先行, 但不熟悉的功能还是会做测试的。</p>\n\n<p class=\"q\">知道什么是SEO并且怎么优化么? 知道各种meta data的含义么?</p>\n<p class=\"a post-p\">这方面有专门的人做, 而且SEO不是对内容还要了解么, 觉得跟代码技术关系不大, 所以不感兴趣。</p>\n\n<p class=\"q\">移动端（Android IOS）怎么做好用户体验?</p>\n<p class=\"a post-p\">结合业务, 对于一个功能或者说工作流有一个流畅快捷的感觉。</p>\n\n<p class=\"q\">简单描述一下你做过的移动APP项目研发流程？</p>\n<p class=\"a post-p\">首先是界面+接口数据两步走。接着重构出接口和路由以及平台文件区分加载三大底层模块。最后是gulp部署, 插件编写。</p>\n\n<p class=\"q\">你在现在的团队处于什么样的角色，起到了什么明显的作用？</p>\n<p class=\"a post-p\">以前的前端团队中只有我一个人, 但是我尽量像个精分那样扮演多个角色工作哈哈^_^。性格上据说是double型的人, 就是说团队好我更好。也可以理解为受环境影响比较多的人。</p>\n\n<p class=\"q\">你认为怎样才是全端工程师（Full Stack developer）？</p>\n<p class=\"a post-p\">不是说全技术栈工程师么? 我前一份工作, 因为人手很缺, 从后端到前端, 从开发到运维都接触一些。</p>\n<p class=\"a post-p\">但是现在成长之后, 觉得结合个人能力来看, 时间上只够在一个领域成长。对于全栈的理解是某领域全技术栈, 即编程语言+设计模式+开源项目+业务逻辑。</p>\n<p class=\"a post-p\">对于全端, 理解为PC, Android, iOS, Mac</p>\n\n<p class=\"q\">对前端安全有什么看法？</p>\n<p class=\"a post-p\">在游戏中, 尽量不相信前端数据, 将安全问题抛给后端处理。</p>\n<p class=\"a post-p\">在web前端, 常见的攻击有XSS(跨站脚本), CSRF(伪造用户请求)。</p>\n\n<p class=\"q\">最近在学什么东西？</p>\n<p class=\"a post-p\">Blender 3D</p>\n\n<p class=\"q\">你的优点是什么？缺点是什么？</p>\n<p class=\"a post-p\">谨慎, 安静。身体素质略差, 微胖, 缺乏锻炼。</p>\n\n<p class=\"q\">如何管理前端团队?</p>\n<p class=\"a post-p\">业务模块分工 + 清道夫</p>\n\n<p class=\"q\">最近在学什么？能谈谈你未来3，5年给自己的规划吗？</p>\n<p class=\"a post-p\">Blender 3D。3、5年内在成熟团队过上安逸的生活。</p>\n<p class=\"a post-p\">PS: 这只是一个大众的愿望，我还是热爱编程、并且为之奋斗的！</p>";
+module.exports = "<p class=\"q\">\n  Doctype作用？严格模式与混杂模式如何区分？它们有何意义?</p>\n<p class=\"a post-p\">Doctype的作用一定是描述文档本身, 并且告诉浏览器如何渲染该文档。DTD概念缘于SGML，每一份SGML 文件，均应有相对应的DTD。HTML5 不基于 SGML，所以不需要引用 DTD。\n</p>\n<p class=\"a post-p\">严格模式与混杂模式是不同版本浏览器对具有不同Doctype的文档的不同渲染模式。其意义主要在于新版本浏览器兼容旧规范下的文档。</p>\n<p class=\"a post-p\">HTML5 认准: <code>&lt;!DOCTYPE html&gt;</code></p>\n\n\n<p class=\"q\">HTML5 为什么只需要写&lt;!DOCTYPE html&gt;？</p>\n<p class=\"a post-p\">HTML5 不基于 SGML，所以不需要引用 DTD。</p>\n\n<p class=\"q\">行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？</p>\n<p class=\"a post-p\">首先说明: 行内元素和块级元素针对display的默认值而言, VOID 元素则是标签在一对尖括号内关闭(/)的元素。</p>\n<pre class=\"code-border\"><code>\n（1）行内元素有：a b span img input select strong\n（2）块级元素有：div ul ol li dl dt dd h1 h2 h3 h4… p\n\n（3）常见的空元素：\n    br hr img input link meta\n    鲜为人知的是：\n    area base col command embed keygen param source track wbr\n</code></pre>\n\n<p class=\"q\">页面导入样式时，使用link和@import有什么区别？</p>\n<p class=\"a post-p\">link属于XHTML标签，除了加载CSS外，还能用于定义RSS, 定义rel连接属性等作用；而@import是CSS提供的，只能用于加载CSS。</p>\n<p class=\"a post-p\">link中定义的CSS文件会有按照加载次序的覆盖效果, 而@import加载的CSS不会覆盖link加载的CSS, 似乎在优先级上有区别。</p>\n\n<p class=\"q\">介绍一下你对浏览器内核的理解？</p>\n<p class=\"a post-p\">与内核相对的是壳(shell), 我曾使用过KDE系统, Linux下最炫酷的shell。浏览器的内核分两个主要组成部分, 渲染引擎和JS引擎。</p>\n<p class=\"a post-p\">渲染引擎负责获取网页内容, 及I/O部分; 计算样式, 显示内容。</p>\n<p class=\"a post-p\">JS引擎比如谷歌浏览器的V8引擎, 负责高效地执行Javascript脚本。</p>\n<p class=\"a post-p\">就浏览器来说，互联网经历了十年的高速发展期，近几年市场上也推出了很多新的浏览器，但是他们并非是采用自主开发的内核，所以浏览器内核本身实际没有实质突破。</p>\n\n<p class=\"q\">常见的浏览器内核有哪些？</p>\n<p class=\"a post-p\">Trident内核：IE,MaxThon,TT,The World,360,搜狗浏览器等。[又称MSHTML]</p>\n<p class=\"a post-p\">Gecko内核：Netscape6及以上版本，FF,MozillaSuite/SeaMonkey等</p>\n<p class=\"a post-p\">Presto内核：Opera7及以上。 [Opera内核原为：Presto，现为：Blink;]</p>\n<p class=\"a post-p\">Webkit内核：Safari,Chrome等。 [ Chrome的：Blink（WebKit的分支）]</p>\n\n<p class=\"q\">html5有哪些新特性、移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？</p>\n<p class=\"a post-p\">HTML5 现在已经不是 SGML 的子集，主要是关于图像，位置，存储，多任务等功能的增加。</p>\n<ul class=\"post-l\">\n  <li>绘画 canvas</li>\n  <li>用于媒介回放的 video 和 audio 元素</li>\n  <li>本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失</li>\n  <li>sessionStorage 的数据在浏览器关闭后自动删除</li>\n  <li>语意化更好的内容元素，比如 article、footer、header、nav、section</li>\n  <li>表单控件，calendar、date、time、email、url、search</li>\n  <li>新的技术web worker, web socket, GeoLocation</li>\n</ul>\n<p class=\"a post-p\"><a href=\"https://aarontgrogg.com/blog/2015/07/20/the-difference-between-service-workers-web-workers-and-websockets/\" class=\"ex\"\n    target=\"_blank\">service worker, web worker, web socket的异同</a></p>\n<p class=\"a post-p\">移除的元素：</p>\n<ul class=\"post-l\">\n  <li>纯表现的元素：basefont，big，center，font, s，strike，tt，u</li>\n  <li>对可用性产生负面影响的元素：frame，frameset，noframes</li>\n</ul>\n<p class=\"a post-p\">支持HTML5新标签：IE8/IE7/IE6支持通过document.createElement方法产生的标签， 可以利用这一特性让这些浏览器支持HTML5新标签， 浏览器支持新标签后，还需要添加标签默认的样式。 当然也可以直接使用成熟的框架、比如html5shim;\n</p>\n<pre class=\"code-border\"><code>\n&lt;!--[if lt IE 9]&gt;\n&nbsp;&nbsp;&lt;script src = \"http://html5shim.googlecode.com/svn/trunk/html5.js\"&gt;&lt;/script&gt;\n&lt;![endif]--&gt;\n  </code></pre>\n<p class=\"a post-p\">如何区分HTML5： 根据以上介绍的新特性, 另简单的一点doctype。</p>\n\n<p class=\"q\">简述一下你对HTML语义化的理解？</p>\n<p class=\"a post-p\">从网页开发人员的角度讲, 非语义化的局面所描述的一种极端情况是用一个标签, 加上不同的class CSS来实现所有控件。 我想这是语义化的初衷, 因为极端情况下实现起来看似牛逼, 实则心累啊。</p>\n<p class=\"a post-p\">从处理语义化文档的程序的角度讲, 又是给另一部分开发人员解放了心灵。</p>\n\n<p class=\"q\">HTML5的离线储存怎么使用，工作原理能不能解释一下？浏览器是怎么对HTML5的离线储存资源进行管理和加载的呢？</p>\n<p class=\"a post-p\">离线存储的原理大致是浏览器解析html标签的manifest属性后, 将需要缓存的文件的ETag或者Last-Modify Time请求到本机对比。manifest属性是对一个html文件的定制, 对缓存的定制不受浏览器disable cache设置的影响。</p>\n\n<p class=\"q\">请描述一下 cookies，sessionStorage 和 localStorage 的区别？</p>\n<p class=\"a post-p\">cookies是一小段文本为内容的文件, 一般文件名作为键, 文件内容作为值。 sessionStorage 和 localStorage 为键值对管理工具, 其中 sessionStorage 的内容在页面关闭时清除。</p>\n\n<p class=\"q\">iframe有那些缺点？</p>\n<p class=\"a post-p\">在我的<a href=\"https://caoyouxin.gitbooks.io/pageslider/content/\" class=\"\" target=\"_blank\">框架</a>中正是使用了iframe, 恰恰利用了iframe提供页面内嵌页面的逻辑。缺点不再赘述,\n  坑是要慢慢躺的。\n</p>\n\n<p class=\"q\">Label的作用是什么？是怎么用的？（加 for 或 包裹）</p>\n\n<p class=\"q\">HTML5的form如何关闭自动完成功能？</p>\n<p class=\"a post-p\">设置autocomplete属性</p>\n\n<p class=\"q\">如何实现浏览器内多个标签页之间的通信? (阿里)</p>\n<p class=\"a post-p\">localStorage, cookies, 后端接口调用。</p>\n\n<p class=\"q\">webSocket如何兼容低浏览器？(阿里)</p>\n<p class=\"a post-p\">使用AS3, 前前公司的游戏用的就是它。</p>\n\n<p class=\"q\">页面可见性（Page Visibility）API 可以有哪些用途？</p>\n<p class=\"a post-p\">这个什么鬼API在MDN上搜不到, 怀疑又是什么鬼编造出来的名词。CSS中控制可见性的属性有display, filter, visibility, 如果背景也算的话, 还包括background, box-shadow。</p>\n\n<p class=\"q\">如何在页面上实现一个圆形的可点击区域？</p>\n<p class=\"a post-p\">border-radius。</p>\n\n<p class=\"q\">实现不使用 border 画出1px高的线，在不同浏览器的Quirksmode和CSSCompat模式下都能保持同一效果。</p>\n<p class=\"a post-p\">height, background-color, display</p>\n\n<p class=\"q\">网页验证码是干嘛的，是为了解决什么安全问题？</p>\n<p class=\"a post-p\">为了防止机器自动填充密码, 非法登录用户账号。</p>\n\n<p class=\"q\">title与h1的区别、b与strong的区别、i与em的区别？</p>\n<p class=\"a post-p\">title是整个网页文件的标题, 写在head里, 常出现在浏览器标签的文本里; h1是网页内容文本中的标题。</p>\n<p class=\"a post-p\">b是物理状态, 粗体; strong是逻辑状态, 只是默认显示为粗体。如果给b标签的显示用css修改为其它形式, 就会引起逻辑上的混乱。</p>\n<p class=\"a post-p\">i同样是物理状态, 斜体; em同样是逻辑状态, 而且具有语义性质, 例如在朗读过程中, em标签的内容会设置为重音。</p>";
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = sendMessage;
-function sendMessage() {
-  if (window.top !== window) {
-    var path = location.href.toString();
-    var data = JSON.stringify({
-      path: path.substr(path.indexOf('serve/') + 'serve'.length),
-      height: document.body.scrollHeight
-    });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dom__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sendMsg__ = __webpack_require__(2);
 
-    window.top.postMessage(data, '*');
+
+
+function handleA(aElem) {
+  return function (e) {
+    e.preventDefault();
+    Object(__WEBPACK_IMPORTED_MODULE_1__sendMsg__["b" /* sendOpenMsg */])(aElem.href, aElem.target);
+  };
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (function () {
+  if (window.top === window) {
+    return;
+  }
+
+  var aElems = document.querySelectorAll('a');
+  for (var i = 0; i < aElems.length; i++) {
+    Object(__WEBPACK_IMPORTED_MODULE_0__dom__["a" /* event */])(aElems[i], 'click', handleA(aElems[i]));
+  }
+});
+
+/***/ }),
+/* 18 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export append */
+/* harmony export (immutable) */ __webpack_exports__["a"] = event;
+function append(elem, htmldata) {
+  var e = document.createElement('div');
+  e.innerHTML = htmldata;
+
+  while (e.firstChild) {
+    elem.appendChild(e.firstChild);
+  }
+}
+
+function event(elem, event, handler) {
+  if (elem.addEventListener) {
+    elem.addEventListener(event, handler);
+  } else if (elem.attachEvent) {
+    elem.attachEvent('on' + event, handler);
+  } else {
+    throw new Error('can not bind event handler');
   }
 }
 
 /***/ })
-],[2]);
+],[3]);

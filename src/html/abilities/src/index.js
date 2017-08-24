@@ -2,10 +2,13 @@ import '../../../css/all.css';
 import '../../../css/post.css';
 import Data from './data.html';
 import { sendMessage } from '../../../js/sendMsg.js';
+import ReplaceA from '../../../js/replace_a.js';
 
 var divElem = document.createElement('div');
 divElem.innerHTML = Data;
 document.body.appendChild(divElem);
+
+ReplaceA();
 
 function parseData(obj) {
   var ret = [];

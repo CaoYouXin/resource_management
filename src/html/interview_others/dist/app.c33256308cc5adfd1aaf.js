@@ -467,11 +467,6 @@ var divElem = document.createElement('div');
 divElem.innerHTML = __WEBPACK_IMPORTED_MODULE_4__data_html___default.a;
 document.body.appendChild(divElem);
 
-var preCodeElems = document.querySelectorAll('pre code');
-for (var i = 0; i < preCodeElems.length; i++) {
-  hljs.highlightBlock(preCodeElems[i]);
-}
-
 setInterval(__WEBPACK_IMPORTED_MODULE_5__js_sendMsg_js__["a" /* sendMessage */], 3000);
 
 /***/ }),
@@ -495,8 +490,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../html/analysis_log/node_modules/.0.28.5@css-loader/index.js!./default.css", function() {
-			var newContent = require("!!../../html/analysis_log/node_modules/.0.28.5@css-loader/index.js!./default.css");
+		module.hot.accept("!!../../html/interview_others/node_modules/.0.28.5@css-loader/index.js!./default.css", function() {
+			var newContent = require("!!../../html/interview_others/node_modules/.0.28.5@css-loader/index.js!./default.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -635,8 +630,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../html/analysis_log/node_modules/.0.28.5@css-loader/index.js!./all.css", function() {
-			var newContent = require("!!../html/analysis_log/node_modules/.0.28.5@css-loader/index.js!./all.css");
+		module.hot.accept("!!../html/interview_others/node_modules/.0.28.5@css-loader/index.js!./all.css", function() {
+			var newContent = require("!!../html/interview_others/node_modules/.0.28.5@css-loader/index.js!./all.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -654,7 +649,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "/* 盒模型，字体，尺寸基准 */\n*, *:before, *:after {\n    border: none;\n    padding: 0;\n    margin: 0;\n\n    box-sizing: border-box;\n}\n\n/* 字体 */\ncode {\n    font-family: Monaco, monospace;\n}\n\n/* 字号, 不能指定，会破坏Angular版博客壳的字号设定 */\nhtml {\n    font-family: 'Hiragino Sans GB', 'Comic San MS', '\\5FAE\\8F6F\\96C5\\9ED1', 'Microsoft Yahei', \"WenQuanYi Micro Hei\", sans-serif;\n    /*font-size: 10px;*/\n    /*font-weight: normal;*/\n}\n", ""]);
+exports.push([module.i, "/* 盒模型，字体，尺寸基准 */\n*, *:before, *:after {\n    border: none;\n    padding: 0;\n    margin: 0;\n\n    box-sizing: border-box;\n}\n\n/* 字体 */\ncode {\n    font-family: Monaco, monospace;\n}\n\n/* 字号, 不能指定，会破坏Angular版博客壳的字号设定 */\nhtml {\n    font-family: 'Hiragino Sans GB', 'Comic San MS', '\\5FAE\\8F6F\\96C5\\9ED1', 'Microsoft Yahei', \"WenQuanYi Micro Hei\", sans-serif;\n    /*font-size: 10px;*/\n    /*font-weight: normal;*/\n}\n\n/* 居中 */\n.v-mid-box {\n  text-align: center;\n}\n\n.v-mid-box > *, .v-mid-box:after {\n  display: inline-block;\n  vertical-align: middle;\n}\n\n.v-mid-box:after {\n  content: '';\n  width: 0;\n  height: 100%;\n}\n\n.mid {\n  margin: 0 auto;\n}", ""]);
 
 // exports
 
@@ -680,8 +675,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../html/analysis_log/node_modules/.0.28.5@css-loader/index.js!./post.css", function() {
-			var newContent = require("!!../html/analysis_log/node_modules/.0.28.5@css-loader/index.js!./post.css");
+		module.hot.accept("!!../html/interview_others/node_modules/.0.28.5@css-loader/index.js!./post.css", function() {
+			var newContent = require("!!../html/interview_others/node_modules/.0.28.5@css-loader/index.js!./post.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -743,8 +738,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../html/analysis_log/node_modules/.0.28.5@css-loader/index.js!./post-code.css", function() {
-			var newContent = require("!!../html/analysis_log/node_modules/.0.28.5@css-loader/index.js!./post-code.css");
+		module.hot.accept("!!../html/interview_others/node_modules/.0.28.5@css-loader/index.js!./post-code.css", function() {
+			var newContent = require("!!../html/interview_others/node_modules/.0.28.5@css-loader/index.js!./post-code.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -771,7 +766,7 @@ exports.push([module.i, "/* 代码框 */\n.code-border {\n    display: block;\n\
 /* 15 */
 /***/ (function(module, exports) {
 
-module.exports = "<p class=\"post-p titled-post-p\" data-title=\"项目背景: \">加入缓存模块后, 发生宕机, 分析tomcat日志.</p>\n<p class=\"post-p\">以下为1月9号宕机前后日志分析资料：搜索关键字［原因］</p>\n<pre class=\"code-border\"><code class=\"bash\">\n2016-01-09 15:58:04.865 [http-bio-8180-exec-94] INFO  org.reststackteam.reststack.handlers.AppVersionCheckInterceptor - request version >> device_type:android;app_name:yangaiche_client;client_version:4.2.1\n\n开始计时:2016-01-09 15:50:00\n结束计时:2016-01-09 16:12:28\n线程数:158\n旧线程数:19\n阻塞线程数:[141, 109, 60, 16, 0]\n程序停止时间:2016-01-09 16:01:26\n\nProcess finished with exit code 0\n</code></pre>\n\n<p class=\"post-p\">\n  分析宕机主要原因: 根据重启前十多分钟的日志，经过按照线程名分组，截取相应时间段的日志，并打印每条线程最后7行日志。\n</p>\n<p class=\"post-p\">\n  处理后的日志中发现当时短短十多分钟里新创建的线程剧增，这可能是由于大量新链接打入的原因；这些新线程所打印的最后一行日志大多数为AppVersionCheckInterceptor打印，说明这些处理并没有执行逻辑代码，甚至并没有走到RequestParamInterceptor中；至于redis的切面，由于没有看到[process]***的日志，所以这批被新建的线程并没有走到redis\n  aspect。\n</p>\n<p class=\"post-p\">\n  旧线程的判断基于排除上述的新建线程，日志行数2行以上的线程，从日志情况看，当时也处于阻塞状态。这应该是受到了大量新建线程争夺CPU资源导致。\n</p>\n<p class=\"post-p\">\n  阻塞线程的判断基于距离程序停止时间1到5分钟以上没有日志的标准，结合当时的线程数，这一判断标准是接近科学的。程序停止时间是一个估计时间，该时间到16点12分并没有任何日志。\n</p>\n<p class=\"post-p\">\n  基于jmeter的压测并没有响应时间以及人对界面的感知，不能确定当服务器压到190多线程时候的会不会已经出现大量延迟了。（压力测试这块确实不是我的强项……所以要完美复现当时的状况以我现在的能力很难办到）\n</p>\n\n<pre class=\"code-border\"><code class=\"bash\">\n2016-01-09 15:49:29.259 [http-bio-8180-exec-4] INFO  org.reststackteam.reststack.advisors.RedisAdvisor - [process] : webPushServlet\n2016-01-09 15:49:59.268 [http-bio-8180-exec-4] INFO  org.reststackteam.reststack.advisors.RedisAdvisor - [POST] annotation : null\n2016-01-09 15:49:59.269 [http-bio-8180-exec-4] INFO  org.reststackteam.reststack.advisors.RedisAdvisor - [POST] did some expires : 30007ms.\n\n开始计时:2016-01-09 15:40:00\n结束计时:2016-01-09 15:50:00\n\nstartStop线程:\n\n线程数:18\n旧线程数:18\n阻塞线程数:[3, 0, 0, 0, 0]\n程序停止时间:2016-01-09 15:49:59\n\nProcess finished with exit code 0\n\n2016-01-09 16:12:29.840 [localhost-startStop-1] INFO  org.reststackteam.reststack.advisors.RedisAdvisor - [INIT] redis connected, auto start using redis system.\n\n开始计时:2016-01-09 16:01:27\n结束计时:2016-01-09 16:12:29\n线程数:1\n\nProcess finished with exit code 0\n</code></pre>\n\n<p class=\"post-p\">分析宕机原因2: 程序首次重启时间2016-01-09 16:12:29.840。此时间为Spring的InitialBean打印。</p>\n\n<pre class=\"code-border\"><code class=\"bash\">\n2016-01-09 16:47:12.811 [http-bio-8180-exec-5] INFO  org.reststackteam.reststack.handlers.AppVersionCheckInterceptor - request version >> device_type:android;app_name:yangaiche_community;client_version:2.3.0\n\n开始计时:2016-01-09 16:12:29\n结束计时:2016-01-09 16:47:12\n\nstartStop线程:\n2016-01-09 16:12:29.840 [localhost-startStop-1] INFO  org.reststackteam.reststack.advisors.RedisAdvisor - [INIT] redis connected, auto start using redis system.\n2016-01-09 16:21:57.146 [localhost-startStop-1] INFO  org.reststackteam.reststack.advisors.RedisAdvisor - [INIT] redis connected, auto start using redis system.\n2016-01-09 16:36:07.971 [localhost-startStop-1] INFO  org.reststackteam.reststack.advisors.RedisAdvisor - [INIT] redis connected, auto start using redis system.\n2016-01-09 16:45:24.847 [localhost-startStop-1] INFO  org.reststackteam.reststack.advisors.RedisAdvisor - [INIT] redis connected, auto start using redis system.\n2016-01-09 16:47:12.549 [localhost-startStop-1] INFO  org.reststackteam.reststack.advisors.RedisAdvisor - [INIT] redis connected, auto start using redis system.\n\n线程数:6\n旧线程数:1\n阻塞线程数:[0, 0, 0, 0, 0]\n程序停止时间:2016-01-09 16:47:12\n\nProcess finished with exit code 0\n</code></pre>\n\n<p class=\"post-p\">\n  分析宕机原因3: 此间，程序共重启了五次，前四次均重启失败。每次启动，redis初始化检测都是通过的。\n</p>\n\n<pre class=\"code-border\"><code class=\"bash\">\n2016-01-09 16:59:41.516 [http-bio-8180-exec-3] INFO  org.reststackteam.reststack.handlers.RequestParamInterceptor - 【request-parameters-info:】127.0.0.1 /v2/api/store/ware/detail.json GET {\"ware_id\":[\"15\"]}\n2016-01-09 16:59:56.754 [http-bio-8180-exec-3] INFO  org.reststackteam.reststack.handlers.AppVersionCheckInterceptor - request version >> device_type:appstore_ios;app_name:yangaiche;client_version:4.2.3\n\n开始计时:2016-01-09 16:47:12\n结束计时:2016-01-09 17:00:00\n\nstartStop线程:\n2016-01-09 16:47:12.549 [localhost-startStop-1] INFO  org.reststackteam.reststack.advisors.RedisAdvisor - [INIT] redis connected, auto start using redis system.\n\n线程数:12\n旧线程数:11\n\nProcess finished with exit code 0\n</code></pre>\n\n<p class=\"post-p\">\n  分析宕机原因4: 这里有一根线程是短信推送线程。线程数正常。启动时，redis检测正常。\n</p>\n\n<p class=\"post-p titled-post-p\" data-title=\"结论：\">最有可能的就是遭受了DDos攻击。</p>\n\n<p class=\"post-p\">\n  <a target=\"_blank\" href=\"http://git.oschina.net/caoyouxin/myjava/blob/master/yactools/src/com/toonly/loganalysis/Main.java?dir=0&filepath=yactools%2Fsrc%2Fcom%2Ftoonly%2Floganalysis%2FMain.java&oid=c69a78fad176ebf1554f7b8b3c4f7beb19e9d8ae&sha=4c8e463f32b57cf46d516a68af82a1a80cc4d268\">源代码地址</a>\n</p>";
+module.exports = "<p class=\"q\">原来公司工作流程是怎么样的，如何与其他人协作的？如何夸部门合作的？</p>\n<p class=\"a post-p\">QQ讨论组发送接口定义。Seafile共享美术资源。</p>\n\n<p class=\"q\">你遇到过比较难的技术问题是？你是如何解决的？</p>\n<p class=\"a post-p\">三天时间重构整个项目, 整天脑袋里都是对象模型, 模块化; 加载, 路由。</p>\n\n<p class=\"q\">设计模式 知道什么是singleton, factory, strategy, decrator么?</p>\n<p class=\"a post-p\">24个设计模式不算全熟悉, 但是这几个认识。</p>\n\n<p class=\"q\">常使用的库有哪些？常用的前端开发工具？开发过什么应用或组件？</p>\n<p class=\"a post-p\">jquery。webstorm。gulp自定义编译胶水代码文件的插件。</p>\n\n<p class=\"q\">页面重构怎么操作？</p>\n<p class=\"a post-p\">每次重构都有不同的目标, 只要目标明确, 代码如何重构都不成问题。</p>\n<p class=\"a post-p\">最近刚重构了一份THREE.js的代码, 用对象模型封装。</p>\n\n<p class=\"q\">列举IE与其他浏览器不一样的特性？</p>\n<p class=\"a post-p\">attachEvent VS. addEventListener</p>\n\n<p class=\"q\">什么叫优雅降级和渐进增强？</p>\n<p class=\"a post-p\">“优雅降级”观点认为应该针对那些最高级、最完善的浏览器来设计网站。而将那些被认为“过时”或有功能缺失的浏览器下的测试工作安排在开发周期的最后阶段，并把测试对象限定为主流浏览器（如 IE、Mozilla 等）的前一个版本。在这种设计范例下，旧版的浏览器被认为仅能提供“简陋却无妨\n  (poor, but passable)” 的浏览体验。你可以做一些小的调整来适应某个特定的浏览器。但由于它们并非我们所关注的焦点，因此除了修复较大的错误之外，其它的差异将被直接忽略。\n</p>\n<p class=\"a post-p\">\n  “渐进增强”观点则认为应关注于内容本身。内容是我们建立网站的诱因。有的网站展示它，有的则收集它，有的寻求，有的操作，还有的网站甚至会包含以上的种种，但相同点是它们全都涉及到内容。这使得“渐进增强”成为一种更为合理的设计范例。这也是它立即被 Yahoo!\n  所采纳并用以构建其“分级式浏览器支持 (Graded Browser Support)”策略的原因所在。</p>\n\n<p class=\"q\">是否了解公钥加密和私钥加密。</p>\n<p class=\"a post-p\">公钥可以在网络上传递。</p>\n<p class=\"a post-p\">公钥用于对数据进行加密，私钥用于对数据进行解密。</p>\n\n<p class=\"q\">WEB应用从服务器主动推送Data到客户端有那些方式？</p>\n<p class=\"a post-p\">WebSocket。Long Pulling。</p>\n\n<p class=\"q\">你有用过哪些前端性能优化的方法？</p>\n<p class=\"a post-p\">更科学的选择类库,甚至自己实现。</p>\n<p class=\"a post-p\">更科学的安排运行时的对象。</p>\n\n<p class=\"q\">http状态码有那些？分别代表是什么意思？</p>\n<p class=\"a post-p\">200正常;304无修改;400网关错误;404找不到;500服务器错误。</p>\n\n<p class=\"q\">一个页面从输入 URL 到页面加载显示完成，这个过程中都发生了什么？（流程说的越详细越好）</p>\n<p class=\"a post-p\">向DNS服务器请求解析域名。向服务器请求页面文件, 接着请求资源文件。渲染Dom树。</p>\n\n<p class=\"q\">部分地区用户反应网站很卡，请问有哪些可能性的原因，以及解决方法？</p>\n<p class=\"a post-p\">可能是该地区运营商DNS解析慢, 使用高速DNS服务器。</p>\n\n<p class=\"q\">从打开app到刷新出内容，整个过程中都发生了什么，如果感觉慢，怎么定位问题，怎么解决?</p>\n<p class=\"a post-p\">大致上有两个过程, 一个是从下载文件到页面渲染; 另一个是向后端请求数据。</p>\n\n<p class=\"q\">除了前端以外还了解什么其它技术么？你最最厉害的技能是什么？</p>\n<p class=\"a post-p\">还了解Java服务器编程, 有游戏服务器编程经验。到目前为止, 最崇尚的技术是代码重构技术, 即『好代码不是一次写出来的, 而是重构出来的』。</p>\n\n<p class=\"q\">你用的得心应手用的熟练地编辑器&开发环境是什么样子？</p>\n<p class=\"a post-p\">没什么特别的, 就是网上看的INTELLIJ IDEA的视频那样学习中。</p>\n\n<p class=\"q\">对前端界面工程师这个职位是怎么样理解的？它的前景会怎么样？</p>\n<p class=\"a post-p\">大致上分PC端和移动端。有布局和动画两个侧重。移动端的前景更明朗, 回向应用靠拢。</p>\n\n<p class=\"q\">你怎么看待Web App 、hybrid App、Native App？</p>\n<p class=\"a post-p\">个人觉得界面布局用H5解决比较方便, 适应随时变化。而接口数据请求用Native则比较好, 我想没有跨域的问题吧。</p>\n\n<p class=\"q\">你对加班的看法？</p>\n<p class=\"a post-p\">珍爱生命, 远离加班。</p>\n\n<p class=\"q\">平时如何管理你的项目？</p>\n<p class=\"a post-p\">分个人兴趣, 开源社区, 公司项目三类。</p>\n\n<p class=\"q\">说说最近最流行的一些东西吧？常去哪些网站？</p>\n<p class=\"a post-p\">说实话, 可能还是半年前的, gulp小插件, 当时看gulp的官网像是刚起步的东东。喜欢看些动画感十足的网站。个人在学习THREE.js。</p>\n\n<p class=\"q\">如何设计突发大规模并发架构？</p>\n<p class=\"a post-p\">没有经验, 不过应该是使用大量CDN, 接口数据也应该是集群的。</p>\n\n<p class=\"q\">是否了解开源的工具 bower、npm、yeoman、grunt、gulp，一个 npm 的包里的 package.json 具备的必要的字段都有哪些？（名称、版本号，依赖）</p>\n<p class=\"a post-p\">使用过npm, gulp, 百度fis。</p>\n\n<p class=\"q\">每个模块的代码结构都应该比较简单，且每个模块之间的关系也应该非常清晰，随着功能和迭代次数越来越多，你会如何去保持这个状态的？</p>\n<p class=\"a post-p\">核心思想是抽出公共代码, 放在基类或者工具类当中。需要时间去重构。</p>\n\n<p class=\"q\">Git知道branch, diff, merge么?</p>\n<p class=\"a post-p\">一般使用merge, 很少使用rebase。因为使用rebase时必须对两条分支上的节点充分的了解, 否则在重演的过程中很容易出错。</p>\n\n<p class=\"q\">当团队人手不足，把功能代码写完已经需要加班的情况下，你会做前端代码的测试吗？</p>\n<p class=\"a post-p\">代码功能测试虽然做不到测试先行, 但不熟悉的功能还是会做测试的。</p>\n\n<p class=\"q\">知道什么是SEO并且怎么优化么? 知道各种meta data的含义么?</p>\n<p class=\"a post-p\">这方面有专门的人做, 而且SEO不是对内容还要了解么, 觉得跟代码技术关系不大, 所以不感兴趣。</p>\n\n<p class=\"q\">移动端（Android IOS）怎么做好用户体验?</p>\n<p class=\"a post-p\">结合业务, 对于一个功能或者说工作流有一个流畅快捷的感觉。</p>\n\n<p class=\"q\">简单描述一下你做过的移动APP项目研发流程？</p>\n<p class=\"a post-p\">首先是界面+接口数据两步走。接着重构出接口和路由以及平台文件区分加载三大底层模块。最后是gulp部署, 插件编写。</p>\n\n<p class=\"q\">你在现在的团队处于什么样的角色，起到了什么明显的作用？</p>\n<p class=\"a post-p\">以前的前端团队中只有我一个人, 但是我尽量像个精分那样扮演多个角色工作哈哈^_^。性格上据说是double型的人, 就是说团队好我更好。也可以理解为受环境影响比较多的人。</p>\n\n<p class=\"q\">你认为怎样才是全端工程师（Full Stack developer）？</p>\n<p class=\"a post-p\">不是说全技术栈工程师么? 我前一份工作, 因为人手很缺, 从后端到前端, 从开发到运维都接触一些。</p>\n<p class=\"a post-p\">但是现在成长之后, 觉得结合个人能力来看, 时间上只够在一个领域成长。对于全栈的理解是某领域全技术栈, 即编程语言+设计模式+开源项目+业务逻辑。</p>\n<p class=\"a post-p\">对于全端, 理解为PC, Android, iOS, Mac</p>\n\n<p class=\"q\">对前端安全有什么看法？</p>\n<p class=\"a post-p\">在游戏中, 尽量不相信前端数据, 将安全问题抛给后端处理。</p>\n<p class=\"a post-p\">在web前端, 常见的攻击有XSS(跨站脚本), CSRF(伪造用户请求)。</p>\n\n<p class=\"q\">最近在学什么东西？</p>\n<p class=\"a post-p\">Blender 3D</p>\n\n<p class=\"q\">你的优点是什么？缺点是什么？</p>\n<p class=\"a post-p\">谨慎, 安静。身体素质略差, 微胖, 缺乏锻炼。</p>\n\n<p class=\"q\">如何管理前端团队?</p>\n<p class=\"a post-p\">业务模块分工 + 清道夫</p>\n\n<p class=\"q\">最近在学什么？能谈谈你未来3，5年给自己的规划吗？</p>\n<p class=\"a post-p\">Blender 3D。3、5年内在成熟团队过上安逸的生活。</p>\n<p class=\"a post-p\">PS: 这只是一个大众的愿望，我还是热爱编程、并且为之奋斗的！</p>";
 
 /***/ }),
 /* 16 */
