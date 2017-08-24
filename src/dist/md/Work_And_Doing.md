@@ -1,1 +1,0 @@
-![工作实践](http://www.zenner-metering.com/Admin/PlugIn/Ueditor/net/1//hrdevelop9497594.gif)

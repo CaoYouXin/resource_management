@@ -1,1 +1,0 @@
-![前端面试2016](https://media2.wnyc.org/i/620/372/c/80/1/shutterstock_334722437.jpg)

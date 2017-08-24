@@ -1,1 +1,0 @@
-![生活记录](http://pic.qiantucdn.com/58pic/18/07/73/59F58PIC4xa_1024.jpg)
