@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <title>{{html-title}}</title>
   <link rel="stylesheet" type="text/css" href="{{asset-root}}/asset/github-markdown.css">
-  <link rel="stylesheet" type="text/css" href="{{asset-root}}/asset/highlight/github.css">
+  <link rel="stylesheet" type="text/css" href="{{asset-root}}/asset/highlight/styles/github.css">
   <style>
     pre.code {
       box-shadow: 5px 5px 10px #EAEAEA;
@@ -33,11 +33,13 @@
     function render(text) {
       var converter = new showdown.Converter({ tables: true }),
         html = converter.makeHtml(text);
-      document.getElementById('markdown').innerHTML = html.replace(/<pre>(\s*)<code>/g, '<pre class="code">$1<code>');
+      document.getElementById('markdown').innerHTML = html.replace(/<pre>(\s*)<code>/g, '<pre class="code">$1<code class="diff">');
       document.getElementById('markdown').style.padding = '1em';
 
       var preCodeElems = document.querySelectorAll('pre code');
       for (var i = 0; i < preCodeElems.length; i++) {
+        hljs.highlightBlock(preCodeElems[i]);
+        preCodeElems[i].classList.remove('diff');
         hljs.highlightBlock(preCodeElems[i]);
       }
     }
