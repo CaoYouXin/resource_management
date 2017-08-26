@@ -10,6 +10,10 @@
     pre.code {
       box-shadow: 5px 5px 10px #EAEAEA;
     }
+
+    p.p-has-img {
+      text-align: center;
+    }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.7.2/showdown.min.js"></script>
   <script src="{{asset-root}}/asset/highlight/highlight.pack.js"></script>
@@ -41,6 +45,11 @@
         hljs.highlightBlock(preCodeElems[i]);
         preCodeElems[i].classList.remove('diff');
         hljs.highlightBlock(preCodeElems[i]);
+      }
+
+      var imgElems = document.querySelectorAll('p > img');
+      for (var i = 0; i < imgElems.length; i++) {
+        imgElems[i].parentElement.classList.add('p-has-img');
       }
     }
 

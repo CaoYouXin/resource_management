@@ -1,5 +1,6 @@
-{{pub}}
-我的目标是：__从头编写Web应用服务器，不使用Struts，Spring，Hibernate!__
+
+我的目标是：__从头编写Web应用服务器，不使用Tomcat，Struts，Spring，Hibernate!__
+---
 
 首先，简单回顾网络编程基础
 ---
