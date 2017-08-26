@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-rm -rf ./dist
-mkdir -p dist/md-html
-mkdir -p dist/md
-cp -a ./asset ./dist
+rm -rf ./dist \
+  && mkdir -p dist/md-html \
+  && mkdir -p dist/md \
+  && cp -a ./asset ./dist
 
 tpl="$(cat ./tpl/md.tpl.html)"
 
