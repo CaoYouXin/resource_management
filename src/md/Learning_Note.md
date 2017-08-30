@@ -1,0 +1,1 @@
+![学习笔记](http://resource.feng.com/resource/h027/h46/img201306200008070.jpg)

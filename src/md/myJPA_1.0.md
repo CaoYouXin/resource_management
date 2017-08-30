@@ -1,0 +1,1 @@
+![myJPA 1.0](http://desmanon.com/images/logo%20jpa-02253x332.png)
