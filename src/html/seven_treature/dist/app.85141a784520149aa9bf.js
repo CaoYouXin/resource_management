@@ -458,6 +458,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 var divElem = document.createElement('div');
+divElem.style.overflow = 'hidden';
 divElem.innerHTML = __WEBPACK_IMPORTED_MODULE_2__data_html___default.a;
 document.body.appendChild(divElem);
 
@@ -678,12 +679,24 @@ module.exports = "<p class=\"post-p titled-post-p\" data-title=\"魔+儒+释+道
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = sendMessage;
+/* unused harmony export sendOpenMsg */
 function sendMessage() {
   if (window.top !== window) {
     var path = location.href.toString();
     var data = JSON.stringify({
       path: path.substr(path.indexOf('serve/') + 'serve'.length),
       height: document.body.scrollHeight
+    });
+
+    window.top.postMessage(data, '*');
+  }
+}
+
+function sendOpenMsg(url, target) {
+  if (window.top !== window) {
+    var data = JSON.stringify({
+      url,
+      target
     });
 
     window.top.postMessage(data, '*');
