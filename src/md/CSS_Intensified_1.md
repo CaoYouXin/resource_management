@@ -95,6 +95,305 @@
 | show | Borders and backgrounds are drawn like in normal cells. |
 | hide | No borders or backgrounds are drawn. |
 
+#### grid 布局
+
+这是2017年的全新布局，完美解决所有布局问题。嗯，话说Java Swing中也是这样，最常用布局就是grid布局。grid布局中的若干概念：
+
+* Grid Container
+* Grid Item
+* Grid Track
+* Grid Line
+* Grid Cell
+* Grid Area
+
+##### Grid Container中的属性
+
+`display`, `grid-template-columns`, `grid-template-rows`, `grid-template-areas`, `grid-template`, `grid-column-gap`, `grid-row-gap`, `grid-gap`, `justify-items`, `align-items`, `justify-content`, `align-content`, `grid-auto-columns`, `grid-auto-rows`, `grid-auto-flow`, `grid`.
+
+###### Grid布局中的display
+
+| value | meaning |
+| ----- | ------- |
+| grid | generates a block-level grid |
+| inline-grid | generates an inline-level grid |
+| subgrid | if your grid container is itself a grid item (i.e. nested grids), you can use this property to indicate that you want the sizes of its rows/columns to be taken from its parent rather than specifying its own. |
+
+###### grid-template-columns, grid-template-rows
+
+```
+.container {
+  grid-template-columns: <track-size> ... | <line-name> <track-size> ...;
+  grid-template-rows: <track-size> ... | <line-name> <track-size> ...;
+}
+```
+
+example 1:
+
+```
+.container{
+  grid-template-columns: 40px 50px auto 50px 40px;
+  grid-template-rows: 25% 100px auto;
+}
+```
+
+example 2: 
+
+```
+.container {
+  grid-template-columns: [first] 40px [line2] 50px [line3] auto [col4-start] 50px [five] 40px [end];
+  grid-template-rows: [row1-start] 25% [row1-end] 100px [third-line] auto [last-line];
+}
+```
+
+example 3: 
+
+```
+.container{
+  grid-template-rows: [row1-start] 25% [row1-end row2-start] 25% [row2-end];
+}
+```
+
+example 4: 
+
+```
+.container {
+  grid-template-columns: repeat(3, 20px [col-start]) 5%;
+}
+```
+
+example 5:
+
+```
+.container {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+```
+
+example 6:
+
+```
+.container {
+  grid-template-columns: 1fr 50px 1fr 1fr;
+}
+```
+
+###### grid-template-areas
+
+example : 
+
+```
+.item-a {
+  grid-area: header;
+}
+.item-b {
+  grid-area: main;
+}
+.item-c {
+  grid-area: sidebar;
+}
+.item-d {
+  grid-area: footer;
+}
+
+.container {
+  grid-template-columns: 50px 50px 50px 50px;
+  grid-template-rows: auto;
+  grid-template-areas: 
+    "header header header header"
+    "main main . sidebar"
+    "footer footer footer footer";
+}
+```
+
+###### grid-template === grid-template-rows, grid-template-columns, and grid-template-areas
+
+example :
+
+```
+.container {
+  grid-template:
+    [row1-start] "header header header" 25px [row1-end]
+    [row2-start] "footer footer footer" 25px [row2-end]
+    / auto 50px auto;
+}
+```
+
+is equivalent to :
+
+```
+.container {
+  grid-template-rows: [row1-start] 25px [row1-end row2-start] 25px [row2-end];
+  grid-template-columns: auto 50px auto;
+  grid-template-areas: 
+    "header header header" 
+    "footer footer footer";
+}
+```
+
+###### grid-gap == grid-column-gap + grid-row-gap
+
+###### justify-items == 全部的justify-self
+
+| value | meaning |
+| ----- | ------- |
+| start | aligns the content to the left end of the grid area |
+| end | aligns the content to the right end of the grid area |
+| center | aligns the content in the center of the grid area |
+| stretch | fills the whole width of the grid area (this is the default) |
+
+###### align-items == 全部的align-self
+
+| value | meaning |
+| ----- | ------- |
+| start | aligns the content to the top of the grid area |
+| end | aligns the content to the bottom of the grid area |
+| center | aligns the content in the center of the grid area |
+| stretch | fills the whole height of the grid area (this is the default) |
+
+###### justify-content 与container的父元素相关
+
+| value | meaning |
+| ----- | ------- |
+| start | aligns the grid to the left end of the grid container |
+| end | aligns the grid to the right end of the grid container |
+| center | aligns the grid in the center of the grid container |
+| stretch | resizes the grid items to allow the grid to fill the full width of the grid container |
+| space-around | places an even amount of space between each grid item, with half-sized spaces on the far ends |
+| space-between | places an even amount of space between each grid item, with no space at the far ends |
+| space-evenly | places an even amount of space between each grid item, including the far ends |
+
+###### align-content 与container的父元素相关
+
+| value | meaning |
+| ----- | ------- |
+| start | aligns the grid to the top of the grid container |
+| end | aligns the grid to the bottom of the grid container |
+| center | aligns the grid in the center of the grid container |
+| stretch | resizes the grid items to allow the grid to fill the full height of the grid container |
+| space-around | places an even amount of space between each grid item, with half-sized spaces on the far ends |
+| space-between | places an even amount of space between each grid item, with no space at the far ends |
+| space-evenly | places an even amount of space between each grid item, including the far ends |
+
+###### grid-auto-columns, grid-auto-rows
+
+example :
+
+```
+.container {
+  grid-auto-columns: 60px;
+}
+```
+
+###### grid-auto-flow
+
+| value | meaning |
+| ----- | ------- |
+| row | tells the auto-placement algorithm to fill in each row in turn, adding new rows as necessary |
+| column | tells the auto-placement algorithm to fill in each column in turn, adding new columns as necessary |
+| dense | tells the auto-placement algorithm to attempt to fill in holes earlier in the grid if smaller items come up later |
+
+Note that dense might cause your items to appear out of order.
+
+###### grid === grid-template-rows, grid-template-columns, grid-template-areas, grid-auto-rows, grid-auto-columns, and grid-auto-flow
+
+##### Grid Item中的属性
+
+`grid-column-start`, `grid-column-end`, `grid-row-start`, `grid-row-end`, `grid-column`, `grid-row`, `grid-area`, `justify-self`, `align-self`.
+
+###### grid-column-start, grid-column-end, grid-row-start, grid-row-end
+
+```
+.item {
+  grid-column-start: <number> | <name> | span <number> | span <name> | auto
+  grid-column-end: <number> | <name> | span <number> | span <name> | auto
+  grid-row-start: <number> | <name> | span <number> | span <name> | auto
+  grid-row-end: <number> | <name> | span <number> | span <name> | auto
+}
+```
+
+example 1: 
+
+```
+.item-a {
+  grid-column-start: 2;
+  grid-column-end: five;
+  grid-row-start: row1-start
+  grid-row-end: 3
+}
+```
+
+example 2: 
+
+```
+.item-b {
+  grid-column-start: 1;
+  grid-column-end: span col4-start;
+  grid-row-start: 2
+  grid-row-end: span 2
+}
+```
+
+###### grid-column == grid-column-start + grid-column-end
+###### grid-row == grid-row-start + grid-row-end
+
+```
+.item {
+  grid-column: <start-line> / <end-line> | <start-line> / span <value>;
+  grid-row: <start-line> / <end-line> | <start-line> / span <value>;
+}
+```
+
+example : 
+
+```
+.item-c {
+  grid-column: 3 / span 2;
+  grid-row: third-line / 4;
+}
+```
+
+###### grid-area == grid-row-start + grid-column-start + grid-row-end + grid-column-end
+
+```
+.item {
+  grid-area: <name> | <row-start> / <column-start> / <row-end> / <column-end>;
+}
+```
+
+example 1:
+
+```
+.item-d {
+  grid-area: header
+}
+```
+
+example 2: 
+
+```
+.item-d {
+  grid-area: 1 / col4-start / last-line / 6
+}
+```
+
+###### justify-self
+
+| value | meaning |
+| ----- | ------- |
+| start | aligns the content to the left end of the grid area |
+| end | aligns the content to the right end of the grid area |
+| center | aligns the content in the center of the grid area |
+| stretch | fills the whole width of the grid area (this is the default) |
+
+###### align-self
+
+| value | meaning |
+| ----- | ------- |
+| start | aligns the content to the top of the grid area |
+| end | aligns the content to the bottom of the grid area |
+| center | aligns the content in the center of the grid area |
+| stretch | fills the whole height of the grid area (this is the default) |
+
 ### 边框
 
 `border`, `border-image`, `border-radius`, `box-shadow`, `outline`.
@@ -111,7 +410,7 @@
 
 ### 文字
 
-`text-align`, `text-decoration`, `text-indent`, `text-shadow`, `text-overflow`, `font-weight`, `font-family`, `font-size`, `font-style`, `color`, `white-space`, `letter-spacing`.
+`text-align`, `text-decoration`, `text-indent`, `text-shadow`, `text-overflow`, `font-weight`, `font-family`, `font-size`, `font-style`, `color`, `white-space`, `letter-spacing`, `word-spacing`.
 
 #### @font-face: 我一直记不住的
 
@@ -191,7 +490,11 @@ where
 
 ### 其它
 
-`resize`, `cursor`, `point-events`, `user-select`.
+`resize`, `cursor`, `point-events`, `user-select`, `list-style`.
+
+#### list-style == list-style-type + list-style-image + list-style-position
+
+注意：这个属性可以用于ul, ol，同样也可以用在li。
 
 总计
 ---
